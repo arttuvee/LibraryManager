@@ -20,4 +20,13 @@ public class UserController {
             return null;
         }
     }
+
+    public User getUserById(int id) {
+        try {
+            return userDAO.getUserById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
