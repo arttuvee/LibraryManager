@@ -12,7 +12,7 @@ public class UserDAO {
 
     // Tässä CRUD methodi. Se hakee kaikki käyttäjät tietokannasta ja palauttaa ne
     // listana USER OLIOINA.
-    public List<User> getAllUsers() throws SQLException {
+    public static List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -33,7 +33,7 @@ public class UserDAO {
     }
 
     // Other CRUD methods (create, read, update, delete) can be added here
-    public User getUserById(int id) throws SQLException {
+    public static User getUserById(int id) throws SQLException {
         User user = new User();
         user.setId(id);
         String query = "SELECT * FROM users WHERE Käyttäjä_ID = ?";
