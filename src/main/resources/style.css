@@ -1,5 +1,13 @@
+@font-face {
+    font-family: 'Nunito-Regular';
+    src: url('fonts/Nunito-Regular.ttf');
+}
+
+
+
 .root {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(34,34,34,1) 0%, rgba(42,42,42,1) 100%);
+    -fx-font-family: 'Nunito-Regular';
 }
 
 .menu-bg {
@@ -15,4 +23,47 @@
 .menu-button:hover {
     -fx-background-color: #191919;
     -fx-text-fill: white;
+}
+
+.login-title {
+    -fx-font-size: 24px;
+    -fx-fill: white;
+
+}
+
+.login-bg {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(61,61,61,1) 0%, rgba(42,42,42,1) 100%);
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.login-form {
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+
+.login-form:hover {
+    -fx-border-color: #191919;
+}
+
+.login-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+.login-button:hover {
+    -fx-border-color: #191919;
 }
