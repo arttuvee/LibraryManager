@@ -1,8 +1,18 @@
 .root {
-    -fx-background-color: lightgray;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(34,34,34,1) 0%, rgba(42,42,42,1) 100%);
 }
 
 .menu-bg {
-    -fx-background-color: darkgray;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(61,61,61,1) 0%, rgba(42,42,42,1) 100%);
 }
 
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.menu-button:hover {
+    -fx-background-color: #191919;
+    -fx-text-fill: white;
+}

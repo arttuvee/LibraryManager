@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="1020.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="623.0" prefWidth="250.0">
@@ -19,10 +18,11 @@
                         <Text layoutX="110.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" />
                      </children>
                   </Pane>
-                  <Button layoutY="80.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Varasto" />
-                  <Button layoutY="140.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Lainat" />
-                  <Button layoutY="200.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Palautukset" />
-                  <Button layoutY="260.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="Laskut" />
+                  <Button layoutY="80.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto" />
+                  <Button layoutY="147.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Lainat" />
+                  <Button layoutY="215.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Palautukset" />
+                  <Button layoutY="282.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut" />
+                  <Button layoutY="554.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos" />
                </children>
             </AnchorPane>
          </children>
