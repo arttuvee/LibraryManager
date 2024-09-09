@@ -48,5 +48,9 @@ public class LoginController {
         registerStage.setTitle("Register");
         registerStage.setScene(new Scene(registerRoot));
         registerStage.show();
+
+        // Close the login window
+        Stage loginStage = (Stage) registerButton.getScene().getWindow();
+        loginStage.close();
     }
 }
