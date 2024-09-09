@@ -35,7 +35,7 @@
                 <Button layoutX="143.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Register" />
 
 
-                <Button layoutX="218.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Back" />
+                <Button fx:id="backButton" layoutX="218.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Back" />
             <ImageView fitHeight="134.0" fitWidth="86.0" layoutX="46.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/user-plus-regular-96.png" />
