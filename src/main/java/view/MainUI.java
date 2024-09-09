@@ -6,19 +6,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
+import java.io.IOException;
 
 public class MainUI extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
-        primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+    public void start(Stage primaryStage) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("src/main/resources/MainView.fxml"));
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Main UI");
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-        launch(args);  // Launch JavaFX Application
+        launch(args);
     }
 }
