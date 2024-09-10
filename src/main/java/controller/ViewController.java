@@ -8,6 +8,8 @@ import javafx.scene.layout.StackPane;
 public class ViewController {
 
     @FXML
+    private Button kotiButton;
+    @FXML
     private Button varastoButton;
     @FXML
     private Button lainatButton;
@@ -20,6 +22,8 @@ public class ViewController {
 
     @FXML
     private StackPane mainStackPane;
+    @FXML
+    private Pane kotiPane;
     @FXML
     private Pane varastoPane;
     @FXML
@@ -35,7 +39,7 @@ public class ViewController {
         boolean isAdmin = checkUserRole();
         varastoButton.setVisible(isAdmin);
         // Default page
-        showPane(varastoPane, varastoButton);
+        showPane(kotiPane, kotiButton);
     }
 
     private boolean checkUserRole() {
@@ -43,6 +47,11 @@ public class ViewController {
         return true;
     }
 
+    @FXML
+    private void handleKotiButtonAction() {
+        showPane(kotiPane, kotiButton);
+
+    }
     @FXML
     private void handleVarastoButtonAction() {
         showPane(varastoPane, varastoButton);
@@ -72,6 +81,7 @@ public class ViewController {
     }
 
     private void resetButtonStyles() {
+        kotiButton.getStyleClass().remove("active");
         varastoButton.getStyleClass().remove("active");
         lainatButton.getStyleClass().remove("active");
         palautuksetButton.getStyleClass().remove("active");

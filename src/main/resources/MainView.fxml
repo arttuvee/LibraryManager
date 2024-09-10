@@ -16,20 +16,17 @@
          <children>
             <AnchorPane prefHeight="623.0" prefWidth="250.0" styleClass="menu-bg" stylesheets="@style.css">
                <children>
-                  <Pane prefHeight="80.0" prefWidth="250.0">
-                     <children>
-                        <Text layoutX="110.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" />
-                     </children>
-                  </Pane>
-                  <Button fx:id="varastoButton" layoutY="80.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto">
+                  <Pane prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top" />
+                  <Button fx:id="kotiButton" layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleKotiButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Koti">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/grid-alt-regular-96.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="lainatButton" layoutY="147.0" mnemonicParsing="false" onAction="#handleLainatButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Lainat">
+                     </graphic>
+                  </Button>
+                  <Button fx:id="lainatButton" layoutX="1.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleLainatButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Lainat">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -37,7 +34,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="palautuksetButton" layoutY="215.0" mnemonicParsing="false" onAction="#handlePalautuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Palautukset">
+                  <Button fx:id="palautuksetButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handlePalautuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Palautukset">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -45,7 +42,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="laskutButton" layoutY="282.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut">
+                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -53,25 +50,47 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="logoutButton" layoutY="554.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos">
+                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/log-out-regular-96.png" />
+                              <Image url="@img/grid-alt-regular-96.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
+                  <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top">
+                     <children>
+                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos">
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/log-out-regular-96.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>
       </VBox>
       <StackPane fx:id="mainStackPane" prefHeight="623.0" prefWidth="770.0">
          <children>
-            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
                         <Text layoutX="345.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Varasto" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="kotiPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
+                     <children>
+                        <Text layoutX="364.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Koti" />
                      </children>
                   </Pane>
                </children>
@@ -85,7 +104,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="laskutPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="palautuksetPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
@@ -94,7 +113,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="palautuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="laskutPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
