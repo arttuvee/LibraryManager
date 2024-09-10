@@ -21,7 +21,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="loginButton" layoutX="121.0" layoutY="155.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="51.0" styleClass="login-button" stylesheets="@style.css" text="Login">
+            <Button fx:id="loginButton" layoutX="121.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="30.0" prefWidth="51.0" styleClass="login-button" stylesheets="@style.css" text="Login">
                <font>
                   <Font size="10.0" />
                </font></Button>

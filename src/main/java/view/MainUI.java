@@ -14,8 +14,7 @@ public class MainUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Main UI");
