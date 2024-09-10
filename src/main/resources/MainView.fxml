@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -27,5 +28,19 @@
             </AnchorPane>
          </children>
       </VBox>
+      <StackPane prefHeight="623.0" prefWidth="770.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Text fill="WHITE" layoutX="203.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varasto" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <Text layoutX="119.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lainat" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
    </children>
 </HBox>
