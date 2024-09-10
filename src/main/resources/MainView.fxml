@@ -60,7 +60,7 @@
                      </graphic></Button>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top">
                      <children>
-                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos">
+                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

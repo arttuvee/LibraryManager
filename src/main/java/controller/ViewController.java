@@ -1,9 +1,16 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class ViewController {
 
@@ -72,6 +79,24 @@ public class ViewController {
         showPane(laskutPane, laskutButton);
     }
 
+    @FXML
+    private void handleLogoutButtonAction() throws IOException {
+        // Load the LoginView.fxml file
+        Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
+
+        // Create a new stage for LoginView
+        Stage loginStage = new Stage();
+        loginStage.setTitle("LibraryManager - Login");
+        loginStage.setScene(new Scene(loginRoot));
+        loginStage.show();
+
+        // TODO: Logout user !
+
+        // Close the main window
+        Stage mainStage = (Stage) logoutButton.getScene().getWindow();
+        mainStage.close();
+    }
+
     private void showPane(Pane pane, Button button) {
         mainStackPane.getChildren().forEach(node -> node.setVisible(false));
         pane.setVisible(true);
@@ -86,9 +111,5 @@ public class ViewController {
         lainatButton.getStyleClass().remove("active");
         palautuksetButton.getStyleClass().remove("active");
         laskutButton.getStyleClass().remove("active");
-    }
-
-    private void handleLogoutButtonAction() {
-
     }
 }
