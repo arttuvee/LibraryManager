@@ -32,7 +32,7 @@ public class LoginController {
 
         // Create a new stage for MainView
         Stage mainStage = new Stage();
-        mainStage.setTitle("Main View");
+        mainStage.setTitle("LibraryManager");
         mainStage.setScene(new Scene(mainRoot));
         mainStage.show();
 
@@ -50,7 +50,7 @@ public class LoginController {
 
         // Create a new stage for RegisterView
         Stage registerStage = new Stage();
-        registerStage.setTitle("Register");
+        registerStage.setTitle("LibraryManager - Register");
         registerStage.setScene(new Scene(registerRoot));
         registerStage.show();
 

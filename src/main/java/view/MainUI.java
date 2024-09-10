@@ -17,7 +17,7 @@ public class MainUI extends Application {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Main UI");
+            primaryStage.setTitle("LibraryManager - Login");
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
