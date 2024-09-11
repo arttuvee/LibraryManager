@@ -21,16 +21,18 @@ public class LoginController {
     @FXML
     private Button backButton;
 
+    // This method will be called when the login button is clicked in login view
+    // Open the main view and close the login view
     @FXML
     private void handleLoginButtonAction() throws IOException {
         // Load the MainView.fxml file
         Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
 
-        // Login !
+        // TODO: Login verification here !
 
         // Create a new stage for MainView
         Stage mainStage = new Stage();
-        mainStage.setTitle("Main View");
+        mainStage.setTitle("LibraryManager");
         mainStage.setScene(new Scene(mainRoot));
         mainStage.show();
 
@@ -40,6 +42,7 @@ public class LoginController {
     }
 
     // This method will be called when the register button is clicked in login view
+    // Open the register view and close the login view
     @FXML
     private void handleRegisterButtonAction() throws IOException {
         // Load the RegisterView.fxml file
@@ -47,7 +50,7 @@ public class LoginController {
 
         // Create a new stage for RegisterView
         Stage registerStage = new Stage();
-        registerStage.setTitle("Register");
+        registerStage.setTitle("LibraryManager - Register");
         registerStage.setScene(new Scene(registerRoot));
         registerStage.show();
 
