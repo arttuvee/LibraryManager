@@ -42,7 +42,7 @@ public class ViewController {
 
     @FXML
     public void initialize() {
-        // Check if the user is an admin and set the visibility of the varastoButton
+        // Check if the user is an admin and update menu items
         boolean isAdmin = checkUserRole();
         varastoButton.setVisible(isAdmin);
         // Default page
@@ -50,7 +50,7 @@ public class ViewController {
     }
 
     private boolean checkUserRole() {
-        // TODO: Check user role
+        // TODO: Check user role !
         return true;
     }
 
