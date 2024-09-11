@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public static User getUserById(@PathVariable int id) {
+    public static User getUserById(@PathVariable("id") int id) {
         try {
             return UserDAO.getUserById(id);
         } catch (SQLException e) {
