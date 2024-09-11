@@ -42,10 +42,9 @@ public class RegisterController {
         mainStage.setScene(new Scene(mainRoot));
         mainStage.show();
 
-        // Close the register window
+        // Close the register window.
         Stage registerStage = (Stage) registerButton.getScene().getWindow();
         registerStage.close();
-
     }
 
 }
