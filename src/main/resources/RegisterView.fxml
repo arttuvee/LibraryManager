@@ -19,13 +19,12 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <TextField layoutX="142.0" layoutY="101.0" prefWidth="250.0" promptText="Email" styleClass="login-form" stylesheets="@style.css" />
+                <TextField layoutX="142.0" layoutY="101.0" prefWidth="250.0" promptText="Username" styleClass="login-form" stylesheets="@style.css" />
                 <PasswordField layoutX="142.0" layoutY="141.0" prefWidth="250.0" promptText="Password" styleClass="login-form" stylesheets="@style.css" />
                 <PasswordField layoutX="142.0" layoutY="181.0" prefWidth="250.0" promptText="Confirm Password" styleClass="login-form" stylesheets="@style.css" />
                 <TextField layoutX="142.0" layoutY="221.0" prefWidth="250.0" promptText="Phone Number" styleClass="login-form" stylesheets="@style.css" />
-                <Button layoutX="143.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Register" />
-                <Button fx:id="backButton" layoutX="218.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Back" onAction="#handleBackButton" />
                 <Button fx:id="registerButton" layoutX="143.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Register" onAction="#handleRegisterButtonAction" />
+                <Button fx:id="backButton" layoutX="218.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Back" onAction="#handleBackButton" />
                 <ImageView fitHeight="134.0" fitWidth="86.0" layoutX="46.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/user-plus-regular-96.png" />

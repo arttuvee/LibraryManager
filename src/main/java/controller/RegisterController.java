@@ -33,18 +33,17 @@ public class RegisterController {
     }
 
     @FXML
-    private void handleRegisterButtonAction() throws IOException{
+    private void handleRegisterButtonAction() throws IOException {
         Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
 
-        // new stage for mainview
+        // Create a new stage for MainView
         Stage mainStage = new Stage();
         mainStage.setTitle("Main View");
         mainStage.setScene(new Scene(mainRoot));
         mainStage.show();
 
-        // Close the register window.
+        // Close the register window
         Stage registerStage = (Stage) registerButton.getScene().getWindow();
         registerStage.close();
     }
-
 }
