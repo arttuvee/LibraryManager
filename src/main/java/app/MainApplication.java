@@ -8,5 +8,6 @@ public class MainApplication {
     public static void main(String[] args) {
         // Main loop, listens for web requests
         SpringApplication.run(MainApplication.class, args);
+        System.out.println("test");
     }
 }
