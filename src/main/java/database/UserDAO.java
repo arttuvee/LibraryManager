@@ -53,4 +53,60 @@ public class UserDAO {
         return user;
     }
 
+    public static User getUserByName(String name) throws SQLException {
+        User user = new User();
+        user.setName(name);
+        String query = "SELECT * FROM Käyttäjä WHERE Käyttäjänimi = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, name);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    user.setId(rs.getInt("Käyttäjä_ID"));
+                    user.setName(rs.getString("Käyttäjänimi"));
+                    user.setEmail(rs.getString("Sähköpostiosoite"));
+                    user.setAge(rs.getInt("Ikä"));
+                    user.setRole(rs.getString("Rooli"));
+                }
+            }
+        }
+        return user;
+    }
+
+    public static void addUser(User user) throws SQLException {
+        String query = "INSERT INTO Käyttäjä (Käyttäjänimi, Sähköpostiosoite, Ikä, Rooli) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setInt(3, user.getAge());
+            stmt.setString(4, user.getRole());
+            stmt.executeUpdate();
+        }
+    }
+
+    public static void updateUser(User user) throws SQLException {
+        String query = "UPDATE Käyttäjä SET Käyttäjänimi = ?, Sähköpostiosoite = ?, Ikä = ?, Rooli = ? WHERE Käyttäjä_ID = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setInt(3, user.getAge());
+            stmt.setString(4, user.getRole());
+            stmt.setInt(5, user.getId());
+            stmt.executeUpdate();
+        }
+    }
+
+    public static void deleteUserById(int id) throws SQLException {
+        String query = "DELETE FROM Käyttäjä WHERE Käyttäjä_ID = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
+
+
+
 }

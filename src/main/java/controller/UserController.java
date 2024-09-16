@@ -3,10 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import database.UserDAO;
 import model.User;
@@ -25,7 +22,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public static User getUserById(@PathVariable("id") int id) {
         try {
             return UserDAO.getUserById(id);
@@ -34,4 +31,42 @@ public class UserController {
             return null;
         }
     }
+
+    @GetMapping("/name/{name}")
+    public static User getUserByName(@PathVariable("name") String name) {
+        try {
+            return UserDAO.getUserByName(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @PostMapping
+    public static void addUser(@RequestBody User user) {
+        try {
+            UserDAO.addUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PutMapping("/{user}")
+    public static void updateUser(@RequestBody User user) {
+        try {
+            UserDAO.updateUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public static void deleteUserById(@PathVariable("id") int id) {
+        try {
+            UserDAO.deleteUserById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
