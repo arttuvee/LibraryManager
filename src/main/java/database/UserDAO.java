@@ -36,14 +36,14 @@ public class UserDAO {
     public static User getUserById(int id) throws SQLException {
         User user = new User();
         user.setId(id);
-        String query = "SELECT * FROM users WHERE Käyttäjä_ID = ?";
+        String query = "SELECT * FROM Käyttäjä WHERE Käyttäjä_ID = ?";
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     user.setId(rs.getInt("Käyttäjä_ID"));
-                    user.setName(rs.getString("Käyttäjäninimi"));
+                    user.setName(rs.getString("Käyttäjänimi"));
                     user.setEmail(rs.getString("Sähköpostiosoite"));
                     user.setAge(rs.getInt("Ikä"));
                     user.setRole(rs.getString("Rooli"));
