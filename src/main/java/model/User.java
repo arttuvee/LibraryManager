@@ -7,6 +7,7 @@ public class User {
     private String email;
     private int age;
     private String role;
+    private String password;
 
     // Getters and setters
     public int getId() {
@@ -35,6 +36,10 @@ public class User {
 
     public int getAge() {
         return age;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setAge(int age) {

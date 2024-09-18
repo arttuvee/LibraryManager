@@ -74,13 +74,14 @@ public class UserDAO {
     }
 
     public static void addUser(User user) throws SQLException {
-        String query = "INSERT INTO Käyttäjä (Käyttäjänimi, Sähköpostiosoite, Ikä, Rooli) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Käyttäjä (Käyttäjänimi, Sähköpostiosoite, Ikä, Rooli, Salasana) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
             stmt.setInt(3, user.getAge());
             stmt.setString(4, user.getRole());
+            stmt.setString(5, user.getPassword());
             stmt.executeUpdate();
         }
     }
