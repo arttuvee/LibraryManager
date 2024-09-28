@@ -127,7 +127,7 @@
                   </TableView>
                </children>
             </Pane>
-            <Pane fx:id="kotiPane" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="kotiPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
@@ -148,7 +148,7 @@
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Button layoutX="14.0" layoutY="6.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="163.0" styleClass="login-button" text="Lainaa" />
+                        <Button layoutX="14.0" layoutY="6.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="163.0" styleClass="login-button" text="Lainaa kirja" />
                      </children>
                   </Pane>
                </children>
@@ -197,7 +197,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="palautuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="623.0" prefWidth="650.0" visible="false">
+            <Pane fx:id="palautuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="623.0" prefWidth="650.0">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
