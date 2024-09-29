@@ -152,3 +152,11 @@
 .table-view .column-header .label {
     -fx-text-fill: white;
 }
+
+.date-picker {
+    -fx-background-color: transparent;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+}

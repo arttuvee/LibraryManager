@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -81,29 +82,30 @@
       </VBox>
       <StackPane fx:id="mainStackPane" prefHeight="623.0" prefWidth="770.0">
          <children>
-            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Pane layoutX="14.0" layoutY="426.0" prefHeight="183.0" prefWidth="742.0" styleClass="content-page-bg" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="lisääButton" onAction="#handleAddButtonAction" layoutX="595.0" layoutY="40.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="112.0" styleClass="add-button" text="Lisää">
+                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="Lisää">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
-                        <TextField fx:id="lisääNimi" layoutX="46.0" layoutY="60.0" promptText="Nimi" />
-                        <TextField fx:id="lisääJulkaisuPVM" layoutX="46.0" layoutY="95.0" promptText="Julkaisu pvm." />
-                        <TextField fx:id="lisääTekijä" layoutX="46.0" layoutY="134.0" promptText="Tekijä" />
-                        <TextField fx:id="lisääJulkaisija" layoutX="239.0" layoutY="60.0" promptText="Julkaisija" />
-                        <TextField fx:id="lisääIkäraja" layoutX="239.0" layoutY="95.0" promptText="Ikäraja" />
-                        <TextField fx:id="lisääTyyppi" layoutX="239.0" layoutY="134.0" promptText="Tyyppi" />
-                        <TextField fx:id="lisääKuvaus" layoutX="419.0" layoutY="60.0" promptText="Kuvaus" />
-                        <TextField fx:id="lisääGenre" layoutX="419.0" layoutY="95.0" promptText="Genre" />
-                        <TextField fx:id="lisääSaldo" layoutX="419.0" layoutY="134.0" promptText="Saldo" />
+                        <TextField fx:id="lisääNimi" layoutX="14.0" layoutY="55.0" promptText="Nimi" />
+                        <TextField fx:id="lisääTekijä" layoutX="14.0" layoutY="90.0" promptText="Tekijä" />
+                        <TextField fx:id="lisääJulkaisija" layoutX="207.0" layoutY="55.0" promptText="Julkaisija" />
+                        <TextField fx:id="lisääIkäraja" layoutX="207.0" layoutY="90.0" promptText="Ikäraja" />
+                        <TextField fx:id="lisääTyyppi" layoutX="207.0" layoutY="129.0" promptText="Tyyppi" />
+                        <TextField fx:id="lisääKuvaus" layoutX="387.0" layoutY="55.0" promptText="Kuvaus" />
+                        <TextField fx:id="lisääGenre" layoutX="387.0" layoutY="90.0" promptText="Genre" />
+                        <TextField fx:id="lisääSaldo" layoutX="387.0" layoutY="129.0" promptText="Saldo" />
                         <Text layoutX="233.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Lisää varastoon">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Button layoutX="595.0" layoutY="101.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="112.0" styleClass="remove-button" text="Poista" />
+                        <Button layoutX="662.0" layoutY="126.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="Poista" />
+                        <DatePicker fx:id="lisääJulkaisuPVM" layoutX="14.0" layoutY="129.0" prefHeight="26.0" prefWidth="152.0" promptText="Julkaisu pvm." stylesheets="@style.css" />
+                        <TextField fx:id="lisääKoodi" layoutX="576.0" layoutY="55.0" promptText="Koodi" />
                      </children>
                   </Pane>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
@@ -197,7 +199,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="palautuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="623.0" prefWidth="650.0">
+            <Pane fx:id="palautuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="623.0" prefWidth="650.0" visible="false">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>

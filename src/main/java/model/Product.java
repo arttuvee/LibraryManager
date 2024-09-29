@@ -18,6 +18,24 @@ public class Product {
     private int lainaaika;
     private String koodi;
 
+    // No-argument constructor
+    public Product() {
+    }
+
+    // Constructor with parameters
+    public Product(String nimi, String julkaisuPVM, String tekija, String julkaisija, int ikaraja, String tyyppi, String kuvaus, String genre, int saldo, String koodi) {
+        this.nimi = nimi;
+        this.julkaisuPVM = Date.valueOf(julkaisuPVM); // Assuming julkaisuPVM is in the format "yyyy-MM-dd"
+        this.tekija = tekija;
+        this.julkaisija = julkaisija;
+        this.ikaraja = ikaraja;
+        this.tyyppi = tyyppi;
+        this.kuvaus = kuvaus;
+        this.genre = genre;
+        this.saldo = saldo;
+        this.koodi = koodi;
+    }
+
     // Getters and setters
     public int getId() {
         return id;
@@ -114,5 +132,4 @@ public class Product {
     public void setKoodi(String koodi) {
         this.koodi = koodi;
     }
-
 }

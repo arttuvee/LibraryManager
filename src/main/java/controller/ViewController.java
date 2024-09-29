@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -18,6 +15,7 @@ import javafx.stage.Stage;
 import model.Product;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
@@ -53,7 +51,7 @@ public class ViewController {
     @FXML
     private TextField lisääNimi;
     @FXML
-    private TextField lisääJulkaisuPVM;
+    private DatePicker lisääJulkaisuPVM;
     @FXML
     private TextField lisääTekijä;
     @FXML
@@ -68,6 +66,8 @@ public class ViewController {
     private TextField lisääGenre;
     @FXML
     private TextField lisääSaldo;
+    @FXML
+    private TextField lisääKoodi;
 
     @FXML
     private TableView<Product> productTableView;
@@ -141,8 +141,6 @@ public class ViewController {
         showPane(laskutPane, laskutButton);
     }
 
-
-
     @FXML
     private void handleLogoutButtonAction() throws IOException {
         Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
@@ -204,28 +202,44 @@ public class ViewController {
     private void showAlert(String title, String message) {
         // Implement a method to show an alert dialog
     }
-}
 
-@FXML
-private void handleAddButtonAction() {
-    String name = lisääNimi.getText();
-    String releaseDate = releaseDateField.getText();
-    String author = authorField.getText();
-    String publisher = publisherField.getText();
-    int ageLimit = Integer.parseInt(ageLimitField.getText());
-    String type = typeField.getText();
-    String description = descriptionField.getText();
-    String genre = genreField.getText();
-    int stock = Integer.parseInt(stockField.getText());
+    @FXML
+    private void handleAddButtonAction() {
+        String nimi = lisääNimi.getText();
+        String julkaisuPVM = lisääJulkaisuPVM.getValue().toString();
+        String tekijä = lisääTekijä.getText();
+        String julkaisija = lisääJulkaisija.getText();
+        String ikärajaStr = lisääIkäraja.getText();
+        String tyyppi = lisääTyyppi.getText();
+        String kuvaus = lisääKuvaus.getText();
+        String genre = lisääGenre.getText();
+        String saldoStr = lisääSaldo.getText();
+        String koodi = lisääKoodi.getText();
 
-    Product newProduct = new Product(name, releaseDate, author, publisher, ageLimit, type, description, genre, stock);
+        // Validate integer inputs
+        int ikäraja;
+        int saldo;
+        try {
+            ikäraja = Integer.parseInt(ikärajaStr);
+            saldo = Integer.parseInt(saldoStr);
+        } catch (NumberFormatException e) {
+            showAlert("Input Error", "Ikäraja and Saldo must be valid integers.");
+            return;
+        }
 
-    try {
-        ProductDAO.addProduct(newProduct);
-        showAlert("Success", "Product added successfully!");
-        loadProductData(); // Refresh the TableView
-    } catch (SQLException e) {
-        e.printStackTrace();
-        showAlert("Database Error", "An error occurred while adding the product: " + e.getMessage());
+        try {
+            Date.valueOf(julkaisuPVM);
+
+            Product newProduct = new Product(nimi, julkaisuPVM, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
+
+            ProductDAO.addProduct(newProduct);
+            showAlert("Success", "Product added successfully!");
+            loadProductData(); // Refresh the TableView
+        } catch (IllegalArgumentException e) {
+            showAlert("Input Error", "Invalid date format. Please use yyyy-MM-dd.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database Error", "An error occurred while adding the product: " + e.getMessage());
+        }
     }
 }
