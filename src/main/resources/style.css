@@ -157,10 +157,12 @@
     -fx-text-fill: white;
 }
 
-.date-picker {
-    -fx-background-color: transparent;
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #191919;
+    -fx-text-fill: white;
 }
 
-.date-picker .arrow-button {
-    -fx-background-color: transparent;
+.tableview .table-row-cell:filled:hover {
+    -fx-background-color: #191919;
+    -fx-text-fill: white;
 }
