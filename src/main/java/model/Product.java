@@ -7,7 +7,7 @@ public class Product {
     // Fields
     private int id;
     private String nimi;
-    private Date julkaisuPVM;
+    private int julkaisuvuosi;
     private String tekija;
     private String julkaisija;
     private int ikaraja;
@@ -23,9 +23,9 @@ public class Product {
     }
 
     // Constructor with parameters
-    public Product(String nimi, String julkaisuPVM, String tekija, String julkaisija, int ikaraja, String tyyppi, String kuvaus, String genre, int saldo, String koodi) {
+    public Product(String nimi, int julkaisuvuosi, String tekija, String julkaisija, int ikaraja, String tyyppi, String kuvaus, String genre, int saldo, String koodi) {
         this.nimi = nimi;
-        this.julkaisuPVM = Date.valueOf(julkaisuPVM); // Assuming julkaisuPVM is in the format "yyyy-MM-dd"
+        this.julkaisuvuosi = julkaisuvuosi;
         this.tekija = tekija;
         this.julkaisija = julkaisija;
         this.ikaraja = ikaraja;
@@ -53,12 +53,12 @@ public class Product {
         this.nimi = nimi;
     }
 
-    public Date getJulkaisuPVM() {
-        return julkaisuPVM;
+    public int getJulkaisuvuosi() {
+        return julkaisuvuosi;
     }
 
-    public void setJulkaisuPVM(Date julkaisuPVM) {
-        this.julkaisuPVM = julkaisuPVM;
+    public void setJulkaisuvuosi(int julkaisuvuosi) {
+        this.julkaisuvuosi = julkaisuvuosi;
     }
 
     public String getTekija() {

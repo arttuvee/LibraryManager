@@ -54,7 +54,7 @@ public class ViewController {
     @FXML
     private TextField lisääNimi;
     @FXML
-    private DatePicker lisääJulkaisuPVM;
+    private TextField lisääJulkaisuvuosi;
     @FXML
     private TextField lisääTekijä;
     @FXML
@@ -78,7 +78,7 @@ public class ViewController {
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<Product, String> julkaisuPVMColumn;
+    private TableColumn<Product, String> julkaisuColumn;
     @FXML
     private TableColumn<Product, String> tekijaColumn;
     @FXML
@@ -198,7 +198,7 @@ public class ViewController {
     private void setupTableView() {
         // Setup columns for kirjahyllyTable
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-        julkaisuPVMColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisuPVM"));
+        julkaisuColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
         tekijaColumn.setCellValueFactory(new PropertyValueFactory<>("tekija"));
         julkaisijaColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
         ikarajaColumn.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
@@ -210,7 +210,7 @@ public class ViewController {
         // Setup columns for varastoTable
         idColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("id"));
         nimiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-        julkaisuColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisuPVM"));
+        julkaisuColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
         tekijäColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tekija"));
         julkaisijaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
         ikärajaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
@@ -252,7 +252,7 @@ public class ViewController {
     @FXML
     private void handleAddButtonAction() {
         String nimi = lisääNimi.getText();
-        String julkaisuPVM = lisääJulkaisuPVM.getValue().toString();
+        String julkaisuvuosiStr = lisääJulkaisuvuosi.getText();
         String tekijä = lisääTekijä.getText();
         String julkaisija = lisääJulkaisija.getText();
         String ikärajaStr = lisääIkäraja.getText();
@@ -262,9 +262,11 @@ public class ViewController {
         String saldoStr = lisääSaldo.getText();
         String koodi = lisääKoodi.getText();
 
+        int julkaisuvuosi;
         int ikäraja;
         int saldo;
         try {
+            julkaisuvuosi = Integer.parseInt(julkaisuvuosiStr);
             ikäraja = Integer.parseInt(ikärajaStr);
             saldo = Integer.parseInt(saldoStr);
         } catch (NumberFormatException e) {
@@ -273,15 +275,14 @@ public class ViewController {
         }
 
         try {
-            Date.valueOf(julkaisuPVM);
 
-            Product newProduct = new Product(nimi, julkaisuPVM, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
+            Product newProduct = new Product(nimi, julkaisuvuosi, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
 
             ProductDAO.addProduct(newProduct);
             showAlert("Success", "Product added successfully!");
             loadProductData();
         } catch (IllegalArgumentException e) {
-            showAlert("Input Error", "Invalid date format. Please use yyyy-MM-dd.");
+            showAlert("Input Error", "Invalid year.");
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Database Error", "An error occurred while adding the product: " + e.getMessage());

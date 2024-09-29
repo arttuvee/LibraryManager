@@ -21,7 +21,7 @@ public class ProductDAO {
                 Product product = new Product();
                 product.setId(rs.getInt("Tuote_ID"));
                 product.setNimi(rs.getString("Nimi"));
-                product.setJulkaisuPVM(rs.getDate("JulkaisuPVM"));
+                product.setJulkaisuvuosi(rs.getInt("Julkaisuvuosi"));
                 product.setTekija(rs.getString("Tekijä"));
                 product.setJulkaisija(rs.getString("Julkaisija"));
                 product.setIkaraja(rs.getInt("Ikäraja"));
@@ -48,7 +48,7 @@ public class ProductDAO {
                 if (rs.next()) {
                     product.setId(rs.getInt("Tuote_ID"));
                     product.setNimi(rs.getString("Nimi"));
-                    product.setJulkaisuPVM(rs.getDate("JulkaisuPVM"));
+                    product.setJulkaisuvuosi(rs.getInt("Julkaisuvuosi"));
                     product.setTekija(rs.getString("Tekijä"));
                     product.setJulkaisija(rs.getString("Julkaisija"));
                     product.setIkaraja(rs.getInt("Ikäraja"));
@@ -76,7 +76,7 @@ public class ProductDAO {
                     Product product = new Product();
                     product.setId(rs.getInt("Tuote_ID"));
                     product.setNimi(rs.getString("Nimi"));
-                    product.setJulkaisuPVM(rs.getDate("JulkaisuPVM"));
+                    product.setJulkaisuvuosi(rs.getInt("Julkaisuvuosi"));
                     product.setTekija(rs.getString("Tekijä"));
                     product.setJulkaisija(rs.getString("Julkaisija"));
                     product.setIkaraja(rs.getInt("Ikäraja"));
@@ -97,7 +97,7 @@ public class ProductDAO {
     public static void addProduct(Product product) throws SQLException {
         String checkKoodiQuery = "SELECT COUNT(*) FROM Hyllypaikka WHERE Koodi = ?";
         String insertKoodiQuery = "INSERT INTO Hyllypaikka (Koodi) VALUES (?)";
-        String insertProductQuery = "INSERT INTO Tuote (Nimi, JulkaisuPVM, Tekijä, Julkaisija, Ikäraja, Tyyppi, Kuvaus, Genre, Saldo, Lainaaika, Koodi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertProductQuery = "INSERT INTO Tuote (Nimi, Julkaisuvuosi, Tekijä, Julkaisija, Ikäraja, Tyyppi, Kuvaus, Genre, Saldo, Lainaaika, Koodi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             // Check if Koodi exists in Hyllypaikka
@@ -117,7 +117,7 @@ public class ProductDAO {
             // Insert the product into Tuote
             try (PreparedStatement stmt = conn.prepareStatement(insertProductQuery)) {
                 stmt.setString(1, product.getNimi());
-                stmt.setDate(2, product.getJulkaisuPVM());
+                stmt.setInt(2, product.getJulkaisuvuosi());
                 stmt.setString(3, product.getTekija());
                 stmt.setString(4, product.getJulkaisija());
                 stmt.setInt(5, product.getIkaraja());
@@ -134,11 +134,11 @@ public class ProductDAO {
 
     // Updates an existing product in the database
     public static void updateProduct(Product product) throws SQLException {
-        String query = "UPDATE Tuote SET Nimi = ?, JulkaisuPVM = ?, Tekijä = ?, Julkaisija = ?, Ikaraja = ?, Tyyppi = ?, Kuvaus = ?, Genre = ?, Saldo = ?, Lainaaika = ?, Koodi = ? WHERE Tuote_ID = ?";
+        String query = "UPDATE Tuote SET Nimi = ?, Julkaisuvuosi = ?, Tekijä = ?, Julkaisija = ?, Ikaraja = ?, Tyyppi = ?, Kuvaus = ?, Genre = ?, Saldo = ?, Lainaaika = ?, Koodi = ? WHERE Tuote_ID = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, product.getNimi());
-            stmt.setDate(2, product.getJulkaisuPVM());
+            stmt.setInt(2, product.getJulkaisuvuosi());
             stmt.setString(3, product.getTekija());
             stmt.setString(4, product.getJulkaisija());
             stmt.setInt(5, product.getIkaraja());
