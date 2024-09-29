@@ -27,34 +27,43 @@ public class LoginController {
     private Button backButton;
 
     @FXML
-    private TextField emailField;
+    private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
 
     @FXML
     private void handleLoginButtonAction() throws IOException {
-        String email = emailField.getText();
+        String username = usernameField.getText();
         String password = passwordField.getText();
 
         try {
-            User user = UserDAO.getUserByEmail(email);
-            if (user != null && user.getPassword().equals(password)) {
-                // Load the MainView.fxml file
-                Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
+            User user = UserDAO.getUserByName(username);
+            if (user != null) {
+                String storedPassword = user.getPassword();
+                System.out.println("Input Password: " + password);
+                System.out.println("Stored Password: " + storedPassword);
 
-                // Create a new stage for MainView
-                Stage mainStage = new Stage();
-                mainStage.setTitle("LibraryManager");
-                mainStage.setScene(new Scene(mainRoot));
-                mainStage.show();
+                if (password != null && password.equals(storedPassword)) {
+                    // Load the MainView.fxml file
+                    Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
 
-                // Close the login window
-                Stage loginStage = (Stage) loginButton.getScene().getWindow();
-                loginStage.close();
+                    // Create a new stage for MainView
+                    Stage mainStage = new Stage();
+                    mainStage.setTitle("LibraryManager");
+                    mainStage.setScene(new Scene(mainRoot));
+                    mainStage.show();
+
+                    // Close the login window
+                    Stage loginStage = (Stage) loginButton.getScene().getWindow();
+                    loginStage.close();
+                } else {
+                    // Handle invalid login
+                    System.out.println("Invalid username or password");
+                }
             } else {
                 // Handle invalid login
-                System.out.println("Invalid email or password");
+                System.out.println("Invalid username or password");
             }
         } catch (SQLException e) {
             e.printStackTrace();

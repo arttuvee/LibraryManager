@@ -14,8 +14,8 @@
    <children>
       <Pane layoutX="149.0" layoutY="119.0" prefHeight="211.0" prefWidth="302.0" styleClass="login-bg" stylesheets="@style.css">
          <children>
-            <TextField layoutX="120.0" layoutY="71.0" promptText="Username" styleClass="login-form" stylesheets="@style.css" />
-            <PasswordField layoutX="120.0" layoutY="115.0" promptText="Password" styleClass="login-form" stylesheets="@style.css" />
+            <TextField fx:id="usernameField" layoutX="120.0" layoutY="71.0" promptText="Username" styleClass="login-form" stylesheets="@style.css" />
+            <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="115.0" promptText="Password" styleClass="login-form" stylesheets="@style.css" />
             <Text layoutX="122.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Login">
                <font>
                   <Font size="24.0" />

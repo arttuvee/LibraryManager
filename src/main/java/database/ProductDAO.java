@@ -25,7 +25,7 @@ public class ProductDAO {
                 product.setJulkaisuPVM(rs.getDate("JulkaisuPVM"));
                 product.setTekija(rs.getString("Tekijä"));
                 product.setJulkaisija(rs.getString("Julkaisija"));
-                product.setIkaraja(rs.getInt("Ikaraja"));
+                product.setIkaraja(rs.getInt("Ikäraja"));
                 product.setTyyppi(rs.getString("Tyyppi"));
                 product.setKuvaus(rs.getString("Kuvaus"));
                 product.setGenre(rs.getString("Genre"));
@@ -52,7 +52,7 @@ public class ProductDAO {
                     product.setJulkaisuPVM(rs.getDate("JulkaisuPVM"));
                     product.setTekija(rs.getString("Tekijä"));
                     product.setJulkaisija(rs.getString("Julkaisija"));
-                    product.setIkaraja(rs.getInt("Ikaraja"));
+                    product.setIkaraja(rs.getInt("Ikäraja"));
                     product.setTyyppi(rs.getString("Tyyppi"));
                     product.setKuvaus(rs.getString("Kuvaus"));
                     product.setGenre(rs.getString("Genre"));
@@ -79,7 +79,7 @@ public class ProductDAO {
                     product.setJulkaisuPVM(rs.getDate("JulkaisuPVM"));
                     product.setTekija(rs.getString("Tekijä"));
                     product.setJulkaisija(rs.getString("Julkaisija"));
-                    product.setIkaraja(rs.getInt("Ikaraja"));
+                    product.setIkaraja(rs.getInt("Ikäraja"));
                     product.setTyyppi(rs.getString("Tyyppi"));
                     product.setKuvaus(rs.getString("Kuvaus"));
                     product.setGenre(rs.getString("Genre"));

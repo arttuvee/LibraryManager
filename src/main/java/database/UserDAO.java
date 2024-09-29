@@ -67,6 +67,7 @@ public class UserDAO {
                     user.setEmail(rs.getString("Sähköpostiosoite"));
                     user.setAge(rs.getInt("Ikä"));
                     user.setRole(rs.getString("Rooli"));
+                    user.setPassword(rs.getString("Salasana"));
                 }
             }
         }
@@ -106,27 +107,6 @@ public class UserDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
-    }
-
-    public static User getUserByEmail(String email) throws SQLException {
-        User user = null;
-        String query = "SELECT * FROM Käyttäjä WHERE Sähköpostiosoite = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, email);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    user = new User();
-                    user.setId(rs.getInt("Käyttäjä_ID"));
-                    user.setName(rs.getString("Käyttäjänimi"));
-                    user.setEmail(rs.getString("Sähköpostiosoite"));
-                    user.setAge(rs.getInt("Ikä"));
-                    user.setRole(rs.getString("Rooli"));
-                    user.setPassword(rs.getString("Salasana"));
-                }
-            }
-        }
-        return user;
     }
 
 }
