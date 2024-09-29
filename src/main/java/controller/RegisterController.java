@@ -73,9 +73,9 @@ public class RegisterController {
             e.printStackTrace();
         }
 
-        Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
+        Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
         Stage mainStage = new Stage();
-        mainStage.setTitle("Main View");
+        mainStage.setTitle("Login View");
         mainStage.setScene(new Scene(mainRoot));
         mainStage.show();
 
