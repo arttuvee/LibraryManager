@@ -5,8 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
 import database.UserDAO;
@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class RegisterController {
+
     @FXML
     private Button backButton;
 
@@ -26,19 +27,21 @@ public class RegisterController {
     private TextField nameField;
 
     @FXML
+    private TextField emailField;
+
+    @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private TextField ageField;
 
     @FXML
     private void handleBackButton() throws IOException {
         Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
-
-        // Create a new stage for the login view
         Stage loginStage = new Stage();
         loginStage.setTitle("Login");
         loginStage.setScene(new Scene(loginRoot));
         loginStage.show();
-
-        // Close the register window
         Stage registerStage = (Stage) backButton.getScene().getWindow();
         registerStage.close();
     }
@@ -46,31 +49,37 @@ public class RegisterController {
     @FXML
     private void handleRegisterButtonAction() throws IOException {
         String name = nameField.getText();
+        String email = emailField.getText();
         String password = passwordField.getText();
-        String role = "user";
+        int age = Integer.parseInt(ageField.getText());
+        String role = "user"; // or retrieve from another field if applicable
 
+        // Debug statements
+        System.out.println("Name: " + name);
+        System.out.println("Email: " + email);
+        System.out.println("Password: " + password);
+        System.out.println("Age: " + age);
+        System.out.println("Role: " + role);
 
-        User user = new User();
-        user.setName(name);
+        if (password == null || password.isEmpty()) {
+            System.out.println("Password is null or empty");
+            return;
+        }
 
-        user.setPassword(password);  // Salasana tallennetaan
-        user.setRole(role);
-
+        User user = new User(name, email, password, age, role);
         try {
-            UserDAO.addUser(user);  // Tallennetaan käyttäjä tietokantaan
-
-            // Avaa pääikkuna
-            Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Main View");
-            mainStage.setScene(new Scene(mainRoot));
-            mainStage.show();
-
-            // Sulje rekisteröinti-ikkuna
-            Stage registerStage = (Stage) registerButton.getScene().getWindow();
-            registerStage.close();
+            UserDAO.addUser(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
+        Stage mainStage = new Stage();
+        mainStage.setTitle("Main View");
+        mainStage.setScene(new Scene(mainRoot));
+        mainStage.show();
+
+        Stage registerStage = (Stage) registerButton.getScene().getWindow();
+        registerStage.close();
     }
 }

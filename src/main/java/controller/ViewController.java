@@ -206,26 +206,3 @@ public class ViewController {
     }
 }
 
-@FXML
-private void handleAddButtonAction() {
-    String name = lisääNimi.getText();
-    String releaseDate = releaseDateField.getText();
-    String author = authorField.getText();
-    String publisher = publisherField.getText();
-    int ageLimit = Integer.parseInt(ageLimitField.getText());
-    String type = typeField.getText();
-    String description = descriptionField.getText();
-    String genre = genreField.getText();
-    int stock = Integer.parseInt(stockField.getText());
-
-    Product newProduct = new Product(name, releaseDate, author, publisher, ageLimit, type, description, genre, stock);
-
-    try {
-        ProductDAO.addProduct(newProduct);
-        showAlert("Success", "Product added successfully!");
-        loadProductData(); // Refresh the TableView
-    } catch (SQLException e) {
-        e.printStackTrace();
-        showAlert("Database Error", "An error occurred while adding the product: " + e.getMessage());
-    }
-}
