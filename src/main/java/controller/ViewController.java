@@ -223,7 +223,7 @@ public class ViewController {
             ikäraja = Integer.parseInt(ikärajaStr);
             saldo = Integer.parseInt(saldoStr);
         } catch (NumberFormatException e) {
-            showAlert("Input Error", "Ikäraja and Saldo must be valid integers.");
+            showAlert("Virhe", "Ikäraja ja saldo on oltava numeroita.");
             return;
         }
 
