@@ -22,6 +22,7 @@ import java.util.Objects;
 
 public class ViewController {
 
+    // Menu buttons
     @FXML
     private Button kotiButton;
     @FXML
@@ -35,6 +36,7 @@ public class ViewController {
     @FXML
     private Button logoutButton;
 
+    // Pages
     @FXML
     private StackPane mainStackPane;
     @FXML
@@ -48,6 +50,7 @@ public class ViewController {
     @FXML
     private Pane palautuksetPane;
 
+    // Add product fields
     @FXML
     private TextField lisääNimi;
     @FXML
@@ -69,10 +72,9 @@ public class ViewController {
     @FXML
     private TextField lisääKoodi;
 
+    // Kirjahylly TableView
     @FXML
-    private TableView<Product> productTableView;
-    @FXML
-    private TableColumn<Product, Integer> idColumn;
+    private TableView<Product> kirjahyllyTable;
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
@@ -91,6 +93,30 @@ public class ViewController {
     private TableColumn<Product, String> genreColumn;
     @FXML
     private TableColumn<Product, Integer> saldoColumn;
+
+    // Varasto TableView
+    @FXML
+    private TableView<Product> varastoTable;
+    @FXML
+    private TableColumn<Product, Integer> idColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> nimiColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> julkaisuColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> tekijäColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> julkaisijaColumnVarasto;
+    @FXML
+    private TableColumn<Product, Integer> ikärajaColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> tyyppiColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> kuvausColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> genreColumnVarasto;
+    @FXML
+    private TableColumn<Product, Integer> saldoColumnVarasto;
 
     @FXML
     public void initialize() {
@@ -115,6 +141,7 @@ public class ViewController {
         // TODO: Check user role !
         return true;
     }
+
 
     @FXML
     private void handleKotiButtonAction() {
@@ -169,6 +196,7 @@ public class ViewController {
     }
 
     private void setupTableView() {
+        // Setup columns for kirjahyllyTable
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
         julkaisuPVMColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisuPVM"));
         tekijaColumn.setCellValueFactory(new PropertyValueFactory<>("tekija"));
@@ -178,6 +206,18 @@ public class ViewController {
         kuvausColumn.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         saldoColumn.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+
+        // Setup columns for varastoTable
+        idColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nimiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+        julkaisuColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisuPVM"));
+        tekijäColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tekija"));
+        julkaisijaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
+        ikärajaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
+        tyyppiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
+        kuvausColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
+        genreColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        saldoColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("saldo"));
     }
 
     private void loadProductData() {
@@ -188,7 +228,8 @@ public class ViewController {
             System.out.println("Products retrieved: " + products.size());
 
             ObservableList<Product> productObservableList = FXCollections.observableArrayList(products);
-            productTableView.setItems(productObservableList);
+            kirjahyllyTable.setItems(productObservableList);
+            varastoTable.setItems(productObservableList);
             System.out.println("Product data set in TableView");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -200,9 +241,14 @@ public class ViewController {
     }
 
     private void showAlert(String title, String message) {
-        // Implement a method to show an alert dialog
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
+    // Add new product to database
     @FXML
     private void handleAddButtonAction() {
         String nimi = lisääNimi.getText();
@@ -216,14 +262,13 @@ public class ViewController {
         String saldoStr = lisääSaldo.getText();
         String koodi = lisääKoodi.getText();
 
-        // Validate integer inputs
         int ikäraja;
         int saldo;
         try {
             ikäraja = Integer.parseInt(ikärajaStr);
             saldo = Integer.parseInt(saldoStr);
         } catch (NumberFormatException e) {
-            showAlert("Virhe", "Ikäraja ja saldo on oltava numeroita.");
+            showAlert("Input error", "Ikäraja and saldo must be integers.");
             return;
         }
 
@@ -234,12 +279,30 @@ public class ViewController {
 
             ProductDAO.addProduct(newProduct);
             showAlert("Success", "Product added successfully!");
-            loadProductData(); // Refresh the TableView
+            loadProductData();
         } catch (IllegalArgumentException e) {
             showAlert("Input Error", "Invalid date format. Please use yyyy-MM-dd.");
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Database Error", "An error occurred while adding the product: " + e.getMessage());
+        }
+    }
+
+    // Remove selected product from database
+    @FXML
+    private void handleRemoveButtonAction() {
+        Product selectedProduct = varastoTable.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            try {
+                ProductDAO.deleteProduct(selectedProduct.getId());
+                showAlert("Success", "Product removed successfully!");
+                loadProductData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showAlert("Database Error", "An error occurred while removing the product: " + e.getMessage());
+            }
+        } else {
+            showAlert("Selection Error", "No product selected. Please select a product to remove.");
         }
     }
 }

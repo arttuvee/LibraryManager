@@ -1,3 +1,7 @@
+* {
+    -fx-font-family: "Roboto-Light"
+}
+
 .root {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, rgba(34,34,34,1) 0%, rgba(42,42,42,1) 100%);
 }

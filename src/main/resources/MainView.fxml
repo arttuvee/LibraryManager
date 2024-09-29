@@ -103,7 +103,7 @@
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Button layoutX="662.0" layoutY="126.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="Poista" />
+                        <Button fx:id="poistaButton" onAction="#handleRemoveButtonAction" layoutX="662.0" layoutY="126.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="Poista" />
                         <DatePicker fx:id="lisääJulkaisuPVM" layoutX="14.0" layoutY="129.0" prefHeight="26.0" prefWidth="152.0" promptText="Julkaisu pvm." stylesheets="@style.css" />
                         <TextField fx:id="lisääKoodi" layoutX="576.0" layoutY="55.0" promptText="Koodi" />
                      </children>
@@ -113,18 +113,18 @@
                         <Text layoutX="343.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Varasto" />
                      </children>
                   </Pane>
-                  <TableView layoutX="14.0" layoutY="70.0" prefHeight="340.0" prefWidth="742.0" stylesheets="@style.css">
+                  <TableView fx:id="varastoTable" layoutX="14.0" layoutY="70.0" prefHeight="340.0" prefWidth="742.0" stylesheets="@style.css">
                     <columns>
-                       <TableColumn fx:id="idColumn" prefWidth="74.0" text="ID" />
-                       <TableColumn prefWidth="74.0" text="Nimi" />
-                       <TableColumn prefWidth="74.0" text="Julkaisu pvm." />
-                       <TableColumn prefWidth="74.0" text="Tekijä" />
-                       <TableColumn prefWidth="74.0" text="Julkaisija" />
-                       <TableColumn prefWidth="74.0" text="Ikäraja" />
-                       <TableColumn prefWidth="74.0" text="Tyyppi" />
-                       <TableColumn fx:id="kuvausColumn" prefWidth="74.0" text="Kuvaus" />
-                       <TableColumn prefWidth="74.0" text="Genre" />
-                       <TableColumn prefWidth="74.0" text="Saldo" />
+                       <TableColumn fx:id="idColumnVarasto" prefWidth="74.0" text="ID" />
+                       <TableColumn fx:id="nimiColumnVarasto" prefWidth="74.0" text="Nimi" />
+                       <TableColumn fx:id="julkaisuColumnVarasto" prefWidth="74.0" text="Julkaisu pvm." />
+                       <TableColumn fx:id="tekijäColumnVarasto" prefWidth="74.0" text="Tekijä" />
+                       <TableColumn fx:id="julkaisijaColumnVarasto" prefWidth="74.0" text="Julkaisija" />
+                       <TableColumn fx:id="ikärajaColumnVarasto" prefWidth="74.0" text="Ikäraja" />
+                       <TableColumn fx:id="tyyppiColumnVarasto" prefWidth="74.0" text="Tyyppi" />
+                       <TableColumn fx:id="kuvausColumnVarasto" prefWidth="74.0" text="Kuvaus" />
+                       <TableColumn fx:id="genreColumnVarasto" prefWidth="74.0" text="Genre" />
+                       <TableColumn fx:id="saldoColumnVarasto" prefWidth="74.0" text="Saldo" />
                     </columns>
                   </TableView>
                </children>
@@ -136,7 +136,7 @@
                         <Text layoutX="337.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Kirjahylly" />
                      </children>
                   </Pane>
-                  <TableView fx:id="productTableView" layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0" stylesheets="@style.css">
+                  <TableView fx:id="kirjahyllyTable" layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0" stylesheets="@style.css">
                      <columns>
                         <TableColumn fx:id="nameColumn" prefWidth="99.0" text="Nimi" />
                         <TableColumn fx:id="julkaisuPVMColumn" prefWidth="86.0" text="Julkaisu pvm." />
@@ -144,6 +144,7 @@
                         <TableColumn fx:id="julkaisijaColumn" prefWidth="120.0" text="Julkaisija" />
                         <TableColumn fx:id="ikarajaColumn" prefWidth="63.0" text="Ikäraja" />
                         <TableColumn fx:id="tyyppiColumn" prefWidth="99.0" text="Tyyppi" />
+                        <TableColumn fx:id="kuvausColumn" prefWidth="75.0" text="Kuvaus" />
                         <TableColumn fx:id="genreColumn" prefWidth="105.0" text="Genre" />
                         <TableColumn fx:id="saldoColumn" minWidth="0.0" prefWidth="64.0" text="Saldo" />
                      </columns>
