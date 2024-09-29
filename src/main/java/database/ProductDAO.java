@@ -10,7 +10,8 @@ import model.Product;
 
 public class ProductDAO {
 
-    // Fetches all products from the database and returns them as a list of Product objects
+    // Tässä CRUD methodi. Se hakee kaikki tuotteet tietokannasta ja palauttaa ne
+    // listana TUOTE OLIOINA.
     public static List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
         String query = "SELECT * FROM Tuote";
@@ -37,7 +38,6 @@ public class ProductDAO {
         return products;
     }
 
-    // Fetches a product by its ID from the database
     public static Product getProductById(int id) throws SQLException {
         Product product = new Product();
         String query = "SELECT * FROM Tuote WHERE Tuote_ID = ?";
@@ -64,7 +64,6 @@ public class ProductDAO {
         return product;
     }
 
-    // Fetches products by their name from the database
     public static List<Product> getProductsByName(String name) throws SQLException {
         List<Product> products = new ArrayList<>();
         String query = "SELECT * FROM Tuote WHERE Nimi LIKE ?";
@@ -93,19 +92,16 @@ public class ProductDAO {
         return products;
     }
 
-    // Adds a new product to the database
     public static void addProduct(Product product) throws SQLException {
         String checkKoodiQuery = "SELECT COUNT(*) FROM Hyllypaikka WHERE Koodi = ?";
         String insertKoodiQuery = "INSERT INTO Hyllypaikka (Koodi) VALUES (?)";
         String insertProductQuery = "INSERT INTO Tuote (Nimi, Julkaisuvuosi, Tekijä, Julkaisija, Ikäraja, Tyyppi, Kuvaus, Genre, Saldo, Lainaaika, Koodi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            // Check if Koodi exists in Hyllypaikka
             try (PreparedStatement checkStmt = conn.prepareStatement(checkKoodiQuery)) {
                 checkStmt.setString(1, product.getKoodi());
                 try (ResultSet rs = checkStmt.executeQuery()) {
                     if (rs.next() && rs.getInt(1) == 0) {
-                        // Koodi does not exist, insert it into Hyllypaikka
                         try (PreparedStatement insertKoodiStmt = conn.prepareStatement(insertKoodiQuery)) {
                             insertKoodiStmt.setString(1, product.getKoodi());
                             insertKoodiStmt.executeUpdate();
@@ -114,7 +110,6 @@ public class ProductDAO {
                 }
             }
 
-            // Insert the product into Tuote
             try (PreparedStatement stmt = conn.prepareStatement(insertProductQuery)) {
                 stmt.setString(1, product.getNimi());
                 stmt.setInt(2, product.getJulkaisuvuosi());
@@ -132,7 +127,6 @@ public class ProductDAO {
         }
     }
 
-    // Updates an existing product in the database
     public static void updateProduct(Product product) throws SQLException {
         String query = "UPDATE Tuote SET Nimi = ?, Julkaisuvuosi = ?, Tekijä = ?, Julkaisija = ?, Ikaraja = ?, Tyyppi = ?, Kuvaus = ?, Genre = ?, Saldo = ?, Lainaaika = ?, Koodi = ? WHERE Tuote_ID = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -153,7 +147,6 @@ public class ProductDAO {
         }
     }
 
-    // Deletes a product from the database by its ID
     public static void deleteProduct(int id) throws SQLException {
         String query = "DELETE FROM Tuote WHERE Tuote_ID = ?";
         try (Connection conn = DatabaseConnection.getConnection();
