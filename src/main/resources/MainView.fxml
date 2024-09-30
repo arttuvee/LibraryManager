@@ -38,15 +38,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="palautuksetButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handlePalautuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Palautukset">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/left-arrow-circle-regular-96.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut">
+                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -54,7 +46,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto">
+                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -190,24 +182,6 @@
                         <TableColumn prefWidth="75.0" text="Nimi" />
                         <TableColumn prefWidth="75.0" text="Summa" />
                         <TableColumn prefWidth="75.0" text="Syy" />
-                     </columns>
-                  </TableView>
-                  <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />
-               </children>
-            </Pane>
-            <Pane fx:id="palautuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="623.0" prefWidth="650.0">
-               <children>
-                  <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
-                     <children>
-                        <Text layoutX="322.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Palautukset" />
-                     </children>
-                  </Pane>
-                  <TableView layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0" stylesheets="@style.css">
-                     <columns>
-                        <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="175.00003051757812" text="Nimi" />
-                        <TableColumn prefWidth="157.0" text="Tekijä" />
-                        <TableColumn prefWidth="193.0" text="Tyyppi" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />

@@ -1,6 +1,7 @@
 package controller;
 
 import database.ProductDAO;
+import database.UserDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.Product;
+import model.User;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -30,8 +32,6 @@ public class ViewController {
     @FXML
     private Button lainatButton;
     @FXML
-    private Button palautuksetButton;
-    @FXML
     private Button laskutButton;
     @FXML
     private Button logoutButton;
@@ -47,8 +47,6 @@ public class ViewController {
     private Pane lainatPane;
     @FXML
     private Pane laskutPane;
-    @FXML
-    private Pane palautuksetPane;
 
     // Add product fields
     @FXML
@@ -122,25 +120,20 @@ public class ViewController {
     public void initialize() {
         System.out.println("Initializing ViewController");
         try {
-            boolean isAdmin = checkUserRole();
+            boolean isAdmin = LoginController.isAdmin();
             System.out.println("User role checked: " + isAdmin);
             varastoButton.setVisible(isAdmin);
             showPane(kotiPane, kotiButton);
-            System.out.println("Pane shown: kotiPane");
             setupTableView();
-            System.out.println("TableView setup completed");
             loadProductData();
             System.out.println("Product data loaded");
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Initialization Error", "An error occurred during initialization: " + e.getMessage());
+            showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
     }
 
-    private boolean checkUserRole() {
-        // TODO: Check user role !
-        return true;
-    }
+
 
 
     @FXML
@@ -156,11 +149,6 @@ public class ViewController {
     @FXML
     private void handleLainatButtonAction() {
         showPane(lainatPane, lainatButton);
-    }
-
-    @FXML
-    private void handlePalautuksetButtonAction() {
-        showPane(palautuksetPane, palautuksetButton);
     }
 
     @FXML
@@ -191,7 +179,6 @@ public class ViewController {
         kotiButton.getStyleClass().remove("active");
         varastoButton.getStyleClass().remove("active");
         lainatButton.getStyleClass().remove("active");
-        palautuksetButton.getStyleClass().remove("active");
         laskutButton.getStyleClass().remove("active");
     }
 
@@ -230,13 +217,12 @@ public class ViewController {
             ObservableList<Product> productObservableList = FXCollections.observableArrayList(products);
             kirjahyllyTable.setItems(productObservableList);
             varastoTable.setItems(productObservableList);
-            System.out.println("Product data set in TableView");
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Database Error", "An error occurred while loading product data: " + e.getMessage());
+            showAlert("Tietokantavirhe", "Tuotetietojen lataaminen epäonnistui: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Unexpected Error", "An unexpected error occurred: " + e.getMessage());
+            showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
     }
 
@@ -270,22 +256,19 @@ public class ViewController {
             ikäraja = Integer.parseInt(ikärajaStr);
             saldo = Integer.parseInt(saldoStr);
         } catch (NumberFormatException e) {
-            showAlert("Input error", "Ikäraja and saldo must be integers.");
+            showAlert("Virheellinen syöte", "Syötä ikäraja ja saldo numereoina!");
             return;
         }
-
         try {
-
             Product newProduct = new Product(nimi, julkaisuvuosi, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
-
             ProductDAO.addProduct(newProduct);
-            showAlert("Success", "Product added successfully!");
+            showAlert("Tuote lisätty", "Tuote lisätty varastoon!");
             loadProductData();
         } catch (IllegalArgumentException e) {
-            showAlert("Input Error", "Invalid year.");
+            showAlert("Virheellinen syöte", "Syötä oikea vuosiluku!");
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Database Error", "An error occurred while adding the product: " + e.getMessage());
+            showAlert("Tietokantavirhe", "Tuotteen lisääminen epäonnistui: " + e.getMessage());
         }
     }
 
@@ -296,14 +279,14 @@ public class ViewController {
         if (selectedProduct != null) {
             try {
                 ProductDAO.deleteProduct(selectedProduct.getId());
-                showAlert("Success", "Product removed successfully!");
+                showAlert("Tuote poistettu", "Tuotteen poistaminen onnistui!");
                 loadProductData();
             } catch (SQLException e) {
                 e.printStackTrace();
-                showAlert("Database Error", "An error occurred while removing the product: " + e.getMessage());
+                showAlert("Tietokantavirhe", "Tuotteen poistaminen epäonnistui: " + e.getMessage());
             }
         } else {
-            showAlert("Selection Error", "No product selected. Please select a product to remove.");
+            showAlert("Virhe", "Ei tuotetta valittuna. Valitse listasta tuote, jonka haluat poistaa.");
         }
     }
 }

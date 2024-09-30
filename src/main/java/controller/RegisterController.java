@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,25 +47,35 @@ public class RegisterController {
         registerStage.close();
     }
 
+    // Tarkistetaan, ettei kentät ole tyhjiä
+    private boolean validateFields() {
+        if (isFieldEmpty(passwordField.getText(), "Virheellinen salasana!") ||
+                isFieldEmpty(nameField.getText(), "Virheellinen käyttäjätunnus!") ||
+                isFieldEmpty(emailField.getText(), "Virheellinen sähköposti!")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isFieldEmpty(String field, String errorMessage) {
+        if (field == null || field.isEmpty()) {
+            showAlert("Virhe", errorMessage);
+            return true;
+        }
+        return false;
+    }
+
     @FXML
     private void handleRegisterButtonAction() throws IOException {
+        if (!validateFields()) {
+            return;
+        }
+
         String name = nameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
         int age = Integer.parseInt(ageField.getText());
         String role = "user"; // or retrieve from another field if applicable
-
-        // Debug statements
-        System.out.println("Name: " + name);
-        System.out.println("Email: " + email);
-        System.out.println("Password: " + password);
-        System.out.println("Age: " + age);
-        System.out.println("Role: " + role);
-
-        if (password == null || password.isEmpty()) {
-            System.out.println("Password is null or empty");
-            return;
-        }
 
         User user = new User(name, email, password, age, role);
         try {
@@ -81,5 +92,13 @@ public class RegisterController {
 
         Stage registerStage = (Stage) registerButton.getScene().getWindow();
         registerStage.close();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
