@@ -1,19 +1,30 @@
 package controller;
 
+import database.ProductDAO;
+import database.UserDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.Product;
+import model.User;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
 public class ViewController {
 
+    // Menu buttons
     @FXML
     private Button kotiButton;
     @FXML
@@ -21,12 +32,11 @@ public class ViewController {
     @FXML
     private Button lainatButton;
     @FXML
-    private Button palautuksetButton;
-    @FXML
     private Button laskutButton;
     @FXML
     private Button logoutButton;
 
+    // Pages
     @FXML
     private StackPane mainStackPane;
     @FXML
@@ -37,28 +47,100 @@ public class ViewController {
     private Pane lainatPane;
     @FXML
     private Pane laskutPane;
+
+    // Add product fields
     @FXML
-    private Pane palautuksetPane;
+    private TextField lisääNimi;
+    @FXML
+    private TextField lisääJulkaisuvuosi;
+    @FXML
+    private TextField lisääTekijä;
+    @FXML
+    private TextField lisääJulkaisija;
+    @FXML
+    private TextField lisääIkäraja;
+    @FXML
+    private TextField lisääTyyppi;
+    @FXML
+    private TextField lisääKuvaus;
+    @FXML
+    private TextField lisääGenre;
+    @FXML
+    private TextField lisääSaldo;
+    @FXML
+    private TextField lisääKoodi;
+
+    // Kirjahylly TableView
+    @FXML
+    private TableView<Product> kirjahyllyTable;
+    @FXML
+    private TableColumn<Product, String> nameColumn;
+    @FXML
+    private TableColumn<Product, String> julkaisuColumn;
+    @FXML
+    private TableColumn<Product, String> tekijaColumn;
+    @FXML
+    private TableColumn<Product, String> julkaisijaColumn;
+    @FXML
+    private TableColumn<Product, Integer> ikarajaColumn;
+    @FXML
+    private TableColumn<Product, String> tyyppiColumn;
+    @FXML
+    private TableColumn<Product, String> kuvausColumn;
+    @FXML
+    private TableColumn<Product, String> genreColumn;
+    @FXML
+    private TableColumn<Product, Integer> saldoColumn;
+
+    // Varasto TableView
+    @FXML
+    private TableView<Product> varastoTable;
+    @FXML
+    private TableColumn<Product, Integer> idColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> nimiColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> julkaisuColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> tekijäColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> julkaisijaColumnVarasto;
+    @FXML
+    private TableColumn<Product, Integer> ikärajaColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> tyyppiColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> kuvausColumnVarasto;
+    @FXML
+    private TableColumn<Product, String> genreColumnVarasto;
+    @FXML
+    private TableColumn<Product, Integer> saldoColumnVarasto;
 
     @FXML
     public void initialize() {
-        // Check if the user is an admin and update menu items
-        boolean isAdmin = checkUserRole();
-        varastoButton.setVisible(isAdmin);
-        // Default page
-        showPane(kotiPane, kotiButton);
+        System.out.println("Initializing ViewController");
+        try {
+            boolean isAdmin = LoginController.isAdmin();
+            System.out.println("User role checked: " + isAdmin);
+            varastoButton.setVisible(isAdmin);
+            showPane(kotiPane, kotiButton);
+            setupTableView();
+            loadProductData();
+            System.out.println("Product data loaded");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
+        }
     }
 
-    private boolean checkUserRole() {
-        // TODO: Check user role !
-        return true;
-    }
+
+
 
     @FXML
     private void handleKotiButtonAction() {
         showPane(kotiPane, kotiButton);
-
     }
+
     @FXML
     private void handleVarastoButtonAction() {
         showPane(varastoPane, varastoButton);
@@ -70,29 +152,18 @@ public class ViewController {
     }
 
     @FXML
-    private void handlePalautuksetButtonAction() {
-        showPane(palautuksetPane, palautuksetButton);
-    }
-
-    @FXML
     private void handleLaskutButtonAction() {
         showPane(laskutPane, laskutButton);
     }
 
     @FXML
     private void handleLogoutButtonAction() throws IOException {
-        // Load the LoginView.fxml file
         Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
-
-        // Create a new stage for LoginView
         Stage loginStage = new Stage();
         loginStage.setTitle("LibraryManager - Login");
         loginStage.setScene(new Scene(loginRoot));
         loginStage.show();
-
         // TODO: Logout user !
-
-        // Close the main window
         Stage mainStage = (Stage) logoutButton.getScene().getWindow();
         mainStage.close();
     }
@@ -102,14 +173,120 @@ public class ViewController {
         pane.setVisible(true);
         resetButtonStyles();
         button.getStyleClass().add("active");
-
     }
 
     private void resetButtonStyles() {
         kotiButton.getStyleClass().remove("active");
         varastoButton.getStyleClass().remove("active");
         lainatButton.getStyleClass().remove("active");
-        palautuksetButton.getStyleClass().remove("active");
         laskutButton.getStyleClass().remove("active");
+    }
+
+    private void setupTableView() {
+        // Setup columns for kirjahyllyTable
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+        julkaisuColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
+        tekijaColumn.setCellValueFactory(new PropertyValueFactory<>("tekija"));
+        julkaisijaColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
+        ikarajaColumn.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
+        tyyppiColumn.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
+        kuvausColumn.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        saldoColumn.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+
+        // Setup columns for varastoTable
+        idColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nimiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+        julkaisuColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
+        tekijäColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tekija"));
+        julkaisijaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
+        ikärajaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
+        tyyppiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
+        kuvausColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
+        genreColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        saldoColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+    }
+
+    private void loadProductData() {
+        System.out.println("Loading product data");
+        try {
+            System.out.println("Attempting to retrieve products from database");
+            List<Product> products = ProductDAO.getAllProducts();
+            System.out.println("Products retrieved: " + products.size());
+
+            ObservableList<Product> productObservableList = FXCollections.observableArrayList(products);
+            kirjahyllyTable.setItems(productObservableList);
+            varastoTable.setItems(productObservableList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Tietokantavirhe", "Tuotetietojen lataaminen epäonnistui: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Add new product to database
+    @FXML
+    private void handleAddButtonAction() {
+        String nimi = lisääNimi.getText();
+        String julkaisuvuosiStr = lisääJulkaisuvuosi.getText();
+        String tekijä = lisääTekijä.getText();
+        String julkaisija = lisääJulkaisija.getText();
+        String ikärajaStr = lisääIkäraja.getText();
+        String tyyppi = lisääTyyppi.getText();
+        String kuvaus = lisääKuvaus.getText();
+        String genre = lisääGenre.getText();
+        String saldoStr = lisääSaldo.getText();
+        String koodi = lisääKoodi.getText();
+
+        int julkaisuvuosi;
+        int ikäraja;
+        int saldo;
+        try {
+            julkaisuvuosi = Integer.parseInt(julkaisuvuosiStr);
+            ikäraja = Integer.parseInt(ikärajaStr);
+            saldo = Integer.parseInt(saldoStr);
+        } catch (NumberFormatException e) {
+            showAlert("Virheellinen syöte", "Syötä ikäraja ja saldo numereoina!");
+            return;
+        }
+        try {
+            Product newProduct = new Product(nimi, julkaisuvuosi, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
+            ProductDAO.addProduct(newProduct);
+            showAlert("Tuote lisätty", "Tuote lisätty varastoon!");
+            loadProductData();
+        } catch (IllegalArgumentException e) {
+            showAlert("Virheellinen syöte", "Syötä oikea vuosiluku!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Tietokantavirhe", "Tuotteen lisääminen epäonnistui: " + e.getMessage());
+        }
+    }
+
+    // Remove selected product from database
+    @FXML
+    private void handleRemoveButtonAction() {
+        Product selectedProduct = varastoTable.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            try {
+                ProductDAO.deleteProduct(selectedProduct.getId());
+                showAlert("Tuote poistettu", "Tuotteen poistaminen onnistui!");
+                loadProductData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showAlert("Tietokantavirhe", "Tuotteen poistaminen epäonnistui: " + e.getMessage());
+            }
+        } else {
+            showAlert("Virhe", "Ei tuotetta valittuna. Valitse listasta tuote, jonka haluat poistaa.");
+        }
     }
 }

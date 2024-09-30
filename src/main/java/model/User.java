@@ -9,6 +9,19 @@ public class User {
     private String role;
     private String password;
 
+    // No-argument constructor
+    public User() {
+    }
+
+    // Parameterized constructor
+    public User(String name, String email, String password, int age, String role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.role = role;
+    }
+
     // Getters and setters
     public int getId() {
         return id;
@@ -38,10 +51,6 @@ public class User {
         return age;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setAge(int age) {
         this.age = age;
     }
@@ -54,4 +63,11 @@ public class User {
         this.role = role;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
