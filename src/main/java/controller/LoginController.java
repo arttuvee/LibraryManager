@@ -78,6 +78,22 @@ public class LoginController {
         return isAdmin;
     }
 
+    @FXML
+    private void handleRegisterButtonAction() throws IOException {
+        // Load the RegisterView.fxml file
+        Parent registerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/RegisterView.fxml")));
+
+        // Create a new stage for RegisterView
+        Stage registerStage = new Stage();
+        registerStage.setTitle("LibraryManager - Register");
+        registerStage.setScene(new Scene(registerRoot));
+        registerStage.show();
+
+        // Close the login window
+        Stage loginStage = (Stage) registerButton.getScene().getWindow();
+        loginStage.close();
+    }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
