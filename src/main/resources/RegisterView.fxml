@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:controller="controller.RegisterController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
     <children>
         <Pane layoutX="82.0" layoutY="50.0" prefHeight="350.0" prefWidth="436.0" styleClass="login-bg" stylesheets="@style.css">
             <children>
@@ -19,17 +19,18 @@
                         <Font size="24.0" />
                     </font>
                 </Text>
-                <TextField layoutX="142.0" layoutY="101.0" prefWidth="250.0" promptText="Username" styleClass="login-form" stylesheets="@style.css" />
-                <PasswordField layoutX="142.0" layoutY="141.0" prefWidth="250.0" promptText="Password" styleClass="login-form" stylesheets="@style.css" />
-                <PasswordField layoutX="142.0" layoutY="181.0" prefWidth="250.0" promptText="Confirm Password" styleClass="login-form" stylesheets="@style.css" />
+                <TextField id="nameField" fx:id="nameField" layoutX="142.0" layoutY="101.0" prefWidth="250.0" promptText="Username" styleClass="login-form" stylesheets="@style.css" />
+                <PasswordField fx:id="passwordField" layoutX="142.0" layoutY="141.0" prefWidth="250.0" promptText="Password" styleClass="login-form" stylesheets="@style.css" />
+                <TextField fx:id="emailField" layoutX="142.0" layoutY="181.0" prefWidth="250.0" promptText="Email" styleClass="login-form" stylesheets="@style.css" />
                 <TextField layoutX="142.0" layoutY="221.0" prefWidth="250.0" promptText="Phone Number" styleClass="login-form" stylesheets="@style.css" />
-                <Button fx:id="registerButton" layoutX="143.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Register" onAction="#handleRegisterButtonAction" />
-                <Button fx:id="backButton" layoutX="218.0" layoutY="261.0" mnemonicParsing="false" styleClass="login-button" text="Back" onAction="#handleBackButton" />
+                <Button fx:id="registerButton" layoutX="142.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleRegisterButtonAction" styleClass="login-button" text="Register" />
+                <Button fx:id="backButton" layoutX="217.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleBackButton" styleClass="login-button" text="Back" />
                 <ImageView fitHeight="134.0" fitWidth="86.0" layoutX="46.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/user-plus-regular-96.png" />
                     </image>
                 </ImageView>
+            <TextField id="nameField" fx:id="ageField" layoutX="142.0" layoutY="258.0" prefWidth="250.0" promptText="Username" styleClass="login-form" stylesheets="@style.css" text="Age" />
             </children>
         </Pane>
     </children>
