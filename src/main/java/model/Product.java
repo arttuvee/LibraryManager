@@ -7,7 +7,7 @@ public class Product {
     // Fields
     private int id;
     private String nimi;
-    private Date julkaisuPVM;
+    private int julkaisuvuosi;
     private String tekija;
     private String julkaisija;
     private int ikaraja;
@@ -17,6 +17,24 @@ public class Product {
     private int saldo;
     private int lainaaika;
     private String koodi;
+
+    // No-argument constructor
+    public Product() {
+    }
+
+    // Constructor with parameters
+    public Product(String nimi, int julkaisuvuosi, String tekija, String julkaisija, int ikaraja, String tyyppi, String kuvaus, String genre, int saldo, String koodi) {
+        this.nimi = nimi;
+        this.julkaisuvuosi = julkaisuvuosi;
+        this.tekija = tekija;
+        this.julkaisija = julkaisija;
+        this.ikaraja = ikaraja;
+        this.tyyppi = tyyppi;
+        this.kuvaus = kuvaus;
+        this.genre = genre;
+        this.saldo = saldo;
+        this.koodi = koodi;
+    }
 
     // Getters and setters
     public int getId() {
@@ -35,12 +53,12 @@ public class Product {
         this.nimi = nimi;
     }
 
-    public Date getJulkaisuPVM() {
-        return julkaisuPVM;
+    public int getJulkaisuvuosi() {
+        return julkaisuvuosi;
     }
 
-    public void setJulkaisuPVM(Date julkaisuPVM) {
-        this.julkaisuPVM = julkaisuPVM;
+    public void setJulkaisuvuosi(int julkaisuvuosi) {
+        this.julkaisuvuosi = julkaisuvuosi;
     }
 
     public String getTekija() {
@@ -114,5 +132,4 @@ public class Product {
     public void setKoodi(String koodi) {
         this.koodi = koodi;
     }
-
 }
