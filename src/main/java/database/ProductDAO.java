@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import model.Product;
 
 public class ProductDAO {
@@ -120,7 +122,11 @@ public class ProductDAO {
                 stmt.setString(7, product.getKuvaus());
                 stmt.setString(8, product.getGenre());
                 stmt.setInt(9, product.getSaldo());
-                stmt.setInt(10, product.getLainaaika());
+                if(Objects.equals(product.getTyyppi(), "Kirja")){
+                    stmt.setInt(10, 28);
+                } else {
+                    stmt.setInt(10, 14);
+                }
                 stmt.setString(11, product.getKoodi());
                 stmt.executeUpdate();
             }
