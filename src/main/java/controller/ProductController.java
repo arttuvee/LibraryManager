@@ -2,14 +2,13 @@ package controller;
 
 import database.ProductDAO;
 import model.Product;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/products")
 public class ProductController {
 
     @GetMapping
