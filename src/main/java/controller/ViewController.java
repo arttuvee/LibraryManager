@@ -1,7 +1,8 @@
+// ViewController.java
 package controller;
 
 import database.ProductDAO;
-import database.UserDAO;
+import database.ReservationDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,11 +15,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.Product;
-import model.User;
+import model.Reservation;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -116,6 +118,18 @@ public class ViewController {
     @FXML
     private TableColumn<Product, Integer> saldoColumnVarasto;
 
+    // Lainat tableview
+    @FXML
+    private TableView<Reservation> lainaTable;
+    @FXML
+    private TableColumn<Reservation, String> nimiColumnLainat;
+    @FXML
+    private TableColumn<Reservation, String> tekijaColumnLainat;
+    @FXML
+    private TableColumn<Reservation, String> tyyppiColumnLainat;
+    @FXML
+    private TableColumn<Reservation, String> lainaaikaColumnLainat;
+
     @FXML
     public void initialize() {
         System.out.println("Initializing ViewController");
@@ -126,15 +140,13 @@ public class ViewController {
             showPane(kotiPane, kotiButton);
             setupTableView();
             loadProductData();
+            loadReservationData();
             System.out.println("Product data loaded");
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
     }
-
-
-
 
     @FXML
     private void handleKotiButtonAction() {
@@ -205,6 +217,11 @@ public class ViewController {
         kuvausColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
         genreColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("genre"));
         saldoColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+
+        nimiColumnLainat.setCellValueFactory(new PropertyValueFactory<>("nimi"));
+        tekijaColumnLainat.setCellValueFactory(new PropertyValueFactory<>("tekija"));
+        tyyppiColumnLainat.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
+        lainaaikaColumnLainat.setCellValueFactory(new PropertyValueFactory<>("laina-aika"));
     }
 
     private void loadProductData() {
@@ -223,6 +240,18 @@ public class ViewController {
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
+        }
+    }
+
+    private void loadReservationData() {
+        try {
+            int userId = LoginController.getCurrentUserId(); // Get the current user ID
+            List<Reservation> reservations = ReservationDAO.getReservationsByUserId(userId);
+            ObservableList<Reservation> reservationObservableList = FXCollections.observableArrayList(reservations);
+            lainaTable.setItems(reservationObservableList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Tietokantavirhe", "Lainatietojen lataaminen epäonnistui: " + e.getMessage());
         }
     }
 
@@ -287,6 +316,25 @@ public class ViewController {
             }
         } else {
             showAlert("Virhe", "Ei tuotetta valittuna. Valitse listasta tuote, jonka haluat poistaa.");
+        }
+    }
+
+    // Loan selected product
+    @FXML
+    private void handleLainaaButtonAction() {
+        Product selectedProduct = kirjahyllyTable.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            try {
+                int userId = LoginController.getCurrentUserId(); // Get the current user ID
+                Reservation reservation = new Reservation(Date.valueOf(LocalDate.now()), 0.0, false, userId, selectedProduct.getId());
+                ReservationDAO.addReservation(reservation);
+                showAlert("Lainaus onnistui", "Tuote lainattu onnistuneesti!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showAlert("Tietokantavirhe", "Tuotteen lainaaminen epäonnistui: " + e.getMessage());
+            }
+        } else {
+            showAlert("Virhe", "Ei tuotetta valittuna. Valitse listasta tuote, jonka haluat lainata.");
         }
     }
 }

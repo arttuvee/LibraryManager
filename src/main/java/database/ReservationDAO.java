@@ -13,7 +13,7 @@ public class ReservationDAO {
         // Select lainaaika from tuote
         String selectQuery = "SELECT Lainaaika FROM Tuote WHERE Tuote_ID = ?";
         // pass selected lainaaika to this query
-        String query = "INSERT INTO Lainat (Tuote_ID, Käyttäjä_ID, ErääntymisPVM) VALUES (?, ?, ?)";
+        String query = "INSERT INTO Lainat (Tuote_ID, Käyttäjä_ID, ErääntymisPVM, Lasku) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement selectStmt = conn.prepareStatement(selectQuery);
@@ -25,6 +25,7 @@ public class ReservationDAO {
                 stmt.setInt(1, reservation.getProductId());
                 stmt.setInt(2, reservation.getUserId());
                 stmt.setDate(3, Date.valueOf(endDate));
+                stmt.setDouble(4, 0.0);
                 stmt.executeUpdate();
             }
         }
