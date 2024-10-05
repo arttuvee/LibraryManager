@@ -25,6 +25,18 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>3.3.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -34,6 +46,11 @@
             <artifactId>maven-jar-plugin</artifactId>
             <version>3.2.0</version>
             <configuration>
+                <includes>
+                    <include>**/Test*.java</include>
+                    <include>**/*Test.java</include>
+                    <include>**/*Tests.java</include>
+                </includes>
                 <archive>
                     <manifest>
                         <mainClass>app.MainApplication</mainClass>
@@ -53,6 +70,7 @@
                 </execution>
             </executions>
         </plugin>
+
     </plugins>
 </build>
 

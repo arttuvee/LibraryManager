@@ -1,0 +1,42 @@
+
+.root {
+    -fx-background-color: #f0f0f0;
+}
+
+
+.form-bg {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
+}
+
+/* Tyylit tekstille */
+.title {
+    -fx-fill: #333333;
+}
+
+/* Tyylit tekstikentille */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-font-size: 14px;
+}
+
+
+.button {
+    -fx-background-color: #447fc2;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 3);
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #4eb7d3;
+}
