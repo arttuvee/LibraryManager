@@ -28,7 +28,8 @@ To get started, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/LibraryManager.git
+   git clone https://github.com/arttuvee
+/LibraryManager.git
    cd LibraryManager
 
 1. Connect to Metropolia VPN: Ensure that you are connected to the Metropolia VPN to access the library's database.
