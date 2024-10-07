@@ -16,8 +16,7 @@ To use the application you need to connect to Metropolia VPN after that you star
  Once u have started running the application you can Log in(1) or sign up(2)
 
 
-
- ![image](https://github.com/user-attachments/assets/2bae927b-7e44-44a4-9f32-21087d451d2d)
+![image](https://github.com/user-attachments/assets/2bae927b-7e44-44a4-9f32-21087d451d2d)
 
 
 
