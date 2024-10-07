@@ -17,6 +17,11 @@ To use the application you need to connect to Metropolia VPN after that you star
 
 
 
+ ![image](https://github.com/user-attachments/assets/2bae927b-7e44-44a4-9f32-21087d451d2d)
+
+
+
+
 
 
 
