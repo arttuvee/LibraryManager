@@ -4,8 +4,17 @@ The application allows users to reserve various books, movies, and games, as wel
 
 Additionally, the admin has the ability to monitor the inventory of books, movies, and games. When creating an account, users are also asked to provide their age, as some movies and games are rated 18+, ensuring content is suitable based on age restrictions.
 
+The application interface was developed using JavaFX, and the software was programmed in Java with CSS used for styling.
+
 To use the application you need to connect to Metropolia VPN after that you start the application by running the code.
-![image](https://github.com/user-attachments/assets/c6e7d080-21db-4ce5-b2b0-1931fdabed33)
+![image](https://github.com/user-attachments/assets/75b10d97-d417-437d-9996-896253005b3a)
+
+Once u have started running the application you can Log in(1) or sign up(2)
+![image](https://github.com/user-attachments/assets/d49af173-c04d-4181-a688-0f899242afda)
+
+
+
+
 
 
 
