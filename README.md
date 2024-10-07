@@ -69,4 +69,25 @@ Running the application
    This button logs the user out of the system.
 
 
+   ## Rebuild Instructions
+
+If you want to rebuild the **LibraryManager** application from scratch, follow these steps:
+
+If you want to rebuild the **LibraryManager** application from scratch, follow these steps:
+
+1. **Clone the Repository**:
+First, make sure you have Git installed, then clone the repository:
+
+```bash
+git clone https://github.com/arttuvee/LibraryManager.git
+cd LibraryManager
+
+
+
+
+
+
+
+
+
 
