@@ -52,7 +52,6 @@ Running the application
    - Type (e.g., book, movie, game)
    - Description
    - Genre
-   - Available quantity
 
 2. **Lainat (Loans)**  
    This section manages the books or items that have been borrowed. It displays information about the loaned items and due dates.
