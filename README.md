@@ -5,7 +5,8 @@ The application allows users to reserve various books, movies, and games, as wel
 Additionally, the admin has the ability to monitor the inventory of books, movies, and games. When creating an account, users are also asked to provide their age, as some movies and games are rated 18+, ensuring content is suitable based on age restrictions.
 
 To use the application you need to connect to Metropolia VPN after that you start the application by running the code.
- ![image](https://github.com/user-attachments/assets/d744b3f5-4c02-43e3-8fe0-15826b64fdde)
+![image](https://github.com/user-attachments/assets/c6e7d080-21db-4ce5-b2b0-1931fdabed33)
+
 
 
 
