@@ -1,49 +1,74 @@
-## This is the project repository for LibraryManager application
+# LibraryManager Application
 
-The application allows users to reserve various books, movies, and games, as well as access information about the return policy. If items are returned late, users may receive an invoice. To access the service, users are required to create an account, which they will use to log in and manage their reservations and returns. Without an account, it is not possible to use the application.
+This is the repository for the **LibraryManager** application. The application allows users to reserve books, movies, and games from a library. Users can also manage their loans, view return policies, and receive invoices for late returns.
 
-Additionally, the admin has the ability to monitor the inventory of books, movies, and games. When creating an account, users are also asked to provide their age, as some movies and games are rated 18+, ensuring content is suitable based on age restrictions.
+To use the application, users must create an account. Admins have access to additional features, such as monitoring the inventory of available items. The app restricts access to certain media based on age (e.g., 18+ for certain movies or games).
 
-The application interface was developed using JavaFX, and the software was programmed in Java with CSS used for styling.
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Sections](#sections)
 
+## Features
+- Reserve books, movies, and games.
+- View and manage loans.
+- Receive invoices for late returns.
+- Admins can manage the library's inventory.
+- Age-based content restrictions (18+ for some media).
 
-To use the application you need to connect to Metropolia VPN after that you start the application by running the code.
+## Technologies Used
+- **JavaFX**: For the user interface.
+- **Java**: Backend programming language.
+- **CSS**: For styling.
 
-![image](https://github.com/user-attachments/assets/75b10d97-d417-437d-9996-896253005b3a)
+## Installation
 
- ![image](https://github.com/user-attachments/assets/d49af173-c04d-4181-a688-0f899242afda)
- 
- Once u have started running the application you can Log in(1) or sign up(2)
+To get started, follow these steps:
 
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/LibraryManager.git
+   cd LibraryManager
 
-![image](https://github.com/user-attachments/assets/2bae927b-7e44-44a4-9f32-21087d451d2d)
+1. Connect to Metropolia VPN: Ensure that you are connected to the Metropolia VPN to access the library's database.
 
-1. Kirjahylly (Bookshelf):
-This section displays a list of books and other media in the library. It shows details such as title, year, author, publisher, age rating, type, description, genre, and available quantity.
+2. Run the application: Use your Java IDE to run the application.
+## Screenshots
+![image](https://github.com/user-attachments/assets/3760bd93-0ab1-44a4-8929-df368520c2b5)
+Running the application
+### Log In / Sign Up
+![image](https://github.com/user-attachments/assets/0fb1c892-ff1d-4fed-9b1c-de1067fca8ef)
+*Log in or sign up screen.*
+### Homepage
+![image](https://github.com/user-attachments/assets/8c682907-4e6a-48fb-ad24-8b4779e5e478)
+1. **Kirjahylly (Bookshelf)**  
+   This section displays a list of books and other media in the library. It shows details such as:
+   - Title
+   - Year
+   - Author
+   - Publisher
+   - Age rating
+   - Type (e.g., book, movie, game)
+   - Description
+   - Genre
+   - Available quantity
 
-2. Lainat (Loans):
-This section probably manages the books or items that have been borrowed. It may display information about the loaned items, and due dates.
+2. **Lainat (Loans)**  
+   This section manages the books or items that have been borrowed. It displays information about the loaned items and due dates.
 
-3. Laskut (Bills):
-This section handles financial matters, like any fees for late returns.
+3. **Laskut (Bills)**  
+   This section handles financial matters, such as any fees for late returns.
 
- 4.Varasto (Storage):
- This section may show items that are in storage or part of the library's collection but are not currently on display or available for loan.
+4. **Varasto (Storage/Inventory)**  
+   This section shows items that are in storage or part of the library's collection but are not currently available for loan.
 
- 5.Lainaa kirja (Borrow a book):
- This button allows users to check out a selected book or item from the library's collection.
+5. **Lainaa kirja (Borrow a Book)**  
+   This button allows users to check out a selected book or item from the library's collection.
 
- 6.Kirjaudu ulos (Log out):
- This button logs the user out of the system.
-
-
-
-
-
-
-
-
-
+6. **Kirjaudu ulos (Log out)**  
+   This button logs the user out of the system.
 
 
 
