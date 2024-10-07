@@ -9,7 +9,6 @@ To use the application, users must create an account. Admins have access to addi
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Screenshots](#screenshots)
-- [Sections](#sections)
 
 ## Features
 - Reserve books, movies, and games.
