@@ -9,6 +9,7 @@ To use the application, users must create an account. Admins have access to addi
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Screenshots](#screenshots)
+- [Rebuild Instructions](#rebuild-instructions)
 
 ## Features
 - Reserve books, movies, and games.
@@ -75,19 +76,23 @@ If you want to rebuild the **LibraryManager** application from scratch, follow t
 
 If you want to rebuild the **LibraryManager** application from scratch, follow these steps:
 
-1. **Clone the Repository**:
+### 1. Clone the Repository
 First, make sure you have Git installed, then clone the repository:
-
 ```bash
 git clone https://github.com/arttuvee/LibraryManager.git
 cd LibraryManager
+```
 
+## 2. Set Up Metropolia VPN
+To connect to the library's database, you need to access it via the Metropolia VPN. If you're not connected, you won't be able to log in.
 
+## 3. Run the Application
+Once you've installed the required dependencies and are connected to the VPN, you can run the application:
 
+## 4. Rebuild the Project
+If you want to make changes and rebuild the project:
 
-
-
-
-
-
-
+1. Edit the code or configuration as needed.
+2. Compile the Java code using your IDE's build. 
+3. Repackage the application using tools like Maven if necessary.
+4. Test the changes locally to ensure everything works as expected.
