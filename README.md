@@ -18,6 +18,24 @@ To use the application you need to connect to Metropolia VPN after that you star
 
 ![image](https://github.com/user-attachments/assets/2bae927b-7e44-44a4-9f32-21087d451d2d)
 
+1. Kirjahylly (Bookshelf):
+This section displays a list of books and other media in the library. It shows details such as title, year, author, publisher, age rating, type, description, genre, and available quantity.
+
+2. Lainat (Loans):
+This section probably manages the books or items that have been borrowed. It may display information about the loaned items, and due dates.
+
+3. Laskut (Bills):
+This section handles financial matters, like any fees for late returns.
+
+4.Varasto (Storage):
+This section may show items that are in storage or part of the library's collection but are not currently on display or available for loan.
+
+5.Lainaa kirja (Borrow a book):
+This button allows users to check out a selected book or item from the library's collection.
+
+6.Kirjaudu ulos (Log out):
+This button logs the user out of the system.
+
 
 
 
