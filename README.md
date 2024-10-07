@@ -8,6 +8,7 @@ The application interface was developed using JavaFX, and the software was progr
 
 
 To use the application you need to connect to Metropolia VPN after that you start the application by running the code.
+
 ![image](https://github.com/user-attachments/assets/75b10d97-d417-437d-9996-896253005b3a)
 
  ![image](https://github.com/user-attachments/assets/d49af173-c04d-4181-a688-0f899242afda)
