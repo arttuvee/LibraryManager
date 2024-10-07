@@ -74,8 +74,6 @@ Running the application
 
 If you want to rebuild the **LibraryManager** application from scratch, follow these steps:
 
-If you want to rebuild the **LibraryManager** application from scratch, follow these steps:
-
 ### 1. Clone the Repository
 First, make sure you have Git installed, then clone the repository:
 ```bash
