@@ -7,8 +7,6 @@ Additionally, the admin has the ability to monitor the inventory of books, movie
 The application interface was developed using JavaFX, and the software was programmed in Java with CSS used for styling.
 
 
-
-
 To use the application you need to connect to Metropolia VPN after that you start the application by running the code.
 
 ![image](https://github.com/user-attachments/assets/75b10d97-d417-437d-9996-896253005b3a)
@@ -29,14 +27,14 @@ This section probably manages the books or items that have been borrowed. It may
 3. Laskut (Bills):
 This section handles financial matters, like any fees for late returns.
 
-4.Varasto (Storage):
-This section may show items that are in storage or part of the library's collection but are not currently on display or available for loan.
+ 4.Varasto (Storage):
+ This section may show items that are in storage or part of the library's collection but are not currently on display or available for loan.
 
-5.Lainaa kirja (Borrow a book):
-This button allows users to check out a selected book or item from the library's collection.
+ 5.Lainaa kirja (Borrow a book):
+ This button allows users to check out a selected book or item from the library's collection.
 
-6.Kirjaudu ulos (Log out):
-This button logs the user out of the system.
+ 6.Kirjaudu ulos (Log out):
+ This button logs the user out of the system.
 
 
 
