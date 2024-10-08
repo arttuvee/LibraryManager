@@ -21,7 +21,6 @@ To use the application, users must create an account. Admins have access to addi
 ## Technologies Used
 - **JavaFX**
 - **Java**
-- **CSS**
 - **Scene Builder**
 - **Spring Boot**
 - **CSS**
@@ -75,7 +74,22 @@ Running the application
 6. **Kirjaudu ulos (Log out)**  
    This button logs the user out of the system.
 
+   ## Charts
+## Architectural Design: ER Kaavio
+![ER Kaavio](https://github.com/user-attachments/assets/bd04e306-5dd0-46af-9f2c-4c90410f5fa7)
+**Figure 1: ER Kaavio**
 
+## Architectural Design: Case Diagram
+![Case Diagram](https://github.com/user-attachments/assets/c6a5bd07-439a-4d79-b150-dcf4ed2a7639)
+**Figure 2: Case Diagram**
+
+## Architectural Design: Activity Diagram
+![Activity Diagram](https://github.com/user-attachments/assets/ae0a6da5-649e-4c24-b097-fd743a59a3c4)
+**Figure 3: Activity Diagram**
+
+
+   
+  
    ## Rebuild Instructions
 
 If you want to rebuild the **LibraryManager** application from scratch, follow these steps:
