@@ -1,7 +1,7 @@
 package controller;
 
 import database.ProductDAO;
-import database.UserDAO;
+import database.ReservationDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,12 +13,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Product;
-import model.User;
+import model.Reservation;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -116,6 +118,18 @@ public class ViewController {
     @FXML
     private TableColumn<Product, Integer> saldoColumnVarasto;
 
+    // Lainat tableview
+    @FXML
+    private TableView<Reservation> lainaTable;
+    @FXML
+    private TableColumn<Reservation, String> nimiColumnLainat;
+    @FXML
+    private TableColumn<Reservation, String> tekijaColumnLainat;
+    @FXML
+    private TableColumn<Reservation, String> tyyppiColumnLainat;
+    @FXML
+    private TableColumn<Reservation, String> lainaaikaColumnLainat;
+
     @FXML
     public void initialize() {
         System.out.println("Initializing ViewController");
@@ -126,15 +140,14 @@ public class ViewController {
             showPane(kotiPane, kotiButton);
             setupTableView();
             loadProductData();
+            loadReservationData();
+            setupRowFactory();
             System.out.println("Product data loaded");
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
     }
-
-
-
 
     @FXML
     private void handleKotiButtonAction() {
@@ -205,6 +218,12 @@ public class ViewController {
         kuvausColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
         genreColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("genre"));
         saldoColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+
+        // Setup columns for lainaTable
+        nimiColumnLainat.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        tekijaColumnLainat.setCellValueFactory(new PropertyValueFactory<>("author"));
+        tyyppiColumnLainat.setCellValueFactory(new PropertyValueFactory<>("type"));
+        lainaaikaColumnLainat.setCellValueFactory(new PropertyValueFactory<>("endDate"));
     }
 
     private void loadProductData() {
@@ -224,6 +243,37 @@ public class ViewController {
             e.printStackTrace();
             showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
+    }
+
+    private void loadReservationData() {
+        try {
+            int userId = LoginController.getCurrentUserId(); // Get the current user ID
+            List<Reservation> reservations = ReservationDAO.getReservationsByUserId(userId);
+            ObservableList<Reservation> reservationObservableList = FXCollections.observableArrayList(reservations);
+            lainaTable.setItems(reservationObservableList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Tietokantavirhe", "Lainatietojen lataaminen epäonnistui: " + e.getMessage());
+        }
+    }
+
+    private void setupRowFactory() {
+        lainaTable.setRowFactory(new Callback<TableView<Reservation>, TableRow<Reservation>>() {
+            @Override
+            public TableRow<Reservation> call(TableView<Reservation> tableView) {
+                return new TableRow<Reservation>() {
+                    @Override
+                    protected void updateItem(Reservation reservation, boolean empty) {
+                        super.updateItem(reservation, empty);
+                        if (reservation != null && reservation.isReturned()) {
+                            setStyle("-fx-background-color: rgba(0,155,0,0.6);");
+                        } else {
+                            setStyle("");
+                        }
+                    }
+                };
+            }
+        });
     }
 
     private void showAlert(String title, String message) {
@@ -255,17 +305,13 @@ public class ViewController {
             julkaisuvuosi = Integer.parseInt(julkaisuvuosiStr);
             ikäraja = Integer.parseInt(ikärajaStr);
             saldo = Integer.parseInt(saldoStr);
-        } catch (NumberFormatException e) {
-            showAlert("Virheellinen syöte", "Syötä ikäraja ja saldo numereoina!");
-            return;
-        }
-        try {
-            Product newProduct = new Product(nimi, julkaisuvuosi, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
-            ProductDAO.addProduct(newProduct);
-            showAlert("Tuote lisätty", "Tuote lisätty varastoon!");
+
+            Product product = new Product(nimi, julkaisuvuosi, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
+            ProductDAO.addProduct(product);
+            showAlert("Tuotteen lisäys onnistui", "Tuote lisätty onnistuneesti!");
             loadProductData();
-        } catch (IllegalArgumentException e) {
-            showAlert("Virheellinen syöte", "Syötä oikea vuosiluku!");
+        } catch (NumberFormatException e) {
+            showAlert("Virhe", "Virheellinen syöte: " + e.getMessage());
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Tietokantavirhe", "Tuotteen lisääminen epäonnistui: " + e.getMessage());
@@ -279,7 +325,7 @@ public class ViewController {
         if (selectedProduct != null) {
             try {
                 ProductDAO.deleteProduct(selectedProduct.getId());
-                showAlert("Tuote poistettu", "Tuotteen poistaminen onnistui!");
+                showAlert("Tuotteen poisto onnistui", "Tuote poistettu onnistuneesti!");
                 loadProductData();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -287,6 +333,46 @@ public class ViewController {
             }
         } else {
             showAlert("Virhe", "Ei tuotetta valittuna. Valitse listasta tuote, jonka haluat poistaa.");
+        }
+    }
+
+    // Loan selected product
+    @FXML
+    private void handleLainaaButtonAction() {
+        Product selectedProduct = kirjahyllyTable.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            try {
+                int userId = LoginController.getCurrentUserId(); // Get the current user ID
+                Reservation reservation = new Reservation(Date.valueOf(LocalDate.now()), 0.0, false, userId, selectedProduct.getId());
+                ReservationDAO.addReservation(reservation);
+                showAlert("Lainaus onnistui", "Tuote lainattu onnistuneesti!");
+                loadReservationData();
+                loadProductData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showAlert("Tietokantavirhe", "Tuotteen lainaaminen epäonnistui: " + e.getMessage());
+            }
+        } else {
+            showAlert("Virhe", "Ei tuotetta valittuna. Valitse listasta tuote, jonka haluat lainata.");
+        }
+    }
+
+    @FXML
+    private void handlePalautaButtonAction() {
+        Reservation selectedReservation = lainaTable.getSelectionModel().getSelectedItem();
+        if (selectedReservation != null) {
+            try {
+                ReservationDAO.returnReservation(selectedReservation.getId());
+                selectedReservation.setReturned(true);
+                lainaTable.refresh();
+                loadProductData();
+                showAlert("Palautus onnistui", "Laina palautettu onnistuneesti!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                showAlert("Tietokantavirhe", "Lainan palauttaminen epäonnistui: " + e.getMessage());
+            }
+        } else {
+            showAlert("Virhe", "Ei lainaa valittuna. Valitse listasta laina, jonka haluat palauttaa.");
         }
     }
 }

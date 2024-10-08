@@ -10,11 +10,15 @@ public class Reservation {
     private int userId;
     private int productId;
 
-    //No-argument constructor
+    private String productName;
+    private String author;
+    private String type;
+
+    // No-argument constructor
     public Reservation() {
     }
 
-    //Parameterized constructor
+    // Parameterized constructor
     public Reservation(Date endDate, double fine, boolean returned, int userId, int productId) {
         this.endDate = endDate;
         this.fine = fine;
@@ -23,7 +27,7 @@ public class Reservation {
         this.productId = productId;
     }
 
-    //Getters and setters
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -72,4 +76,27 @@ public class Reservation {
         this.productId = productId;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

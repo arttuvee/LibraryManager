@@ -35,6 +35,7 @@ public class LoginController {
     private PasswordField passwordField;
 
     private static boolean isAdmin;
+    private static int currentUserId;
 
     @FXML
     private void handleLoginButtonAction() throws IOException {
@@ -48,6 +49,7 @@ public class LoginController {
 
                 if (password != null && password.equals(storedPassword)) {
                     isAdmin = "admin".equals(user.getRole());
+                    currentUserId = user.getId();
 
                     // Load the MainView.fxml file
                     Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
@@ -76,6 +78,10 @@ public class LoginController {
 
     public static boolean isAdmin() {
         return isAdmin;
+    }
+
+    public static int getCurrentUserId() {
+        return currentUserId;
     }
 
     @FXML
