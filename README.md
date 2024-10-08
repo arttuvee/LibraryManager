@@ -19,9 +19,15 @@ To use the application, users must create an account. Admins have access to addi
 - Age-based content restrictions (18+ for some media).
 
 ## Technologies Used
-- **JavaFX**: For the user interface.
-- **Java**: Backend programming language.
-- **CSS**: For styling.
+- **JavaFX**
+- **Java**
+- **CSS**
+- **Scene Builder**
+- **Spring Boot**
+- **CSS**
+- **Git**
+- **SQL**
+
 
 ## Installation
 
