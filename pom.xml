@@ -27,6 +27,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.12</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
@@ -46,6 +52,11 @@
             <artifactId>maven-jar-plugin</artifactId>
             <version>3.2.0</version>
             <configuration>
+                <includes>
+                    <include>**/Test*.java</include>
+                    <include>**/*Test.java</include>
+                    <include>**/*Tests.java</include>
+                </includes>
                 <archive>
                     <manifest>
                         <mainClass>app.MainApplication</mainClass>

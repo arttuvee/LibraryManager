@@ -15,7 +15,7 @@ import java.util.Objects;
 public class MainUI extends Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(MainApplication.class, args);
+        //SpringApplication.run(MainApplication.class, args);
         launch(args);
     }
 

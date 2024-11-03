@@ -21,7 +21,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public static Product getProductById(int id) {
         try {
             return ProductDAO.getProductById(id);
@@ -31,7 +31,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public static List<Product> getProductsByName(String name) {
         try {
             return ProductDAO.getProductsByName(name);
