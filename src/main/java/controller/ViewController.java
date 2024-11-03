@@ -36,6 +36,8 @@ public class ViewController {
     @FXML
     private Button laskutButton;
     @FXML
+    private Button asetuksetButton;
+    @FXML
     private Button logoutButton;
 
     // Pages
@@ -49,6 +51,8 @@ public class ViewController {
     private Pane lainatPane;
     @FXML
     private Pane laskutPane;
+    @FXML
+    private Pane asetuksetPane;
 
     // Add product fields
     @FXML
@@ -167,6 +171,10 @@ public class ViewController {
     @FXML
     private void handleLaskutButtonAction() {
         showPane(laskutPane, laskutButton);
+    }
+    @FXML
+    private void handleAsetuksetButtonAction() {
+        showPane(asetuksetPane, asetuksetButton);
     }
 
     @FXML
