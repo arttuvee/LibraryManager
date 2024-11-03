@@ -29,7 +29,6 @@ public class MainUI extends Application {
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            // Optionally, show an alert to the user
         }
     }
 }

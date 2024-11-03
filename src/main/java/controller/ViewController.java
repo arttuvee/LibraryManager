@@ -284,7 +284,6 @@ public class ViewController {
         alert.showAndWait();
     }
 
-    // Add new product to database
     @FXML
     private void handleAddButtonAction() {
         String nimi = lisääNimi.getText();
@@ -318,7 +317,6 @@ public class ViewController {
         }
     }
 
-    // Remove selected product from database
     @FXML
     private void handleRemoveButtonAction() {
         Product selectedProduct = varastoTable.getSelectionModel().getSelectedItem();
@@ -336,7 +334,6 @@ public class ViewController {
         }
     }
 
-    // Loan selected product
     @FXML
     private void handleLainaaButtonAction() {
         Product selectedProduct = kirjahyllyTable.getSelectionModel().getSelectedItem();
