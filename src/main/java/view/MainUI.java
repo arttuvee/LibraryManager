@@ -9,7 +9,9 @@ import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 @SpringBootApplication(scanBasePackages = { "controller" })
 public class MainUI extends Application {
@@ -22,10 +24,12 @@ public class MainUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
+            Locale.setDefault(new Locale("ja", "JP"));
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")), bundle);
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("LibraryManager - Login");
+            primaryStage.setTitle(bundle.getString("login.title"));
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

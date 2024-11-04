@@ -1,8 +1,8 @@
-// LoginController.java
 package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -14,10 +14,13 @@ import model.User;
 import database.UserDAO;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     @FXML
     private Button loginButton;
@@ -37,6 +40,21 @@ public class LoginController {
     private static boolean isAdmin;
     private static int currentUserId;
 
+    private ResourceBundle bundle;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Load the resource bundle based on the default locale
+        Locale locale = Locale.getDefault();
+        bundle = ResourceBundle.getBundle("messages", locale);
+
+        // Set text for UI components
+        loginButton.setText(bundle.getString("login.submit"));
+        registerButton.setText(bundle.getString("login.register"));
+        usernameField.setPromptText(bundle.getString("login.username"));
+        passwordField.setPromptText(bundle.getString("login.password"));
+    }
+
     @FXML
     private void handleLoginButtonAction() throws IOException {
         String username = usernameField.getText();
@@ -52,11 +70,11 @@ public class LoginController {
                     currentUserId = user.getId();
 
                     // Load the MainView.fxml file
-                    Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")));
+                    Parent mainRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/MainView.fxml")), bundle);
 
                     // Create a new stage for MainView
                     Stage mainStage = new Stage();
-                    mainStage.setTitle("LibraryManager");
+                    mainStage.setTitle(bundle.getString("main.title"));
                     mainStage.setScene(new Scene(mainRoot));
                     mainStage.show();
 
@@ -65,11 +83,11 @@ public class LoginController {
                     loginStage.close();
                 } else {
                     // Handle invalid login
-                    showAlert("Virhe", "Virheellinen käyttäjätunnus tai salasana!");
+                    showAlert(bundle.getString("login.error"), bundle.getString("login.error"));
                 }
             } else {
                 // Handle invalid login
-                showAlert("Virhe", "Virheellinen käyttäjätunnus tai salasana!");
+                showAlert(bundle.getString("login.error"), bundle.getString("login.error"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,11 +105,11 @@ public class LoginController {
     @FXML
     private void handleRegisterButtonAction() throws IOException {
         // Load the RegisterView.fxml file
-        Parent registerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/RegisterView.fxml")));
+        Parent registerRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/RegisterView.fxml")), bundle);
 
         // Create a new stage for RegisterView
         Stage registerStage = new Stage();
-        registerStage.setTitle("LibraryManager - Register");
+        registerStage.setTitle(bundle.getString("register.title"));
         registerStage.setScene(new Scene(registerRoot));
         registerStage.show();
 
