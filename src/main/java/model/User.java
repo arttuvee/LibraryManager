@@ -77,4 +77,36 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setFi_name(String fi) {
+        this.fi_name = fi;
+    }
+
+    public void setEn_name(String en) {
+        this.en_name = en;
+    }
+
+    public void setJa_name(String ja) {
+        this.ja_name = ja;
+    }
+
+    public void setUa_name(String ua) {
+        this.ua_name = ua;
+    }
+
+    public String getFi_name() {
+        return fi_name;
+    }
+
+    public String getEn_name() {
+        return en_name;
+    }
+
+    public String getJa_name() {
+        return ja_name;
+    }
+
+    public String getUa_name() {
+        return ua_name;
+    }
 }
