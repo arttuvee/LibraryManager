@@ -24,7 +24,7 @@
             <AnchorPane prefHeight="623.0" prefWidth="250.0" styleClass="menu-bg" stylesheets="@style.css">
                <children>
                   <Pane prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top" />
-                  <Button fx:id="kotiButton" layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleKotiButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjahylly">
+                  <Button fx:id="kotiButton" layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleKotiButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.bookself">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="lainatButton" layoutX="1.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleLainatButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Lainat">
+                  <Button fx:id="lainatButton" layoutX="1.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleLainatButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.loans">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -41,7 +41,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut">
+                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.bills">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -49,7 +49,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto">
+                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.storage">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -57,7 +57,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="asetuksetButton" layoutY="300.0" mnemonicParsing="false" onAction="#handleAsetuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Asetukset">
+                  <Button fx:id="asetuksetButton" layoutY="300.0" mnemonicParsing="false" onAction="#handleAsetuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.settings">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,7 +68,7 @@
                   </Button>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top">
                      <children>
-                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos">
+                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.settings">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -89,7 +89,7 @@
                <children>
                   <Pane layoutX="14.0" layoutY="426.0" prefHeight="183.0" prefWidth="742.0" styleClass="content-page-bg" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="Lisää">
+                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
@@ -119,7 +119,7 @@
                   <TableView fx:id="varastoTable" layoutX="14.0" layoutY="70.0" prefHeight="340.0" prefWidth="742.0" stylesheets="@style.css">
                     <columns>
                        <TableColumn fx:id="idColumnVarasto" prefWidth="32.0" text="ID" />
-                       <TableColumn fx:id="nimiColumnVarasto" prefWidth="116.0" text="Nimi" />
+                       <TableColumn fx:id="nimiColumnVarasto" prefWidth="116.0" text="%storage.add.name" />
                        <TableColumn fx:id="julkaisuColumnVarasto" prefWidth="45.0" text="Vuosi" />
                        <TableColumn fx:id="tekijäColumnVarasto" prefWidth="91.00003051757812" text="Tekijä" />
                        <TableColumn fx:id="julkaisijaColumnVarasto" prefWidth="87.0" text="Julkaisija" />

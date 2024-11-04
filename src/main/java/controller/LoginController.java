@@ -83,11 +83,11 @@ public class LoginController implements Initializable {
                     loginStage.close();
                 } else {
                     // Handle invalid login
-                    showAlert(bundle.getString("login.error"), bundle.getString("login.error"));
+                    showAlert(bundle.getString("login.error.password"), bundle.getString("login.error.password"));
                 }
             } else {
                 // Handle invalid login
-                showAlert(bundle.getString("login.error"), bundle.getString("login.error"));
+                showAlert(bundle.getString("login.error.username"), bundle.getString("login.error.username"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

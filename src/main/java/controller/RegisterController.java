@@ -65,9 +65,9 @@ public class RegisterController implements Initializable {
 
     // TODO: Localize error messages
     private boolean validateFields() {
-        if (isFieldEmpty(passwordField.getText(), bundle.getString("error.password")) ||
-                isFieldEmpty(nameField.getText(), bundle.getString("error.username")) ||
-                isFieldEmpty(emailField.getText(), bundle.getString("error.email"))) {
+        if (isFieldEmpty(passwordField.getText(), bundle.getString("register.error.password")) ||
+                isFieldEmpty(nameField.getText(), bundle.getString("register.error.username")) ||
+                isFieldEmpty(emailField.getText(), bundle.getString("register.error.email"))) {
             return false;
         }
         return true;
