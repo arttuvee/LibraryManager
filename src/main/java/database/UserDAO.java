@@ -14,7 +14,19 @@ public class UserDAO {
     // listana USER OLIOINA.
     public static List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM Käyttäjä";
+        String query = "SELECT" +
+                " u.user_id," +
+                " u.email," +
+                " u.role," +
+                " u.pass" +
+                " en.name AS en," +
+                " ja.name AS ja," +
+                " ua.name AS ua" +
+                " FROM users u" +
+                " LEFT JOIN user_translations en ON u.user_id = en.user_id AND en.language_code = 'en'" +
+                " LEFT JOIN user_translations ja ON u.user_id = ja.user_id AND ja.language_code = 'ja'" +
+                " LEFT JOIN user_translations ua ON u.user_id = ua.user_id AND ua.language_code = 'ua'";
+
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
