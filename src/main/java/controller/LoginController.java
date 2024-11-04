@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.User;
 import database.UserDAO;
@@ -29,26 +26,55 @@ public class LoginController implements Initializable {
     private Button registerButton;
 
     @FXML
-    private Button backButton;
-
-    @FXML
     private TextField usernameField;
 
     @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private ChoiceBox<String> languageChoiceBox;
 
     private static boolean isAdmin;
     private static int currentUserId;
 
     private ResourceBundle bundle;
 
+    // TODO: Kesken!
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese");
+        languageChoiceBox.setValue("English");
+        languageChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            handleLanguageChange(newValue);
+        });
+
         // Load the resource bundle based on the default locale
         Locale locale = Locale.getDefault();
         bundle = ResourceBundle.getBundle("messages", locale);
 
         // Set text for UI components
+        setUIText();
+    }
+
+    private void handleLanguageChange(String language) {
+        Locale locale;
+        switch (language) {
+            case "Suomi":
+                locale = new Locale("fi", "FI");
+                break;
+            case "Japanese":
+                locale = new Locale("jp", "JA");
+                break;
+            default:
+                locale = new Locale("en", "US");
+                break;
+        }
+        Locale.setDefault(locale);
+        bundle = ResourceBundle.getBundle("messages", locale);
+        setUIText();
+    }
+
+    private void setUIText() {
         loginButton.setText(bundle.getString("login.submit"));
         registerButton.setText(bundle.getString("login.register"));
         usernameField.setPromptText(bundle.getString("login.username"));
