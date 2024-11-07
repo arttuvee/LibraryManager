@@ -17,7 +17,7 @@
          <children>
             <TextField fx:id="usernameField" layoutX="120.0" layoutY="71.0" promptText="%login.username" styleClass="login-form" stylesheets="@style.css" />
             <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="115.0" promptText="%login.password" styleClass="login-form" stylesheets="@style.css" />
-            <Text layoutX="76.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%login.title">
+            <Text fx:id="loginTitle" layoutX="76.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%login.title">
                <font>
                   <Font size="24.0" />
                </font>
@@ -36,7 +36,7 @@
       </Pane>
       <Pane layoutX="466.0" layoutY="415.0" prefHeight="29.0" prefWidth="126.0">
          <children>
-            <ChoiceBox fx:id="languageChoiceBox" layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="126.0" />
+            <ChoiceBox value="Language" fx:id="languageChoiceBox" layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="126.0" />
          </children>
       </Pane>
    </children>

@@ -6,8 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.User;
+import model.UserPreferences;
 import database.UserDAO;
 
 import java.io.IOException;
@@ -18,6 +20,9 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
+    @FXML
+    private Text loginTitle;
 
     @FXML
     private Button loginButton;
@@ -39,13 +44,15 @@ public class LoginController implements Initializable {
 
     private ResourceBundle bundle;
 
-    // TODO: Kesken!
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese");
-        languageChoiceBox.setValue("English");
+        String savedLanguage = UserPreferences.getLanguage();
+        languageChoiceBox.setValue(savedLanguage);
+
         languageChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             handleLanguageChange(newValue);
+            UserPreferences.setLanguage(newValue);
         });
 
         // Load the resource bundle based on the default locale
@@ -63,7 +70,7 @@ public class LoginController implements Initializable {
                 locale = new Locale("fi", "FI");
                 break;
             case "Japanese":
-                locale = new Locale("jp", "JA");
+                locale = new Locale("ja", "JP");
                 break;
             default:
                 locale = new Locale("en", "US");
@@ -72,9 +79,14 @@ public class LoginController implements Initializable {
         Locale.setDefault(locale);
         bundle = ResourceBundle.getBundle("messages", locale);
         setUIText();
+
+        // Update the title of the login window
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.setTitle(bundle.getString("login.title"));
     }
 
     private void setUIText() {
+        loginTitle.setText(bundle.getString("login.title"));
         loginButton.setText(bundle.getString("login.submit"));
         registerButton.setText(bundle.getString("login.register"));
         usernameField.setPromptText(bundle.getString("login.username"));
