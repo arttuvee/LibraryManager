@@ -2,6 +2,7 @@ package controller;
 
 import database.ProductDAO;
 import database.ReservationDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,13 +17,16 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Product;
 import model.Reservation;
+import model.UserPreferences;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class ViewController {
 
@@ -39,6 +43,8 @@ public class ViewController {
     private Button asetuksetButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private ChoiceBox<String> languageChoiceBox;
 
     // Pages
     @FXML
@@ -146,11 +152,52 @@ public class ViewController {
             loadProductData();
             loadReservationData();
             setupRowFactory();
+
+            // Setup language choice box
+            languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese");
+            String savedLanguage = UserPreferences.getLanguage();
+            languageChoiceBox.setValue(savedLanguage);
+
+            // Delay the language change handling until the UI is fully initialized
+            Platform.runLater(() -> {
+                handleLanguageChange(savedLanguage);
+                languageChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    handleLanguageChange(newValue);
+                });
+            });
+
             System.out.println("Product data loaded");
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
+    }
+
+    private void handleLanguageChange(String language) {
+        Locale locale;
+        switch (language) {
+            case "Suomi":
+                locale = new Locale("fi", "FI");
+                break;
+            case "Japanese":
+                locale = new Locale("ja", "JP");
+                break;
+            default:
+                locale = new Locale("en", "US");
+                break;
+        }
+        Locale.setDefault(locale);
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+
+        kotiButton.setText(bundle.getString("menu.bookself"));
+        varastoButton.setText(bundle.getString("menu.storage"));
+        lainatButton.setText(bundle.getString("menu.loans"));
+        laskutButton.setText(bundle.getString("menu.bills"));
+        asetuksetButton.setText(bundle.getString("menu.settings"));
+        logoutButton.setText(bundle.getString("menu.logout"));
+
+        Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
+        stage.setTitle("LibraryManager");
     }
 
     @FXML
@@ -181,7 +228,7 @@ public class ViewController {
     private void handleLogoutButtonAction() throws IOException {
         Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
         Stage loginStage = new Stage();
-        loginStage.setTitle("LibraryManager - Login");
+        loginStage.setTitle("login.title");
         loginStage.setScene(new Scene(loginRoot));
         loginStage.show();
         // TODO: Logout user !

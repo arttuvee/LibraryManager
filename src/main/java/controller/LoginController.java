@@ -112,7 +112,7 @@ public class LoginController implements Initializable {
 
                     // Create a new stage for MainView
                     Stage mainStage = new Stage();
-                    mainStage.setTitle(bundle.getString("main.title"));
+                    mainStage.setTitle("Library Manager");
                     mainStage.setScene(new Scene(mainRoot));
                     mainStage.show();
 
