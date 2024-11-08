@@ -91,7 +91,7 @@ public class RegisterController implements Initializable {
         String email = emailField.getText();
         String password = passwordField.getText();
         int age = Integer.parseInt(ageField.getText());
-        String role = "user"; // or retrieve from another field if applicable
+        String role = "user";
 
         User user = new User(name, email, password, age, role);
         try {
