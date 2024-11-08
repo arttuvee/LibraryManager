@@ -154,7 +154,7 @@ public class ViewController {
             setupRowFactory();
 
             // Setup language choice box
-            languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese");
+            languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese", "Ukrainian");
             String savedLanguage = UserPreferences.getLanguage();
             languageChoiceBox.setValue(savedLanguage);
 
@@ -182,6 +182,9 @@ public class ViewController {
             case "Japanese":
                 locale = new Locale("ja", "JP");
                 break;
+            case "Ukrainian":
+                locale = new Locale("uk", "UA");
+                break;
             default:
                 locale = new Locale("en", "US");
                 break;
@@ -197,7 +200,7 @@ public class ViewController {
         logoutButton.setText(bundle.getString("menu.logout"));
 
         Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
-        stage.setTitle("LibraryManager");
+        stage.setTitle("Library Manager");
     }
 
     @FXML

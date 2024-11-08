@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese");
+        languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese", "Ukrainian");
         String savedLanguage = UserPreferences.getLanguage();
         languageChoiceBox.setValue(savedLanguage);
 
@@ -71,6 +71,9 @@ public class LoginController implements Initializable {
                 break;
             case "Japanese":
                 locale = new Locale("ja", "JP");
+                break;
+            case "Ukrainian":
+                locale = new Locale("uk", "UA");
                 break;
             default:
                 locale = new Locale("en", "US");
