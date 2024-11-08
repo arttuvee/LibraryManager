@@ -80,13 +80,6 @@
                      </children>
                   </Pane>
                   <ChoiceBox fx:id='languageChoiceBox' layoutX="50.0" layoutY="522.0" prefWidth="150.0" value="Suomi">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Suomi" />
-                           <String fx:value="English" />
-                           <String fx:value="Svenska" />
-                        </FXCollections>
-                     </items>
                   </ChoiceBox>
                </children>
             </AnchorPane>
