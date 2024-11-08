@@ -34,7 +34,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="466.0" layoutY="415.0" prefHeight="29.0" prefWidth="126.0" />
       <ChoiceBox fx:id="languageChoiceBox" layoutX="237.0" layoutY="336.0" prefHeight="25.0" prefWidth="126.0" value="Language" />
    </children>
 </AnchorPane>
