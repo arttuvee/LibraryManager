@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,12 +56,8 @@ public class LoginController implements Initializable {
             UserPreferences.setLanguage(newValue);
         });
 
-        // Load the resource bundle based on the default locale
-        Locale locale = Locale.getDefault();
-        bundle = ResourceBundle.getBundle("messages", locale);
-
-        // Set text for UI components
-        setUIText();
+        // Delay the language change handling until the UI is fully initialized
+        Platform.runLater(() -> handleLanguageChange(savedLanguage));
     }
 
     private void handleLanguageChange(String language) {
@@ -83,7 +80,6 @@ public class LoginController implements Initializable {
         bundle = ResourceBundle.getBundle("messages", locale);
         setUIText();
 
-        // Update the title of the login window
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.setTitle(bundle.getString("login.title"));
     }

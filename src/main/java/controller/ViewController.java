@@ -163,6 +163,7 @@ public class ViewController {
                 handleLanguageChange(savedLanguage);
                 languageChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     handleLanguageChange(newValue);
+                    UserPreferences.setLanguage(newValue);
                 });
             });
 
@@ -227,6 +228,7 @@ public class ViewController {
         showPane(asetuksetPane, asetuksetButton);
     }
 
+    // TODO: Logout crashaa !?
     @FXML
     private void handleLogoutButtonAction() throws IOException {
         Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
