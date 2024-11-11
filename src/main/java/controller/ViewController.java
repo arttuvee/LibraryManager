@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Product;
@@ -82,6 +83,18 @@ public class ViewController {
     @FXML
     private TextField lisääKoodi;
 
+    // Titles
+    @FXML
+    private Text storageTitle;
+    @FXML
+    private Text loansTitle;
+    @FXML
+    private Text billsTitle;
+    @FXML
+    private Text settingsTitle;
+    @FXML
+    private Text bookshelfTitle;
+
     // Kirjahylly TableView
     @FXML
     private TableView<Product> kirjahyllyTable;
@@ -139,6 +152,9 @@ public class ViewController {
     private TableColumn<Reservation, String> tyyppiColumnLainat;
     @FXML
     private TableColumn<Reservation, String> lainaaikaColumnLainat;
+
+    // Laskut tableview
+    // TODO:
 
     @FXML
     public void initialize() {
@@ -200,6 +216,22 @@ public class ViewController {
         asetuksetButton.setText(bundle.getString("menu.settings"));
         logoutButton.setText(bundle.getString("menu.logout"));
 
+        bookshelfTitle.setText(bundle.getString("bookshelf.title"));
+        storageTitle.setText(bundle.getString("storage.title"));
+        loansTitle.setText(bundle.getString("loans.title"));
+        billsTitle.setText(bundle.getString("bills.title"));
+        settingsTitle.setText(bundle.getString("settings.title"));
+
+        lisääNimi.setPromptText(bundle.getString("storage.add.name"));
+        lisääJulkaisuvuosi.setPromptText(bundle.getString("storage.add.year"));
+        lisääTekijä.setPromptText(bundle.getString("storage.add.author"));
+        lisääJulkaisija.setPromptText(bundle.getString("storage.publisher"));
+        lisääIkäraja.setPromptText(bundle.getString("storage.add.age"));
+        lisääTyyppi.setPromptText(bundle.getString("storage.add.type"));
+        lisääKuvaus.setPromptText(bundle.getString("storage.add.description"));
+        lisääGenre.setPromptText(bundle.getString("storage.add.genre"));
+        lisääSaldo.setPromptText(bundle.getString("storage.add.saldo"));
+
         Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
         stage.setTitle("Library Manager");
     }
@@ -253,6 +285,7 @@ public class ViewController {
         varastoButton.getStyleClass().remove("active");
         lainatButton.getStyleClass().remove("active");
         laskutButton.getStyleClass().remove("active");
+        asetuksetButton.getStyleClass().remove("active");
     }
 
     private void setupTableView() {
