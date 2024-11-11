@@ -48,7 +48,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.storage">
+                  <Button fx:id="varastoButton" layoutY="300.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.storage">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -56,11 +56,11 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="asetuksetButton" layoutY="300.0" mnemonicParsing="false" onAction="#handleAsetuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.settings">
+                  <Button fx:id="asetuksetButton" layoutY="240.0" mnemonicParsing="false" onAction="#handleAsetuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.settings">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/grid-alt-regular-96.png" />
+                              <Image url="@img/cog-regular-96.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -87,11 +87,11 @@
       </VBox>
       <StackPane fx:id="mainStackPane" prefHeight="623.0" prefWidth="770.0">
          <children>
-            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Pane layoutX="14.0" layoutY="426.0" prefHeight="183.0" prefWidth="742.0" styleClass="content-page-bg" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="%storage.add.submit">
+                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="%storage.add.submit">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
@@ -108,9 +108,10 @@
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Button fx:id="poistaButton" layoutX="662.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="%storage.add.remove" />
+                        <Button fx:id="poistaButton" layoutX="662.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="%storage.add.remove" />
                         <TextField fx:id="lisääKoodi" layoutX="576.0" layoutY="55.0" promptText="%storage.add.code" />
                         <TextField fx:id="lisääJulkaisuvuosi" layoutX="14.0" layoutY="129.0" promptText="%storage.add.year" />
+                        <ChoiceBox layoutX="576.0" layoutY="90.0" prefHeight="34.0" prefWidth="152.0" />
                      </children>
                   </Pane>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
@@ -201,7 +202,7 @@
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />
                </children>
             </Pane>
-            <Pane fx:id="asetuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="asetuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
