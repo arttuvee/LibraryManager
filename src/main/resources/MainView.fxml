@@ -193,11 +193,13 @@
                   </Pane>
                   <TableView layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0">
                      <columns>
-                        // TODO: Add columns!
+
+
+
                         <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="75.0" fx:id="bills.col.name" text="%storage.add.name" />
-                        <TableColumn prefWidth="75.0" fx:id="bills.col.reason" text="%bills.reason" />
-                        <TableColumn prefWidth="75.0" fx:id="bills.col.amount" text="%bills.amount" />
+                        <TableColumn prefWidth="75.0" fx:id="billsColName" text="%storage.add.name" />
+                        <TableColumn prefWidth="75.0" fx:id="billsColReason" text="%bills.reason" />
+                        <TableColumn prefWidth="75.0" fx:id="billsColAmount" text="%bills.amount" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />

@@ -154,7 +154,12 @@ public class ViewController {
     private TableColumn<Reservation, String> lainaaikaColumnLainat;
 
     // Laskut tableview
-    // TODO:
+    @FXML
+    private TableColumn<Reservation, String> billsColName;
+    @FXML
+    private TableColumn<Reservation, String> billsColReason;
+    @FXML
+    private TableColumn<Reservation, String> billsColAmount;
 
     @FXML
     public void initialize() {
@@ -232,6 +237,10 @@ public class ViewController {
         lisääGenre.setPromptText(bundle.getString("storage.add.genre"));
         lisääSaldo.setPromptText(bundle.getString("storage.add.saldo"));
 
+        billsColName.setText(bundle.getString("storage.add.name"));
+        billsColReason.setText(bundle.getString("bills.reason"));
+        billsColAmount.setText(bundle.getString("bills.amount"));
+
         Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
         stage.setTitle("Library Manager");
     }
@@ -260,15 +269,14 @@ public class ViewController {
         showPane(asetuksetPane, asetuksetButton);
     }
 
-    // TODO: Logout crashaa !?
     @FXML
     private void handleLogoutButtonAction() throws IOException {
-        Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+        Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")), bundle);
         Stage loginStage = new Stage();
-        loginStage.setTitle("login.title");
+        loginStage.setTitle(bundle.getString("login.title"));
         loginStage.setScene(new Scene(loginRoot));
         loginStage.show();
-        // TODO: Logout user !
         Stage mainStage = (Stage) logoutButton.getScene().getWindow();
         mainStage.close();
     }
