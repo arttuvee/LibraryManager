@@ -77,7 +77,11 @@ public class RegisterController {
         int age = Integer.parseInt(ageField.getText());
         String role = "user"; // or retrieve from another field if applicable
 
-        User user = new User(name, email, password, age, role);
+        /* TODO: Miten menee kielet?
+        Otetaanko nykyisestä lokaalista kenttä, mihin nimi-kentän sisältö laitetaan ja sitten
+        vaikka käännetään jollain Googlen translate API:lla?
+         */
+        User user = new User(name, name, name, name, email, password, age, role);
         try {
             UserDAO.addUser(user);
         } catch (SQLException e) {
