@@ -95,15 +95,15 @@
                            <font>
                               <Font size="18.0" />
                            </font></Button>
-                        <TextField fx:id="lisääNimi" layoutX="14.0" layoutY="55.0" promptText="Nimi" />
-                        <TextField fx:id="lisääTekijä" layoutX="14.0" layoutY="90.0" promptText="Tekijä" />
-                        <TextField fx:id="lisääJulkaisija" layoutX="207.0" layoutY="55.0" promptText="Julkaisija" />
-                        <TextField fx:id="lisääIkäraja" layoutX="207.0" layoutY="90.0" promptText="Ikäraja" />
-                        <TextField fx:id="lisääTyyppi" layoutX="207.0" layoutY="129.0" promptText="Tyyppi" />
-                        <TextField fx:id="lisääKuvaus" layoutX="387.0" layoutY="55.0" promptText="Kuvaus" />
-                        <TextField fx:id="lisääGenre" layoutX="387.0" layoutY="90.0" promptText="Genre" />
-                        <TextField fx:id="lisääSaldo" layoutX="387.0" layoutY="129.0" promptText="Saldo" />
-                        <Text layoutX="290.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Lisää varastoon">
+                        <TextField fx:id="lisääNimi" layoutX="14.0" layoutY="55.0" promptText="%storage.add.name" />
+                        <TextField fx:id="lisääTekijä" layoutX="14.0" layoutY="90.0" promptText="%storage.add.author" />
+                        <TextField fx:id="lisääJulkaisija" layoutX="207.0" layoutY="55.0" promptText="%storage.publisher" />
+                        <TextField fx:id="lisääIkäraja" layoutX="207.0" layoutY="90.0" promptText="%storage.add.age" />
+                        <TextField fx:id="lisääTyyppi" layoutX="207.0" layoutY="129.0" promptText="%storage.add.type" />
+                        <TextField fx:id="lisääKuvaus" layoutX="387.0" layoutY="55.0" promptText="%storage.add.description" />
+                        <TextField fx:id="lisääGenre" layoutX="387.0" layoutY="90.0" promptText="%storage.add.genre" />
+                        <TextField fx:id="lisääSaldo" layoutX="387.0" layoutY="129.0" promptText="%storage.add.saldo" />
+                        <Text layoutX="290.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%storage.add.title">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -115,21 +115,21 @@
                   </Pane>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="343.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Varasto" />
+                        <Text layoutX="343.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%storage.title" />
                      </children>
                   </Pane>
                   <TableView fx:id="varastoTable" layoutX="14.0" layoutY="70.0" prefHeight="340.0" prefWidth="742.0" stylesheets="@style.css">
                     <columns>
                        <TableColumn fx:id="idColumnVarasto" prefWidth="32.0" text="ID" />
                        <TableColumn fx:id="nimiColumnVarasto" prefWidth="116.0" text="%storage.add.name" />
-                       <TableColumn fx:id="julkaisuColumnVarasto" prefWidth="45.0" text="Vuosi" />
-                       <TableColumn fx:id="tekijäColumnVarasto" prefWidth="91.00003051757812" text="Tekijä" />
-                       <TableColumn fx:id="julkaisijaColumnVarasto" prefWidth="87.0" text="Julkaisija" />
-                       <TableColumn fx:id="ikärajaColumnVarasto" prefWidth="47.0" text="Ikäraja" />
-                       <TableColumn fx:id="tyyppiColumnVarasto" prefWidth="64.0" text="Tyyppi" />
-                       <TableColumn fx:id="kuvausColumnVarasto" prefWidth="118.0" text="Kuvaus" />
-                       <TableColumn fx:id="genreColumnVarasto" prefWidth="91.0" text="Genre" />
-                       <TableColumn fx:id="saldoColumnVarasto" prefWidth="42.0" text="Saldo" />
+                       <TableColumn fx:id="julkaisuColumnVarasto" prefWidth="45.0" text="%storage.add.year" />
+                       <TableColumn fx:id="tekijäColumnVarasto" prefWidth="91.00003051757812" text="%storage.add.author" />
+                       <TableColumn fx:id="julkaisijaColumnVarasto" prefWidth="87.0" text="%storage.publisher" />
+                       <TableColumn fx:id="ikärajaColumnVarasto" prefWidth="47.0" text="%storage.add.age" />
+                       <TableColumn fx:id="tyyppiColumnVarasto" prefWidth="64.0" text="%storage.add.type" />
+                       <TableColumn fx:id="kuvausColumnVarasto" prefWidth="118.0" text="%storage.add.description" />
+                       <TableColumn fx:id="genreColumnVarasto" prefWidth="91.0" text="%storage.add.genre" />
+                       <TableColumn fx:id="saldoColumnVarasto" prefWidth="42.0" text="%storage.add.saldo" />
                     </columns>
                   </TableView>
                </children>
@@ -138,25 +138,25 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="337.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Kirjahylly" />
+                        <Text layoutX="337.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%bookshelf.title" />
                      </children>
                   </Pane>
                   <TableView fx:id="kirjahyllyTable" layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0" stylesheets="@style.css">
                      <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="141.0" text="Nimi" />
-                        <TableColumn fx:id="julkaisuColumn" prefWidth="42.0" text="Vuosi" />
-                        <TableColumn fx:id="tekijaColumn" prefWidth="96.00003051757812" text="Tekijä" />
-                        <TableColumn fx:id="julkaisijaColumn" prefWidth="66.0" text="Julkaisija" />
-                        <TableColumn fx:id="ikarajaColumn" prefWidth="46.0" text="Ikäraja" />
-                        <TableColumn fx:id="tyyppiColumn" prefWidth="57.0" text="Tyyppi" />
-                        <TableColumn fx:id="kuvausColumn" prefWidth="156.0" text="Kuvaus" />
-                        <TableColumn fx:id="genreColumn" prefWidth="91.0" text="Genre" />
-                        <TableColumn fx:id="saldoColumn" minWidth="0.0" prefWidth="40.0" text="Saldo" />
+                        <TableColumn fx:id="nameColumn" prefWidth="141.0" text="%bookshelf.name" />
+                        <TableColumn fx:id="julkaisuColumn" prefWidth="42.0" text="%bookshelf.year" />
+                        <TableColumn fx:id="tekijaColumn" prefWidth="96.00003051757812" text="%bookshelf.author" />
+                        <TableColumn fx:id="julkaisijaColumn" prefWidth="66.0" text="%bookshelf.publisher" />
+                        <TableColumn fx:id="ikarajaColumn" prefWidth="46.0" text="%bookshelf.age" />
+                        <TableColumn fx:id="tyyppiColumn" prefWidth="57.0" text="%bookshelf.type" />
+                        <TableColumn fx:id="kuvausColumn" prefWidth="156.0" text="%bookshelf.description" />
+                        <TableColumn fx:id="genreColumn" prefWidth="91.0" text="%bookshelf.genre" />
+                        <TableColumn fx:id="saldoColumn" minWidth="0.0" prefWidth="40.0" text="%bookshelf.saldo" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="lainaaButton" layoutX="304.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLainaaButtonAction" prefHeight="48.0" prefWidth="163.0" styleClass="login-button" text="Lainaa kirja" />
+                        <Button fx:id="lainaaButton" layoutX="304.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLainaaButtonAction" prefHeight="48.0" prefWidth="163.0" styleClass="login-button" text="%bookshelf.loan" />
                      </children>
                   </Pane>
                </children>
@@ -165,7 +165,7 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="352.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Lainat" />
+                        <Text layoutX="352.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%loans.title" />
                      </children>
                   </Pane>
                   <TableView fx:id="lainaTable" layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0">
@@ -187,7 +187,7 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="349.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Laskut" />
+                        <Text layoutX="349.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%loans.title" />
                      </children>
                   </Pane>
                   <TableView layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0">
