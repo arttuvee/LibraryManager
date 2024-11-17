@@ -316,7 +316,7 @@ public class ViewController {
             // calculate the borrow time based on the type of the product
             int borrowTime = Objects.equals(tyyppi, "Kirja") || Objects.equals(tyyppi, "kirja") ? 28 : 14;
 
-            Product product = new Product(julkaisuvuosi, ikäraja, saldo, borrowTime, koodi, tyyppi, genre, nimi, julkaisija);
+            Product product = new Product(julkaisuvuosi, ikäraja, saldo, borrowTime, koodi, tyyppi, genre, tekijä, julkaisija);
             ProductDAO.addProduct(product);
             showAlert("Tuotteen lisäys onnistui", "Tuote lisätty onnistuneesti!");
             loadProductData();
