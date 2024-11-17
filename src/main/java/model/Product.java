@@ -121,20 +121,12 @@ public class Product {
         this.year = year;
     }
 
-    public String getTekija() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setTekija(String tekija) {
-        this.author = tekija;
-    }
-
-    public String getJulkaisija() {
+    public String getProducer() {
         return producer;
-    }
-
-    public void setJulkaisija(String producer) {
-        this.producer = producer;
     }
 
     public int getIkaraja() {

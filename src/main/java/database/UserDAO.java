@@ -7,6 +7,12 @@ import model.User;
 
 public class UserDAO {
 
+    private Connection mockConnection;
+
+    public UserDAO(Connection mockConnection) {
+        this.mockConnection = mockConnection;
+    }
+
     // Tässä CRUD methodi. Se hakee kaikki käyttäjät tietokannasta ja palauttaa ne
     // listana USER OLIOINA.
     public static List<User> getAllUsers() throws SQLException {
