@@ -36,6 +36,8 @@ public class ViewController {
     @FXML
     private Button laskutButton;
     @FXML
+    private Button asetuksetButton;
+    @FXML
     private Button logoutButton;
 
     // Pages
@@ -49,6 +51,8 @@ public class ViewController {
     private Pane lainatPane;
     @FXML
     private Pane laskutPane;
+    @FXML
+    private Pane asetuksetPane;
 
     // Add product fields
     @FXML
@@ -168,6 +172,10 @@ public class ViewController {
     private void handleLaskutButtonAction() {
         showPane(laskutPane, laskutButton);
     }
+    @FXML
+    private void handleAsetuksetButtonAction() {
+        showPane(asetuksetPane, asetuksetButton);
+    }
 
     @FXML
     private void handleLogoutButtonAction() throws IOException {
@@ -284,7 +292,6 @@ public class ViewController {
         alert.showAndWait();
     }
 
-    // Add new product to database
     @FXML
     private void handleAddButtonAction() {
         String nimi = lisääNimi.getText();
@@ -318,7 +325,6 @@ public class ViewController {
         }
     }
 
-    // Remove selected product from database
     @FXML
     private void handleRemoveButtonAction() {
         Product selectedProduct = varastoTable.getSelectionModel().getSelectedItem();
@@ -336,7 +342,6 @@ public class ViewController {
         }
     }
 
-    // Loan selected product
     @FXML
     private void handleLainaaButtonAction() {
         Product selectedProduct = kirjahyllyTable.getSelectionModel().getSelectedItem();

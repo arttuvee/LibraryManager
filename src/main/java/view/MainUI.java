@@ -15,7 +15,7 @@ import java.util.Objects;
 public class MainUI extends Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(MainApplication.class, args);
+        //SpringApplication.run(MainApplication.class, args);
         launch(args);
     }
 
@@ -29,7 +29,6 @@ public class MainUI extends Application {
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-            // Optionally, show an alert to the user
         }
     }
 }

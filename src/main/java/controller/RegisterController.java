@@ -76,7 +76,6 @@ public class RegisterController {
         String password = passwordField.getText();
         int age = Integer.parseInt(ageField.getText());
         String role = "user"; // or retrieve from another field if applicable
-
         User user = new User(name, email, password, age, role);
         try {
             UserDAO.addUser(user);
