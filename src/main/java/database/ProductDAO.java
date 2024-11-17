@@ -12,92 +12,74 @@ import model.Product;
 
 public class ProductDAO {
 
-    // Tässä CRUD methodi. Se hakee kaikki tuotteet tietokannasta ja palauttaa ne
-    // listana TUOTE OLIOINA.
-    public static List<Product> getAllProducts() throws SQLException {
-        List<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM Tuote";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                Product product = new Product();
-                product.setId(rs.getInt("Tuote_ID"));
-                product.setNimi(rs.getString("Nimi"));
-                product.setJulkaisuvuosi(rs.getInt("Julkaisuvuosi"));
-                product.setTekija(rs.getString("Tekijä"));
-                product.setJulkaisija(rs.getString("Julkaisija"));
-                product.setIkaraja(rs.getInt("Ikäraja"));
-                product.setTyyppi(rs.getString("Tyyppi"));
-                product.setKuvaus(rs.getString("Kuvaus"));
-                product.setGenre(rs.getString("Genre"));
-                product.setSaldo(rs.getInt("Saldo"));
-                product.setLainaaika(rs.getInt("Lainaaika"));
-                product.setKoodi(rs.getString("Koodi"));
-                products.add(product);
-            }
-        }
-        return products;
-    }
 
-    public static Product getProductById(int id) throws SQLException {
+    // Helper method to extract product data from ResultSet
+    private static Product extractProductFromResultSet(ResultSet rs) throws SQLException {
         Product product = new Product();
-        String query = "SELECT * FROM Tuote WHERE Tuote_ID = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    product.setId(rs.getInt("Tuote_ID"));
-                    product.setNimi(rs.getString("Nimi"));
-                    product.setJulkaisuvuosi(rs.getInt("Julkaisuvuosi"));
-                    product.setTekija(rs.getString("Tekijä"));
-                    product.setJulkaisija(rs.getString("Julkaisija"));
-                    product.setIkaraja(rs.getInt("Ikäraja"));
-                    product.setTyyppi(rs.getString("Tyyppi"));
-                    product.setKuvaus(rs.getString("Kuvaus"));
-                    product.setGenre(rs.getString("Genre"));
-                    product.setSaldo(rs.getInt("Saldo"));
-                    product.setLainaaika(rs.getInt("Lainaaika"));
-                    product.setKoodi(rs.getString("Koodi"));
+        product.setId(rs.getInt("Product_ID"));
+        product.setJulkaisuvuosi(rs.getInt("release_year"));
+        product.setIkaraja(rs.getInt("age_limit"));
+        product.setSaldo(rs.getInt("saldo"));
+        product.setLainaaika(rs.getInt("borrow_time"));
+        product.setKoodi(rs.getString("code"));
+        product.setTyyppi(rs.getString("type"));
+        product.setGenre(rs.getString("genre"));
+        product.setAuthor(rs.getString("author"));
+        product.setProducer(rs.getString("producer"));
+
+
+        // Fetch translations if available
+        String query2 = "SELECT * FROM products_translations WHERE product_id = ?";
+        try (PreparedStatement stmt2 = rs.getStatement().getConnection().prepareStatement(query2)) {
+            stmt2.setInt(1, product.getId());
+            try (ResultSet rs2 = stmt2.executeQuery()) {
+                while (rs2.next()) {
+                    String language = rs2.getString("language_code");
+                    switch (language) {
+                        case "en" -> product.setEnglishData(rs2.getString("name"), rs2.getString("description"));
+                        case "fi" -> product.setFinnishData(rs2.getString("name"), rs2.getString("description"));
+                        case "ja" -> product.setJapaneseData(rs2.getString("name"), rs2.getString("description"));
+                        case "uk" -> product.setUkrainianData(rs2.getString("name"), rs2.getString("description"));
+                    }
                 }
             }
         }
         return product;
     }
 
-    public static List<Product> getProductsByName(String name) throws SQLException {
+    // Tässä CRUD methodi. Se hakee kaikki tuotteet tietokannasta ja palauttaa ne
+    // listana TUOTE OLIOINA.
+    public static List<Product> getAllProducts() throws SQLException {
         List<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM Tuote WHERE Nimi LIKE ?";
+        String query = "SELECT * FROM products";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, "%" + name + "%");
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Product product = new Product();
-                    product.setId(rs.getInt("Tuote_ID"));
-                    product.setNimi(rs.getString("Nimi"));
-                    product.setJulkaisuvuosi(rs.getInt("Julkaisuvuosi"));
-                    product.setTekija(rs.getString("Tekijä"));
-                    product.setJulkaisija(rs.getString("Julkaisija"));
-                    product.setIkaraja(rs.getInt("Ikäraja"));
-                    product.setTyyppi(rs.getString("Tyyppi"));
-                    product.setKuvaus(rs.getString("Kuvaus"));
-                    product.setGenre(rs.getString("Genre"));
-                    product.setSaldo(rs.getInt("Saldo"));
-                    product.setLainaaika(rs.getInt("Lainaaika"));
-                    product.setKoodi(rs.getString("Koodi"));
-                    products.add(product);
-                }
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                products.add(extractProductFromResultSet(rs));
             }
         }
         return products;
     }
 
+    public static Product getProductById(int id) throws SQLException {
+        String query = "SELECT * FROM products WHERE Product_ID = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractProductFromResultSet(rs);
+                }
+            }
+        }
+        return null;
+    }
+
     public static void addProduct(Product product) throws SQLException {
         String checkKoodiQuery = "SELECT COUNT(*) FROM Hyllypaikka WHERE Koodi = ?";
         String insertKoodiQuery = "INSERT INTO Hyllypaikka (Koodi) VALUES (?)";
-        String insertProductQuery = "INSERT INTO Tuote (Nimi, Julkaisuvuosi, Tekijä, Julkaisija, Ikäraja, Tyyppi, Kuvaus, Genre, Saldo, Lainaaika, Koodi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertProductQuery = "INSERT INTO products (release_year, age_limit, saldo, borrow_time, code, type, genre) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             try (PreparedStatement checkStmt = conn.prepareStatement(checkKoodiQuery)) {
@@ -113,43 +95,45 @@ public class ProductDAO {
             }
 
             try (PreparedStatement stmt = conn.prepareStatement(insertProductQuery)) {
-                stmt.setString(1, product.getNimi());
-                stmt.setInt(2, product.getJulkaisuvuosi());
-                stmt.setString(3, product.getTekija());
-                stmt.setString(4, product.getJulkaisija());
-                stmt.setInt(5, product.getIkaraja());
+                stmt.setInt(1, product.getJulkaisuvuosi());
+                stmt.setInt(2, product.getIkaraja());
+                stmt.setInt(3, product.getSaldo());
+                stmt.setString(5, product.getKoodi());
                 stmt.setString(6, product.getTyyppi());
-                stmt.setString(7, product.getKuvaus());
-                stmt.setString(8, product.getGenre());
-                stmt.setInt(9, product.getSaldo());
-                if(Objects.equals(product.getTyyppi(), "Kirja")){
-                    stmt.setInt(10, 28);
-                } else {
-                    stmt.setInt(10, 14);
-                }
-                stmt.setString(11, product.getKoodi());
+                stmt.setString(7, product.getGenre());
+                Integer lainaaika = product.getLainaaika();
+                stmt.setInt(4, lainaaika == null ? (Objects.equals(product.getTyyppi(), "Kirja") || Objects.equals(product.getTyyppi(), "kirja") ? 28 : 14) : lainaaika);
                 stmt.executeUpdate();
             }
         }
     }
 
     public static void updateProduct(Product product) throws SQLException {
-        String query = "UPDATE Tuote SET Nimi = ?, Julkaisuvuosi = ?, Tekijä = ?, Julkaisija = ?, Ikaraja = ?, Tyyppi = ?, Kuvaus = ?, Genre = ?, Saldo = ?, Lainaaika = ?, Koodi = ? WHERE Tuote_ID = ?";
+        String query = "UPDATE products SET release_year = ?, age_limit = ?, saldo = ?, borrow_time = ?, code = ?, type = ?, genre = ? WHERE Product_ID = ?";
+        String query2 = "UPDATE products_translations SET name = ?, description = ? WHERE product_id = ? AND language_code = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, product.getNimi());
-            stmt.setInt(2, product.getJulkaisuvuosi());
-            stmt.setString(3, product.getTekija());
-            stmt.setString(4, product.getJulkaisija());
-            stmt.setInt(5, product.getIkaraja());
+            stmt.setInt(1, product.getJulkaisuvuosi());
+            stmt.setInt(2, product.getIkaraja());
+            stmt.setInt(3, product.getSaldo());
+            stmt.setInt(4, product.getLainaaika());
+            stmt.setString(5, product.getKoodi());
             stmt.setString(6, product.getTyyppi());
-            stmt.setString(7, product.getKuvaus());
-            stmt.setString(8, product.getGenre());
-            stmt.setInt(9, product.getSaldo());
-            stmt.setInt(10, product.getLainaaika());
-            stmt.setString(11, product.getKoodi());
-            stmt.setInt(12, product.getId());
+            stmt.setString(7, product.getGenre());
+            stmt.setInt(8, product.getId());
             stmt.executeUpdate();
+        }
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            try (PreparedStatement stmt2 = conn.prepareStatement(query2)) {
+                for (String language : new String[]{"en", "fi", "ja", "uk"}) {
+                    stmt2.setString(1, product.getName(language));
+                    stmt2.setString(2, product.getDescription(language));
+                    stmt2.setInt(3, product.getId());
+                    stmt2.setString(4, language);
+                    stmt2.executeUpdate();
+                }
+            }
         }
     }
 
