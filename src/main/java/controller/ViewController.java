@@ -325,6 +325,7 @@ public class ViewController {
 
     private void setupTableView() {
         // Setup columns for kirjahyllyTable
+        //TODO:
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
         julkaisuColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
         tekijaColumn.setCellValueFactory(new PropertyValueFactory<>("tekija"));
