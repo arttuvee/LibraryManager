@@ -3,6 +3,8 @@ package controller;
 import database.ProductDAO;
 import database.ReservationDAO;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -171,8 +173,8 @@ public class ViewController {
             System.out.println("User role checked: " + isAdmin);
             varastoButton.setVisible(isAdmin);
             showPane(kotiPane, kotiButton);
-            setupTableView();
             loadProductData();
+            setupTableView();
             loadReservationData();
             setupRowFactory();
 
@@ -270,6 +272,10 @@ public class ViewController {
 
         Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
         stage.setTitle("Library Manager");
+
+        // Muista vaihtaa myös tuotteiden arvot taulukoissa
+        setupTableView();
+
     }
 
     @FXML
@@ -324,36 +330,54 @@ public class ViewController {
     }
 
     private void setupTableView() {
+
+        // Get current language
+        String languagecode = switch (languageChoiceBox.getValue()){
+            case "Suomi" -> "fi";
+            case "Japanese" -> "ja";
+            case "Ukrainian" -> "uk";
+            default -> "en";
+        };
+
+
         // Setup columns for kirjahyllyTable
-        //TODO:
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-        julkaisuColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
-        tekijaColumn.setCellValueFactory(new PropertyValueFactory<>("tekija"));
-        julkaisijaColumn.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
-        ikarajaColumn.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
-        tyyppiColumn.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
-        kuvausColumn.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
-        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        saldoColumn.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName(languagecode)));
+        julkaisuColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getJulkaisuvuosi())));
+        tekijaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAuthor()));
+        julkaisijaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProducer()));
+        ikarajaColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIkaraja()).asObject());
+        tyyppiColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTyyppi()));
+        kuvausColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getKuvaus(languagecode)));
+        genreColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGenre()));
+        saldoColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getSaldo()).asObject());
+
+        kirjahyllyTable.refresh();
+
 
         // Setup columns for varastoTable
-        idColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nimiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-        julkaisuColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisuvuosi"));
-        tekijäColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tekija"));
-        julkaisijaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("julkaisija"));
-        ikärajaColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("ikaraja"));
-        tyyppiColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
-        kuvausColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("kuvaus"));
-        genreColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        saldoColumnVarasto.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+        idColumnVarasto.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        nimiColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName(languagecode)));
+        julkaisuColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getJulkaisuvuosi())));
+        tekijäColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAuthor()));
+        julkaisijaColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProducer()));
+        ikärajaColumnVarasto.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIkaraja()).asObject());
+        tyyppiColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTyyppi()));
+        kuvausColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getKuvaus(languagecode)));
+        genreColumnVarasto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGenre()));
+        saldoColumnVarasto.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getSaldo()).asObject());
+
+        varastoTable.refresh();
 
         // Setup columns for lainaTable
-        nimiColumnLainat.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        tekijaColumnLainat.setCellValueFactory(new PropertyValueFactory<>("author"));
-        tyyppiColumnLainat.setCellValueFactory(new PropertyValueFactory<>("type"));
-        lainaaikaColumnLainat.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        nimiColumnLainat.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductName()));
+        tekijaColumnLainat.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAuthor()));
+        tyyppiColumnLainat.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
+        lainaaikaColumnLainat.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndDate().toString()));
+
+        lainaTable.refresh();
     }
+
+    ObservableList<Product> globalProductObservableList;
 
     private void loadProductData() {
         System.out.println("Loading product data");
@@ -363,6 +387,7 @@ public class ViewController {
             System.out.println("Products retrieved: " + products.size());
 
             ObservableList<Product> productObservableList = FXCollections.observableArrayList(products);
+            this.globalProductObservableList = productObservableList;
             kirjahyllyTable.setItems(productObservableList);
             varastoTable.setItems(productObservableList);
         } catch (SQLException e) {
