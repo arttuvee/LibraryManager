@@ -31,16 +31,6 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/name/{name}")
-    public static List<Product> getProductsByName(String name) {
-        try {
-            return ProductDAO.getProductsByName(name);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     @PostMapping
     public static void addProduct(Product product) {
         try {

@@ -433,7 +433,10 @@ public class ViewController {
             ikäraja = Integer.parseInt(ikärajaStr);
             saldo = Integer.parseInt(saldoStr);
 
-            Product product = new Product(nimi, julkaisuvuosi, tekijä, julkaisija, ikäraja, tyyppi, kuvaus, genre, saldo, koodi);
+            // calculate the borrow time based on the type of the product
+            int borrowTime = Objects.equals(tyyppi, "Kirja") || Objects.equals(tyyppi, "kirja") ? 28 : 14;
+
+            Product product = new Product(julkaisuvuosi, ikäraja, saldo, borrowTime, koodi, tyyppi, genre, tekijä, julkaisija);
             ProductDAO.addProduct(product);
             showAlert("Tuotteen lisäys onnistui", "Tuote lisätty onnistuneesti!");
             loadProductData();

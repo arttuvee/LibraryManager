@@ -4,36 +4,66 @@ import java.sql.Date;
 
 public class Product {
 
-    // Fields
+    // Attributes
     private int id;
-    private String nimi;
-    private int julkaisuvuosi;
-    private String tekija;
-    private String julkaisija;
-    private int ikaraja;
-    private String tyyppi;
-    private String kuvaus;
+    private int year;
+    private int ageLimit;
+    private String type;
     private String genre;
     private int saldo;
-    private int lainaaika;
-    private String koodi;
+    private int borrowTime;
+    private String code;
+    private String author;
+    private String producer;
+
+    // Localized attributes | Defaulted to empty strings
+    private String name_en = "";
+    private String description_en = "";
+    private String name_fi = "";
+    private String description_fi = "";
+    private String name_ja = "";
+    private String description_ja = "";
+    private String name_uk = "";
+    private String description_uk = "";
+
 
     // No-argument constructor
     public Product() {
     }
 
-    // Constructor with parameters
-    public Product(String nimi, int julkaisuvuosi, String tekija, String julkaisija, int ikaraja, String tyyppi, String kuvaus, String genre, int saldo, String koodi) {
-        this.nimi = nimi;
-        this.julkaisuvuosi = julkaisuvuosi;
-        this.tekija = tekija;
-        this.julkaisija = julkaisija;
-        this.ikaraja = ikaraja;
-        this.tyyppi = tyyppi;
-        this.kuvaus = kuvaus;
-        this.genre = genre;
+    // Constructor with parameters from the untranslated table
+    public Product(int julkaisuvuosi, int ikaraja, int saldo, int lainaaika, String koodi, String tyyppi, String genre, String author, String producer) {
+        this.id = id;
+        this.year = julkaisuvuosi;
+        this.ageLimit = ikaraja;
         this.saldo = saldo;
-        this.koodi = koodi;
+        this.borrowTime = lainaaika;
+        this.code = koodi;
+        this.type = tyyppi;
+        this.genre = genre;
+        this.author = author;
+        this.producer = producer;
+    }
+
+    // Constructors with parameters from the translated table
+    public void setEnglishData(String name_en, String description_en) {
+        this.name_en = name_en;
+        this.description_en = description_en;
+    }
+
+    public void setFinnishData(String name_fi, String description_fi) {
+        this.name_fi = name_fi;
+        this.description_fi = description_fi;
+    }
+
+    public void setJapaneseData(String name_ja, String description_ja) {
+        this.name_ja = name_ja;
+        this.description_ja = description_ja;
+    }
+
+    public void setUkrainianData(String name_uk, String description_uk) {
+        this.name_uk = name_uk;
+        this.description_uk = description_uk;
     }
 
     // Getters and setters
@@ -45,60 +75,93 @@ public class Product {
         this.id = id;
     }
 
-    public String getNimi() {
-        return nimi;
+    public String getName(String language) {
+        return switch (language) {
+            case "en" -> name_en;
+            case "fi" -> name_fi;
+            case "ja" -> name_ja;
+            case "uk" -> name_uk;
+            default -> null;
+        };
     }
 
-    public void setNimi(String nimi) {
-        this.nimi = nimi;
+    public void setName(String language, String nimi) {
+        switch (language) {
+            case "en" -> name_en = nimi;
+            case "fi" -> name_fi = nimi;
+            case "ja" -> name_ja = nimi;
+            case "uk" -> name_uk = nimi;
+        }
+    }
+
+    public String getDescription(String language) {
+        return switch (language) {
+            case "en" -> description_en;
+            case "fi" -> description_fi;
+            case "ja" -> description_ja;
+            case "uk" -> description_uk;
+            default -> null;
+        };
+    }
+
+    public void setDescription(String language, String description) {
+        switch (language) {
+            case "en" -> description_en = description;
+            case "fi" -> description_fi = description;
+            case "ja" -> description_ja = description;
+            case "uk" -> description_uk = description;
+        }
     }
 
     public int getJulkaisuvuosi() {
-        return julkaisuvuosi;
+        return year;
     }
 
-    public void setJulkaisuvuosi(int julkaisuvuosi) {
-        this.julkaisuvuosi = julkaisuvuosi;
+    public void setJulkaisuvuosi(int year) {
+        this.year = year;
     }
 
-    public String getTekija() {
-        return tekija;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setTekija(String tekija) {
-        this.tekija = tekija;
-    }
-
-    public String getJulkaisija() {
-        return julkaisija;
-    }
-
-    public void setJulkaisija(String julkaisija) {
-        this.julkaisija = julkaisija;
+    public String getProducer() {
+        return producer;
     }
 
     public int getIkaraja() {
-        return ikaraja;
+        return ageLimit;
     }
 
-    public void setIkaraja(int ikaraja) {
-        this.ikaraja = ikaraja;
+    public void setIkaraja(int ageLimit) {
+        this.ageLimit = ageLimit;
     }
 
     public String getTyyppi() {
-        return tyyppi;
+        return type;
     }
 
     public void setTyyppi(String tyyppi) {
-        this.tyyppi = tyyppi;
+        this.type = tyyppi;
     }
 
-    public String getKuvaus() {
-        return kuvaus;
+    public String getKuvaus(String language) {
+        return switch (language) {
+            case "en" -> description_en;
+            case "fi" -> description_fi;
+            case "ja" -> description_ja;
+            case "uk" -> description_uk;
+            default -> null;
+        };
     }
 
-    public void setKuvaus(String kuvaus) {
-        this.kuvaus = kuvaus;
+    public void setKuvaus(String language, String kuvaus) {
+        switch (language) {
+            case "en" -> description_en = kuvaus;
+            case "fi" -> description_fi = kuvaus;
+            case "ja" -> description_ja = kuvaus;
+            case "uk" -> description_uk = kuvaus;
+        }
     }
 
     public String getGenre() {
@@ -118,18 +181,26 @@ public class Product {
     }
 
     public int getLainaaika() {
-        return lainaaika;
+        return borrowTime;
     }
 
     public void setLainaaika(int lainaaika) {
-        this.lainaaika = lainaaika;
+        this.borrowTime = lainaaika;
     }
 
     public String getKoodi() {
-        return koodi;
+        return code;
     }
 
     public void setKoodi(String koodi) {
-        this.koodi = koodi;
+        this.code = koodi;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 }
