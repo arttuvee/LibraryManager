@@ -366,10 +366,10 @@ public class ViewController {
             varastoTable.setItems(productObservableList);
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Tietokantavirhe", "Tuotetietojen lataaminen epäonnistui: " + e.getMessage());
+            showAlert("Database error", "Retrieving product data failed: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
+            showAlert("Error", "Error: " + e.getMessage());
         }
     }
 
@@ -381,7 +381,7 @@ public class ViewController {
             lainaTable.setItems(reservationObservableList);
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Tietokantavirhe", "Lainatietojen lataaminen epäonnistui: " + e.getMessage());
+            showAlert("Database error", "Retrieving loan data failed: " + e.getMessage());
         }
     }
 

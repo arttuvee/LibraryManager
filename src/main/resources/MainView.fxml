@@ -87,7 +87,7 @@
       </VBox>
       <StackPane fx:id="mainStackPane" prefHeight="623.0" prefWidth="770.0">
          <children>
-            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="varastoPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <Pane layoutX="14.0" layoutY="426.0" prefHeight="183.0" prefWidth="742.0" styleClass="content-page-bg" stylesheets="@style.css">
                      <children>
@@ -197,25 +197,25 @@
 
 
                         <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="75.0" fx:id="billsColName" text="%storage.add.name" />
-                        <TableColumn prefWidth="75.0" fx:id="billsColReason" text="%bills.reason" />
-                        <TableColumn prefWidth="75.0" fx:id="billsColAmount" text="%bills.amount" />
+                        <TableColumn fx:id="billsColName" prefWidth="75.0" text="%storage.add.name" />
+                        <TableColumn fx:id="billsColReason" prefWidth="75.0" text="%bills.reason" />
+                        <TableColumn fx:id="billsColAmount" prefWidth="75.0" text="%bills.amount" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />
                </children>
             </Pane>
-            <Pane fx:id="asetuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="asetuksetPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text fx:id="settingsTitle" layoutX="334.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%settings.title" />
+                        <Text fx:id="settingsTitle" layoutX="311.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%settings.title" />
                      </children>
                   </Pane>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />
                   <Pane layoutX="4.0" layoutY="70.0" prefHeight="483.0" prefWidth="760.0" styleClass="content-page-bg">
                      <children>
-                        <Pane layoutX="14.0" layoutY="163.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="115.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
                               <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.username">
                                  <font>
@@ -229,7 +229,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="438.0" layoutY="163.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="163.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
                               <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.password">
                                  <font>
@@ -243,7 +243,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="438.0" layoutY="211.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="218.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
                               <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.email">
                                  <font>
@@ -257,7 +257,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="438.0" layoutY="259.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="270.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
                               <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.phone">
                                  <font>
@@ -271,7 +271,7 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="14.0" layoutY="259.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="366.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
                               <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.age">
                                  <font>
@@ -285,12 +285,12 @@
                               </Text>
                            </children>
                         </Pane>
-                        <Text fill="WHITE" layoutX="354.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.info">
+                        <Text fill="WHITE" layoutX="324.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.info">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <Pane layoutX="14.0" layoutY="211.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="318.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
                               <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.role">
                                  <font>
