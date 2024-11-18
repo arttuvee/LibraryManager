@@ -2,6 +2,7 @@ package controller;
 
 import database.ProductDAO;
 import database.ReservationDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,17 +13,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Product;
 import model.Reservation;
+import model.UserPreferences;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class ViewController {
 
@@ -39,6 +44,8 @@ public class ViewController {
     private Button asetuksetButton;
     @FXML
     private Button logoutButton;
+    @FXML
+    private ChoiceBox<String> languageChoiceBox;
 
     // Pages
     @FXML
@@ -75,6 +82,18 @@ public class ViewController {
     private TextField lisääSaldo;
     @FXML
     private TextField lisääKoodi;
+
+    // Titles
+    @FXML
+    private Text storageTitle;
+    @FXML
+    private Text loansTitle;
+    @FXML
+    private Text billsTitle;
+    @FXML
+    private Text settingsTitle;
+    @FXML
+    private Text bookshelfTitle;
 
     // Kirjahylly TableView
     @FXML
@@ -134,6 +153,16 @@ public class ViewController {
     @FXML
     private TableColumn<Reservation, String> lainaaikaColumnLainat;
 
+    // Laskut tableview
+    @FXML
+    private TableColumn<Reservation, String> billsColName;
+    @FXML
+    private TableColumn<Reservation, String> billsColReason;
+    @FXML
+    private TableColumn<Reservation, String> billsColAmount;
+
+
+
     @FXML
     public void initialize() {
         System.out.println("Initializing ViewController");
@@ -146,11 +175,101 @@ public class ViewController {
             loadProductData();
             loadReservationData();
             setupRowFactory();
+
+            // Setup language choice box
+            languageChoiceBox.getItems().addAll("English", "Suomi", "Japanese", "Ukrainian");
+            String savedLanguage = UserPreferences.getLanguage();
+            languageChoiceBox.setValue(savedLanguage);
+
+            // Delay the language change handling until the UI is fully initialized
+            Platform.runLater(() -> {
+                handleLanguageChange(savedLanguage);
+                languageChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    handleLanguageChange(newValue);
+                    UserPreferences.setLanguage(newValue);
+                });
+            });
+
             System.out.println("Product data loaded");
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
         }
+    }
+
+    private void handleLanguageChange(String language) {
+        Locale locale;
+        switch (language) {
+            case "Suomi":
+                locale = new Locale("fi", "FI");
+                break;
+            case "Japanese":
+                locale = new Locale("ja", "JP");
+                break;
+            case "Ukrainian":
+                locale = new Locale("uk", "UA");
+                break;
+            default:
+                locale = new Locale("en", "US");
+                break;
+        }
+        Locale.setDefault(locale);
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+
+        kotiButton.setText(bundle.getString("menu.bookself"));
+        varastoButton.setText(bundle.getString("menu.storage"));
+        lainatButton.setText(bundle.getString("menu.loans"));
+        laskutButton.setText(bundle.getString("menu.bills"));
+        asetuksetButton.setText(bundle.getString("menu.settings"));
+        logoutButton.setText(bundle.getString("menu.logout"));
+
+        bookshelfTitle.setText(bundle.getString("bookshelf.title"));
+        storageTitle.setText(bundle.getString("storage.title"));
+        loansTitle.setText(bundle.getString("loans.title"));
+        billsTitle.setText(bundle.getString("bills.title"));
+        settingsTitle.setText(bundle.getString("settings.title"));
+
+        lisääNimi.setPromptText(bundle.getString("storage.add.name"));
+        lisääJulkaisuvuosi.setPromptText(bundle.getString("storage.add.year"));
+        lisääTekijä.setPromptText(bundle.getString("storage.add.author"));
+        lisääJulkaisija.setPromptText(bundle.getString("storage.publisher"));
+        lisääIkäraja.setPromptText(bundle.getString("storage.add.age"));
+        lisääTyyppi.setPromptText(bundle.getString("storage.add.type"));
+        lisääKuvaus.setPromptText(bundle.getString("storage.add.description"));
+        lisääGenre.setPromptText(bundle.getString("storage.add.genre"));
+        lisääSaldo.setPromptText(bundle.getString("storage.add.saldo"));
+
+        billsColName.setText(bundle.getString("storage.add.name"));
+        billsColReason.setText(bundle.getString("bills.reason"));
+        billsColAmount.setText(bundle.getString("bills.amount"));
+
+        nameColumn.setText(bundle.getString("bookshelf.title"));
+        julkaisuColumn.setText(bundle.getString("bookshelf.year"));
+        tekijaColumn.setText(bundle.getString("bookshelf.author"));
+        julkaisijaColumn.setText(bundle.getString("bookshelf.publisher"));
+        ikarajaColumn.setText(bundle.getString("bookshelf.age"));
+        tyyppiColumn.setText(bundle.getString("bookshelf.type"));
+        kuvausColumn.setText(bundle.getString("bookshelf.description"));
+        genreColumn.setText(bundle.getString("bookshelf.genre"));
+        saldoColumn.setText(bundle.getString("bookshelf.saldo"));
+
+        nimiColumnVarasto.setText(bundle.getString("bookshelf.title"));
+        julkaisuColumnVarasto.setText(bundle.getString("bookshelf.year"));
+        tekijäColumnVarasto.setText(bundle.getString("bookshelf.author"));
+        julkaisijaColumnVarasto.setText(bundle.getString("bookshelf.publisher"));
+        ikärajaColumnVarasto.setText(bundle.getString("bookshelf.age"));
+        tyyppiColumnVarasto.setText(bundle.getString("bookshelf.type"));
+        kuvausColumnVarasto.setText(bundle.getString("bookshelf.description"));
+        genreColumnVarasto.setText(bundle.getString("bookshelf.genre"));
+        saldoColumnVarasto.setText(bundle.getString("bookshelf.saldo"));
+
+        nimiColumnLainat.setText(bundle.getString("loans.title"));
+        tekijaColumnLainat.setText(bundle.getString("bookshelf.author"));
+        tyyppiColumnLainat.setText(bundle.getString("bookshelf.type"));
+        lainaaikaColumnLainat.setText(bundle.getString("loans.time"));
+
+        Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
+        stage.setTitle("Library Manager");
     }
 
     @FXML
@@ -179,12 +298,12 @@ public class ViewController {
 
     @FXML
     private void handleLogoutButtonAction() throws IOException {
-        Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")));
+        ResourceBundle bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+        Parent loginRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginView.fxml")), bundle);
         Stage loginStage = new Stage();
-        loginStage.setTitle("LibraryManager - Login");
+        loginStage.setTitle(bundle.getString("login.title"));
         loginStage.setScene(new Scene(loginRoot));
         loginStage.show();
-        // TODO: Logout user !
         Stage mainStage = (Stage) logoutButton.getScene().getWindow();
         mainStage.close();
     }
@@ -201,6 +320,7 @@ public class ViewController {
         varastoButton.getStyleClass().remove("active");
         lainatButton.getStyleClass().remove("active");
         laskutButton.getStyleClass().remove("active");
+        asetuksetButton.getStyleClass().remove("active");
     }
 
     private void setupTableView() {
@@ -246,10 +366,10 @@ public class ViewController {
             varastoTable.setItems(productObservableList);
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Tietokantavirhe", "Tuotetietojen lataaminen epäonnistui: " + e.getMessage());
+            showAlert("Database error", "Retrieving product data failed: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Virhe", "Tapahtui virhe: " + e.getMessage());
+            showAlert("Error", "Error: " + e.getMessage());
         }
     }
 
@@ -261,7 +381,7 @@ public class ViewController {
             lainaTable.setItems(reservationObservableList);
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Tietokantavirhe", "Lainatietojen lataaminen epäonnistui: " + e.getMessage());
+            showAlert("Database error", "Retrieving loan data failed: " + e.getMessage());
         }
     }
 

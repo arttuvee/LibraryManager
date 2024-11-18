@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -24,7 +23,7 @@
             <AnchorPane prefHeight="623.0" prefWidth="250.0" styleClass="menu-bg" stylesheets="@style.css">
                <children>
                   <Pane prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top" />
-                  <Button fx:id="kotiButton" layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleKotiButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjahylly">
+                  <Button fx:id="kotiButton" layoutX="1.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleKotiButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.bookself">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +32,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="lainatButton" layoutX="1.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleLainatButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Lainat">
+                  <Button fx:id="lainatButton" layoutX="1.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleLainatButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.loans">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -41,7 +40,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Laskut">
+                  <Button fx:id="laskutButton" layoutX="1.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLaskutButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.bills">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -49,7 +48,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="varastoButton" layoutX="1.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Varasto">
+                  <Button fx:id="varastoButton" layoutY="300.0" mnemonicParsing="false" onAction="#handleVarastoButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.storage">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -57,18 +56,18 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="asetuksetButton" layoutY="300.0" mnemonicParsing="false" onAction="#handleAsetuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Asetukset">
+                  <Button fx:id="asetuksetButton" layoutY="240.0" mnemonicParsing="false" onAction="#handleAsetuksetButtonAction" prefHeight="60.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.settings">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/grid-alt-regular-96.png" />
+                              <Image url="@img/cog-regular-96.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="252.0" styleClass="content-page-top">
                      <children>
-                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="Kirjaudu ulos">
+                        <Button fx:id="logoutButton" layoutX="1.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="54.0" prefWidth="250.0" styleClass="menu-button" stylesheets="@style.css" text="%menu.settings">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -79,6 +78,9 @@
                         </Button>
                      </children>
                   </Pane>
+                  <ChoiceBox fx:id="languageChoiceBox" layoutX="3.0" layoutY="523.0" prefHeight="34.0" prefWidth="244.0" value="Suomi">
+                  </ChoiceBox>
+                  <Label layoutX="91.0" layoutY="498.0" styleClass="menu-button" text="Language" textFill="WHITE" />
                </children>
             </AnchorPane>
          </children>
@@ -89,45 +91,46 @@
                <children>
                   <Pane layoutX="14.0" layoutY="426.0" prefHeight="183.0" prefWidth="742.0" styleClass="content-page-bg" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="Lisää">
+                        <Button fx:id="lisääButton" layoutX="576.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="add-button" text="%storage.add.submit">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
-                        <TextField fx:id="lisääNimi" layoutX="14.0" layoutY="55.0" promptText="Nimi" />
-                        <TextField fx:id="lisääTekijä" layoutX="14.0" layoutY="90.0" promptText="Tekijä" />
-                        <TextField fx:id="lisääJulkaisija" layoutX="207.0" layoutY="55.0" promptText="Julkaisija" />
-                        <TextField fx:id="lisääIkäraja" layoutX="207.0" layoutY="90.0" promptText="Ikäraja" />
-                        <TextField fx:id="lisääTyyppi" layoutX="207.0" layoutY="129.0" promptText="Tyyppi" />
-                        <TextField fx:id="lisääKuvaus" layoutX="387.0" layoutY="55.0" promptText="Kuvaus" />
-                        <TextField fx:id="lisääGenre" layoutX="387.0" layoutY="90.0" promptText="Genre" />
-                        <TextField fx:id="lisääSaldo" layoutX="387.0" layoutY="129.0" promptText="Saldo" />
-                        <Text layoutX="290.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Lisää varastoon">
+                        <TextField fx:id="lisääNimi" layoutX="14.0" layoutY="55.0" promptText="%storage.add.name" />
+                        <TextField fx:id="lisääTekijä" layoutX="14.0" layoutY="90.0" promptText="%storage.add.author" />
+                        <TextField fx:id="lisääJulkaisija" layoutX="207.0" layoutY="55.0" promptText="%storage.publisher" />
+                        <TextField fx:id="lisääIkäraja" layoutX="207.0" layoutY="90.0" promptText="%storage.add.age" />
+                        <TextField fx:id="lisääTyyppi" layoutX="207.0" layoutY="129.0" promptText="%storage.add.type" />
+                        <TextField fx:id="lisääKuvaus" layoutX="387.0" layoutY="55.0" promptText="%storage.add.description" />
+                        <TextField fx:id="lisääGenre" layoutX="387.0" layoutY="90.0" promptText="%storage.add.genre" />
+                        <TextField fx:id="lisääSaldo" layoutX="387.0" layoutY="129.0" promptText="%storage.add.saldo" />
+                        <Text layoutX="290.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%storage.add.title">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Button fx:id="poistaButton" layoutX="662.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="Poista" />
-                        <TextField fx:id="lisääKoodi" layoutX="576.0" layoutY="55.0" promptText="Koodi" />
-                        <TextField fx:id="lisääJulkaisuvuosi" layoutX="14.0" layoutY="129.0" promptText="Vuosi" />
+                        <Button fx:id="poistaButton" layoutX="662.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="32.0" prefWidth="66.0" styleClass="remove-button" text="%storage.add.remove" />
+                        <TextField fx:id="lisääKoodi" layoutX="576.0" layoutY="55.0" promptText="%storage.add.code" />
+                        <TextField fx:id="lisääJulkaisuvuosi" layoutX="14.0" layoutY="129.0" promptText="%storage.add.year" />
+                        <ChoiceBox layoutX="576.0" layoutY="90.0" prefHeight="34.0" prefWidth="152.0" />
                      </children>
                   </Pane>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="343.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Varasto" />
+                        <Text fx:id="storageTitle" layoutX="343.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%storage.title" />
                      </children>
                   </Pane>
                   <TableView fx:id="varastoTable" layoutX="14.0" layoutY="70.0" prefHeight="340.0" prefWidth="742.0" stylesheets="@style.css">
                     <columns>
                        <TableColumn fx:id="idColumnVarasto" prefWidth="32.0" text="ID" />
-                       <TableColumn fx:id="nimiColumnVarasto" prefWidth="116.0" text="Nimi" />
-                       <TableColumn fx:id="julkaisuColumnVarasto" prefWidth="45.0" text="Vuosi" />
-                       <TableColumn fx:id="tekijäColumnVarasto" prefWidth="91.00003051757812" text="Tekijä" />
-                       <TableColumn fx:id="julkaisijaColumnVarasto" prefWidth="87.0" text="Julkaisija" />
-                       <TableColumn fx:id="ikärajaColumnVarasto" prefWidth="47.0" text="Ikäraja" />
-                       <TableColumn fx:id="tyyppiColumnVarasto" prefWidth="64.0" text="Tyyppi" />
-                       <TableColumn fx:id="kuvausColumnVarasto" prefWidth="118.0" text="Kuvaus" />
-                       <TableColumn fx:id="genreColumnVarasto" prefWidth="91.0" text="Genre" />
-                       <TableColumn fx:id="saldoColumnVarasto" prefWidth="42.0" text="Saldo" />
+                       <TableColumn fx:id="nimiColumnVarasto" prefWidth="116.0" text="%storage.add.name" />
+                       <TableColumn fx:id="julkaisuColumnVarasto" prefWidth="45.0" text="%storage.add.year" />
+                       <TableColumn fx:id="tekijäColumnVarasto" prefWidth="91.00003051757812" text="%storage.add.author" />
+                       <TableColumn fx:id="julkaisijaColumnVarasto" prefWidth="87.0" text="%storage.publisher" />
+                       <TableColumn fx:id="ikärajaColumnVarasto" prefWidth="47.0" text="%storage.add.age" />
+                       <TableColumn fx:id="tyyppiColumnVarasto" prefWidth="64.0" text="%storage.add.type" />
+                       <TableColumn fx:id="kuvausColumnVarasto" prefWidth="118.0" text="%storage.add.description" />
+                       <TableColumn fx:id="genreColumnVarasto" prefWidth="91.0" text="%storage.add.genre" />
+                       <TableColumn fx:id="saldoColumnVarasto" prefWidth="42.0" text="%storage.add.saldo" />
                     </columns>
                   </TableView>
                </children>
@@ -136,25 +139,25 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="337.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Kirjahylly" />
+                        <Text fx:id="bookshelfTitle" layoutX="337.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%bookshelf.title" />
                      </children>
                   </Pane>
                   <TableView fx:id="kirjahyllyTable" layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0" stylesheets="@style.css">
                      <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="141.0" text="Nimi" />
-                        <TableColumn fx:id="julkaisuColumn" prefWidth="42.0" text="Vuosi" />
-                        <TableColumn fx:id="tekijaColumn" prefWidth="96.00003051757812" text="Tekijä" />
-                        <TableColumn fx:id="julkaisijaColumn" prefWidth="66.0" text="Julkaisija" />
-                        <TableColumn fx:id="ikarajaColumn" prefWidth="46.0" text="Ikäraja" />
-                        <TableColumn fx:id="tyyppiColumn" prefWidth="57.0" text="Tyyppi" />
-                        <TableColumn fx:id="kuvausColumn" prefWidth="156.0" text="Kuvaus" />
-                        <TableColumn fx:id="genreColumn" prefWidth="91.0" text="Genre" />
-                        <TableColumn fx:id="saldoColumn" minWidth="0.0" prefWidth="40.0" text="Saldo" />
+                        <TableColumn fx:id="nameColumn" prefWidth="141.0" text="%bookshelf.name" />
+                        <TableColumn fx:id="julkaisuColumn" prefWidth="42.0" text="%bookshelf.year" />
+                        <TableColumn fx:id="tekijaColumn" prefWidth="96.00003051757812" text="%bookshelf.author" />
+                        <TableColumn fx:id="julkaisijaColumn" prefWidth="66.0" text="%bookshelf.publisher" />
+                        <TableColumn fx:id="ikarajaColumn" prefWidth="46.0" text="%bookshelf.age" />
+                        <TableColumn fx:id="tyyppiColumn" prefWidth="57.0" text="%bookshelf.type" />
+                        <TableColumn fx:id="kuvausColumn" prefWidth="156.0" text="%bookshelf.description" />
+                        <TableColumn fx:id="genreColumn" prefWidth="91.0" text="%bookshelf.genre" />
+                        <TableColumn fx:id="saldoColumn" minWidth="0.0" prefWidth="40.0" text="%bookshelf.saldo" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="lainaaButton" layoutX="304.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLainaaButtonAction" prefHeight="48.0" prefWidth="163.0" styleClass="login-button" text="Lainaa kirja" />
+                        <Button fx:id="lainaaButton" layoutX="304.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleLainaaButtonAction" prefHeight="48.0" prefWidth="163.0" styleClass="login-button" text="%bookshelf.loan" />
                      </children>
                   </Pane>
                </children>
@@ -163,20 +166,20 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="352.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Lainat" />
+                        <Text fx:id="loansTitle" layoutX="352.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%loans.title" />
                      </children>
                   </Pane>
                   <TableView fx:id="lainaTable" layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0">
                      <columns>
-                        <TableColumn fx:id="nimiColumnLainat" prefWidth="183.0" text="Nimi" />
-                        <TableColumn fx:id="tekijaColumnLainat" minWidth="0.0" prefWidth="202.00003051757812" text="Tekijä" />
-                        <TableColumn fx:id="tyyppiColumnLainat" prefWidth="167.0" text="Tyyppi" />
-                        <TableColumn fx:id="lainaaikaColumnLainat" prefWidth="188.0" text="Laina-aika" />
+                        <TableColumn fx:id="nimiColumnLainat" prefWidth="183.0" text="%storage.add.name" />
+                        <TableColumn fx:id="tekijaColumnLainat" minWidth="0.0" prefWidth="202.00003051757812" text="%storage.add.author" />
+                        <TableColumn fx:id="tyyppiColumnLainat" prefWidth="167.0" text="%storage.add.type" />
+                        <TableColumn fx:id="lainaaikaColumnLainat" prefWidth="188.0" text="%loans.time" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Button fx:id="palautaButton" layoutX="309.0" layoutY="6.0" mnemonicParsing="false" onAction="#handlePalautaButtonAction" prefHeight="48.0" prefWidth="152.0" styleClass="login-button" text="Palauta kirja" />
+                        <Button fx:id="palautaButton" layoutX="309.0" layoutY="6.0" mnemonicParsing="false" onAction="#handlePalautaButtonAction" prefHeight="48.0" prefWidth="152.0" styleClass="login-button" text="%loans.return" />
                      </children>
                   </Pane>
                </children>
@@ -185,15 +188,18 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="349.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Laskut" />
+                        <Text fx:id="billsTitle" layoutX="349.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%bills.title" />
                      </children>
                   </Pane>
                   <TableView layoutX="14.0" layoutY="70.0" prefHeight="483.0" prefWidth="742.0">
                      <columns>
+
+
+
                         <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="75.0" text="Nimi" />
-                        <TableColumn prefWidth="75.0" text="Summa" />
-                        <TableColumn prefWidth="75.0" text="Syy" />
+                        <TableColumn fx:id="billsColName" prefWidth="75.0" text="%storage.add.name" />
+                        <TableColumn fx:id="billsColReason" prefWidth="75.0" text="%bills.reason" />
+                        <TableColumn fx:id="billsColAmount" prefWidth="75.0" text="%bills.amount" />
                      </columns>
                   </TableView>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />
@@ -203,113 +209,95 @@
                <children>
                   <Pane prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css">
                      <children>
-                        <Text layoutX="334.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Asetukset" />
+                        <Text fx:id="settingsTitle" layoutX="311.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%settings.title" />
                      </children>
                   </Pane>
                   <Pane layoutX="-1.0" layoutY="563.0" prefHeight="60.0" prefWidth="770.0" styleClass="content-page-top" stylesheets="@style.css" />
-                  <Pane layoutX="55.0" layoutY="132.0" prefHeight="360.0" prefWidth="660.0" styleClass="content-page-bg">
+                  <Pane layoutX="4.0" layoutY="70.0" prefHeight="483.0" prefWidth="760.0" styleClass="content-page-bg">
                      <children>
-                        <Pane layoutX="5.0" layoutY="108.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="115.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Käyttäjätunnus:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.username">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="348.0" layoutY="108.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="163.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salasana:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.password">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="348.0" layoutY="204.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="218.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sähköposti:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.email">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin@gmail.com">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="348.0" layoutY="156.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="270.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puhelinnumero:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.phone">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="040123456">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="5.0" layoutY="204.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="366.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ikä:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.age">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane layoutX="176.0" layoutY="280.0" prefHeight="60.0" prefWidth="308.0">
-                           <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kieli:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                              <ChoiceBox layoutX="79.0" layoutY="18.0" prefWidth="150.0" value="Suomi">
-                                 <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                       <String fx:value="Suomi" />
-                                       <String fx:value="English" />
-                                       <String fx:value="Svenska" />
-                                    </FXCollections>
-                                 </items>
-                              </ChoiceBox>
-                           </children>
-                        </Pane>
-                        <Text fill="WHITE" layoutX="304.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tietosi">
+                        <Text fill="WHITE" layoutX="324.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.info">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <Pane layoutX="5.0" layoutY="156.0" prefHeight="48.0" prefWidth="308.0">
+                        <Pane layoutX="14.0" layoutY="318.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rooli:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.role">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

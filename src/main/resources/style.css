@@ -166,3 +166,53 @@
     -fx-background-color: #191919;
     -fx-text-fill: white;
 }
+
+.choice-box {
+    -fx-background-color: #333333;
+    -fx-text-fill: white; /* Ensure text color is white */
+    -fx-font-size: 14px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.choice-box .arrow {
+    -fx-background-color: #555555;
+}
+
+.choice-box:hover {
+    -fx-background-color: #444444;
+    -fx-border-color: #666666;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #333333;
+}
+
+.choice-box .list-cell {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+}
+
+.choice-box .list-cell:hover {
+    -fx-background-color: #444444;
+}
+
+.choice-box .list-cell:selected {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+}
+
+.choice-box .label {
+    -fx-text-fill: white;
+}
+
+.choice-box-popup .list-view {
+    -fx-background-color: gray;
+}
+
+.choice-box-popup .list-view .list-cell {
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+}

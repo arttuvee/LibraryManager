@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,22 +11,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController" >
    <children>
       <Pane layoutX="149.0" layoutY="119.0" prefHeight="211.0" prefWidth="302.0" styleClass="login-bg" stylesheets="@style.css">
          <children>
-            <TextField fx:id="usernameField" layoutX="120.0" layoutY="71.0" promptText="Käyttäjätunnus" styleClass="login-form" stylesheets="@style.css" />
-            <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="115.0" promptText="Salasana" styleClass="login-form" stylesheets="@style.css" />
-            <Text layoutX="76.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Kirjaudu sisään">
+            <TextField fx:id="usernameField" layoutX="120.0" layoutY="71.0" promptText="%login.username" styleClass="login-form" stylesheets="@style.css" />
+            <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="115.0" promptText="%login.password" styleClass="login-form" stylesheets="@style.css" />
+            <Text fx:id="loginTitle" layoutX="76.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="%login.title">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="loginButton" layoutX="120.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="30.0" prefWidth="71.0" styleClass="login-button" stylesheets="@style.css" text="Kirjaudu">
+            <Button fx:id="loginButton" layoutX="120.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="30.0" prefWidth="71.0" styleClass="login-button" stylesheets="@style.css" text="%login.submit">
                <font>
                   <Font size="10.0" />
                </font></Button>
-            <Button fx:id="registerButton" layoutX="202.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleRegisterButtonAction" prefHeight="30.0" prefWidth="71.0" styleClass="login-button" stylesheets="@style.css" text="Luo tili" />
+            <Button fx:id="registerButton" layoutX="202.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleRegisterButtonAction" prefHeight="30.0" prefWidth="71.0" styleClass="login-button" stylesheets="@style.css" text="%login.register" />
             <ImageView fitHeight="78.0" fitWidth="83.0" layoutX="30.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/user-circle-regular-96.png" />
@@ -33,5 +34,6 @@
             </ImageView>
          </children>
       </Pane>
+      <ChoiceBox fx:id="languageChoiceBox" layoutX="237.0" layoutY="336.0" prefHeight="25.0" prefWidth="126.0" value="Language" />
    </children>
 </AnchorPane>
