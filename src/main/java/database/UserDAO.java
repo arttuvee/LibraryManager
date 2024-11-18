@@ -18,7 +18,7 @@ public class UserDAO {
     public static List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
 
-        String query = "SELECT user_id, name, email, role, pass, age FROM users";
+        String query = "SELECT * FROM Käyttäjä";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
@@ -33,7 +33,7 @@ public class UserDAO {
     // Other CRUD methods (create, read, update, delete) can be added here
     public static User getUserById(int id) throws SQLException {
         User user = new User();
-        String query = "SELECT user_id, name, email, role, pass, age FROM users WHERE user_id = ?";
+        String query = "SELECT * FROM Käyttäjä WHERE Käyttäjä_ID = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -49,7 +49,7 @@ public class UserDAO {
 
     public static User getUserByName(String name) throws SQLException {
         User user = new User();
-        String query = "SELECT user_id, name, email, role, pass, age FROM users WHERE name = ?";
+        String query = "SELECT * FROM Käyttäjä WHERE Käyttäjänimi = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -64,7 +64,7 @@ public class UserDAO {
     }
 
     public static void addUser(User user) throws SQLException {
-        String query = "INSERT INTO users (name, email, role, pass, age) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Käyttäjä (Käyttäjänimi, Ikä, Rooli, Salasana, Sähköpostiosoite) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, user.getName());
@@ -77,7 +77,7 @@ public class UserDAO {
     }
 
     public static void updateUser(User user) throws SQLException {
-        String query = "UPDATE users SET name = ?, email = ?, role = ?, pass = ?, age = ? WHERE user_id = ?";
+        String query = "UPDATE Käyttäjä SET Käyttäjänimi = ?, Sähköpostiosoite = ?, Rooli = ?, Salasana = ?, Ikä = ? WHERE Käyttäjä_ID = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, user.getName());
@@ -91,7 +91,7 @@ public class UserDAO {
     }
 
     public static void deleteUserById(int id) throws SQLException {
-        String query = "DELETE FROM users WHERE user_id = ?";
+        String query = "DELETE FROM Käyttäjä WHERE Käyttäjä_ID = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
@@ -101,12 +101,12 @@ public class UserDAO {
 
     private static User populateUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
-        user.setId(rs.getInt("user_id"));
-        user.setName(rs.getString("name"));
-        user.setEmail(rs.getString("email"));
-        user.setRole(rs.getString("role"));
-        user.setPassword(rs.getString("pass"));
-        user.setAge(rs.getInt("age"));
+        user.setId(rs.getInt("Käyttäjä_ID"));
+        user.setName(rs.getString("Käyttäjänimi"));
+        user.setEmail(rs.getString("Sähköpostiosoite"));
+        user.setRole(rs.getString("Rooli"));
+        user.setPassword(rs.getString("Salasana"));
+        user.setAge(rs.getInt("Ikä"));
         return user;
     }
 }
