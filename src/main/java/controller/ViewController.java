@@ -161,6 +161,8 @@ public class ViewController {
     @FXML
     private TableColumn<Reservation, String> billsColAmount;
 
+
+
     @FXML
     public void initialize() {
         System.out.println("Initializing ViewController");
@@ -240,6 +242,37 @@ public class ViewController {
         billsColName.setText(bundle.getString("storage.add.name"));
         billsColReason.setText(bundle.getString("bills.reason"));
         billsColAmount.setText(bundle.getString("bills.amount"));
+
+        nameColumn.setText(bundle.getString("bookshelf.title"));
+        julkaisuColumn.setText(bundle.getString("bookshelf.year"));
+        tekijaColumn.setText(bundle.getString("bookshelf.author"));
+        julkaisijaColumn.setText(bundle.getString("bookshelf.publisher"));
+        ikarajaColumn.setText(bundle.getString("bookshelf.age"));
+        tyyppiColumn.setText(bundle.getString("bookshelf.type"));
+        kuvausColumn.setText(bundle.getString("bookshelf.description"));
+        genreColumn.setText(bundle.getString("bookshelf.genre"));
+        saldoColumn.setText(bundle.getString("bookshelf.saldo"));
+
+        nimiColumnVarasto.setText(bundle.getString("bookshelf.title"));
+        julkaisuColumnVarasto.setText(bundle.getString("bookshelf.year"));
+        tekijäColumnVarasto.setText(bundle.getString("bookshelf.author"));
+        julkaisijaColumnVarasto.setText(bundle.getString("bookshelf.publisher"));
+        ikärajaColumnVarasto.setText(bundle.getString("bookshelf.age"));
+        tyyppiColumnVarasto.setText(bundle.getString("bookshelf.type"));
+        kuvausColumnVarasto.setText(bundle.getString("bookshelf.description"));
+        genreColumnVarasto.setText(bundle.getString("bookshelf.genre"));
+        saldoColumnVarasto.setText(bundle.getString("bookshelf.saldo"));
+
+        nimiColumnLainat.setText(bundle.getString("loans.title"));
+        tekijaColumnLainat.setText(bundle.getString("bookshelf.author"));
+        tyyppiColumnLainat.setText(bundle.getString("bookshelf.type"));
+        lainaaikaColumnLainat.setText(bundle.getString("loans.time"));
+
+
+        // lainat
+
+        // storage
+
 
         Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
         stage.setTitle("Library Manager");
