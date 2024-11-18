@@ -217,12 +217,12 @@
                      <children>
                         <Pane layoutX="14.0" layoutY="163.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Käyttäjätunnus:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.username">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -231,12 +231,12 @@
                         </Pane>
                         <Pane layoutX="438.0" layoutY="163.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salasana:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.password">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -245,12 +245,12 @@
                         </Pane>
                         <Pane layoutX="438.0" layoutY="211.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sähköposti:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.email">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin@gmail.com">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -259,12 +259,12 @@
                         </Pane>
                         <Pane layoutX="438.0" layoutY="259.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puhelinnumero:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.phone">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="040123456">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -273,31 +273,31 @@
                         </Pane>
                         <Pane layoutX="14.0" layoutY="259.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ikä:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.age">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Text fill="WHITE" layoutX="354.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tietosi">
+                        <Text fill="WHITE" layoutX="354.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.info">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
                         <Pane layoutX="14.0" layoutY="211.0" prefHeight="48.0" prefWidth="308.0">
                            <children>
-                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rooli:">
+                              <Text fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%settings.role">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+                              <Text fill="WHITE" layoutX="202.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
                                  <font>
                                     <Font size="18.0" />
                                  </font>

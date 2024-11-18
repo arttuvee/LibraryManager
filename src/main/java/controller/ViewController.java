@@ -268,12 +268,6 @@ public class ViewController {
         tyyppiColumnLainat.setText(bundle.getString("bookshelf.type"));
         lainaaikaColumnLainat.setText(bundle.getString("loans.time"));
 
-
-        // lainat
-
-        // storage
-
-
         Stage stage = (Stage) languageChoiceBox.getScene().getWindow();
         stage.setTitle("Library Manager");
     }
