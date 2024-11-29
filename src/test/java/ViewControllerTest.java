@@ -18,8 +18,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.MockitoAnnotations;
 
-import java.util.List;
-
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,7 +68,9 @@ public class ViewControllerTest {
 
     @BeforeAll
     public static void initToolkit() {
-        Platform.startup(() -> {});
+        if (!Platform.isFxApplicationThread()) {
+            Platform.startup(() -> {});
+        }
     }
 
     @BeforeEach
