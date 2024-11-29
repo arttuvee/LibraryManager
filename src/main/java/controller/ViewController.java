@@ -35,33 +35,33 @@ public class ViewController {
 
     // Menu buttons
     @FXML
-    private Button kotiButton;
+    public Button kotiButton;
     @FXML
-    private Button varastoButton;
+    public Button varastoButton;
     @FXML
-    private Button lainatButton;
+    public Button lainatButton;
     @FXML
-    private Button laskutButton;
+    public Button laskutButton;
     @FXML
-    private Button asetuksetButton;
+    public Button asetuksetButton;
     @FXML
-    private Button logoutButton;
+    public Button logoutButton;
     @FXML
-    private ChoiceBox<String> languageChoiceBox;
+    public ChoiceBox<String> languageChoiceBox;
 
     // Pages
     @FXML
-    private StackPane mainStackPane;
+    public StackPane mainStackPane;
     @FXML
-    private Pane kotiPane;
+    public Pane kotiPane;
     @FXML
-    private Pane varastoPane;
+    public Pane varastoPane;
     @FXML
-    private Pane lainatPane;
+    public Pane lainatPane;
     @FXML
-    private Pane laskutPane;
+    public Pane laskutPane;
     @FXML
-    private Pane asetuksetPane;
+    public Pane asetuksetPane;
 
     // Add product fields
     @FXML
@@ -99,7 +99,7 @@ public class ViewController {
 
     // Kirjahylly TableView
     @FXML
-    private TableView<Product> kirjahyllyTable;
+    public TableView<Product> kirjahyllyTable;
     @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
@@ -121,7 +121,7 @@ public class ViewController {
 
     // Varasto TableView
     @FXML
-    private TableView<Product> varastoTable;
+    public TableView<Product> varastoTable;
     @FXML
     private TableColumn<Product, Integer> idColumnVarasto;
     @FXML
@@ -145,7 +145,7 @@ public class ViewController {
 
     // Lainat tableview
     @FXML
-    private TableView<Reservation> lainaTable;
+    public TableView<Reservation> lainaTable;
     @FXML
     private TableColumn<Reservation, String> nimiColumnLainat;
     @FXML
@@ -377,7 +377,7 @@ public class ViewController {
         lainaTable.refresh();
     }
 
-    ObservableList<Product> globalProductObservableList;
+    public ObservableList<Product> globalProductObservableList;
 
     private void loadProductData() {
         System.out.println("Loading product data");

@@ -26,16 +26,16 @@ public class LoginController implements Initializable {
     private Text loginTitle;
 
     @FXML
-    private Button loginButton;
+    public Button loginButton;
 
     @FXML
     private Button registerButton;
 
     @FXML
-    private TextField usernameField;
+    public TextField usernameField;
 
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
 
     @FXML
     private ChoiceBox<String> languageChoiceBox;
@@ -93,7 +93,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void handleLoginButtonAction() throws IOException {
+    public void handleLoginButtonAction() throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
