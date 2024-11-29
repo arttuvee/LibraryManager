@@ -1,22 +1,22 @@
 import controller.ViewController;
 import database.ProductDAO;
 import database.ReservationDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import model.Product;
 import model.Reservation;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -68,8 +68,14 @@ public class ViewControllerTest {
     @Mock
     private TableView<Reservation> lainaTable;
 
+    @BeforeAll
+    public static void initToolkit() {
+        Platform.startup(() -> {});
+    }
+
     @BeforeEach
     public void setUp() {
+        MockitoAnnotations.openMocks(this);
         viewController.kotiButton = kotiButton;
         viewController.varastoButton = varastoButton;
         viewController.lainatButton = lainatButton;

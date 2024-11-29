@@ -1,15 +1,18 @@
 import controller.LoginController;
 import database.UserDAO;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,8 +35,14 @@ public class LoginControllerTest {
     @Mock
     private Button loginButton;
 
+    @BeforeAll
+    public static void initToolkit() {
+        Platform.startup(() -> {});
+    }
+
     @BeforeEach
     public void setUp() {
+        MockitoAnnotations.openMocks(this);
         loginController.usernameField = usernameField;
         loginController.passwordField = passwordField;
         loginController.loginButton = loginButton;
@@ -69,7 +78,6 @@ public class LoginControllerTest {
 
         loginController.handleLoginButtonAction();
 
-        // Verify that an alert is shown for invalid password
         verify(loginButton.getScene().getWindow(), never()).hide();
     }
 
@@ -82,7 +90,6 @@ public class LoginControllerTest {
 
         loginController.handleLoginButtonAction();
 
-        // Verify that an alert is shown for user not found
         verify(loginButton.getScene().getWindow(), never()).hide();
     }
 }
