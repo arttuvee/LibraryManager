@@ -79,7 +79,7 @@ public class ProductDAO {
     public static void addProduct(Product product) throws SQLException {
         String checkKoodiQuery = "SELECT COUNT(*) FROM Hyllypaikka WHERE Koodi = ?";
         String insertKoodiQuery = "INSERT INTO Hyllypaikka (Koodi) VALUES (?)";
-        String insertProductQuery = "INSERT INTO products (release_year, age_limit, saldo, borrow_time, code, type, genre) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertProductQuery = "INSERT INTO products (release_year, age_limit, saldo, borrow_time, code, type, genre, author, producer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             try (PreparedStatement checkStmt = conn.prepareStatement(checkKoodiQuery)) {
@@ -101,9 +101,26 @@ public class ProductDAO {
                 stmt.setString(5, product.getKoodi());
                 stmt.setString(6, product.getTyyppi());
                 stmt.setString(7, product.getGenre());
+                stmt.setString(8, product.getAuthor());
+                stmt.setString(9, product.getProducer());
                 Integer lainaaika = product.getLainaaika();
                 stmt.setInt(4, lainaaika == null ? (Objects.equals(product.getTyyppi(), "Kirja") || Objects.equals(product.getTyyppi(), "kirja") ? 28 : 14) : lainaaika);
                 stmt.executeUpdate();
+
+                // Update languages in products_translations if available
+                String query2 = "INSERT INTO products_translations (product_id, language_code, name, description) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement stmt2 = conn.prepareStatement(query2)) {
+                    for (String language : new String[]{"en", "fi", "ja", "uk"}) {
+                        if (product.getName(language) != null) {
+                            stmt2.setInt(1, product.getId());
+                            stmt2.setString(2, language);
+                            stmt2.setString(3, product.getName(language));
+                            stmt2.setString(4, product.getDescription(language));
+                            stmt2.executeUpdate();
+                        }
+                    }
+                }
+
             }
         }
     }

@@ -463,6 +463,8 @@ public class ViewController {
             int borrowTime = Objects.equals(tyyppi, "Kirja") || Objects.equals(tyyppi, "kirja") ? 28 : 14;
 
             Product product = new Product(julkaisuvuosi, ikäraja, saldo, borrowTime, koodi, tyyppi, genre, tekijä, julkaisija);
+            product.setName("en", nimi);
+            product.setKuvaus("en", kuvaus);
             ProductDAO.addProduct(product);
             showAlert("Tuotteen lisäys onnistui", "Tuote lisätty onnistuneesti!");
             loadProductData();
